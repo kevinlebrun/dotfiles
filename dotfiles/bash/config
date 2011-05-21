@@ -76,13 +76,13 @@ if [[ -n "$PS1" ]] ; then
                 else
                     local color=$GREEN
                 fi
-                echo -e "$color$(minutes_since_last_commit)m$NO_COLOR "
+                echo "\[$color\]\$(minutes_since_last_commit)m\[$NO_COLOR\] "
             fi
         fi
     }
 
 #	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)\[$NO_COLOR\]\$(gitprompt)\$ "
+    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)\[$NO_COLOR\]$(gitprompt)\$ "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
