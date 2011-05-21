@@ -1,0 +1,10 @@
+#!/bin/sh
+# Based on the work of Geoffrey Grosenbach
+# Download, compile, and copy the vcprompt command to $SMILE_BIN
+
+mkdir -p ~/src
+cd ~/src
+hg clone http://vc.gerg.ca/hg/vcprompt/
+cd vcprompt
+make
+cp vcprompt $SMILE_BIN/vcprompt

@@ -1,0 +1,74 @@
+# general aliases
+alias reload="source $SMILE_DOTFILES/bash/aliases"
+alias ea="vim $SMILE_DOTFILES/bash/aliases && reload"
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias l='ls -lah'
+alias t='tree -a'
+alias ti='tree -a -I ".git*|.hg*|*.log"'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias p='pushd'
+alias o='popd'
+
+function take {
+    mkdir $1
+    cd $1
+}
+
+# apache2 aliases
+alias a2='sudo invoke-rc.d apache2'
+
+# PHP
+alias php_error_log='tail -f /var/log/php5/error.log'
+
+# Zend Framework
+alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
+
+# Mercurial
+alias hi='hg init'
+alias hs='hg st'
+alias hpu='hg pull'
+alias hp='hg push'
+alias hm='hg commit -m'
+alias hc='hg commit'
+alias hd='hg diff'
+alias hl='hg log'
+alias ha='hg add'
+alias hcl='hg clone'
+alias hu='hg update'
+alias hb='hg branch'
+alias hh='hg heads'
+alias hbs='hg branches'
+alias hin='hg inc'
+alias hout='hg out'
+
+# Git
+alias gi='git init'
+alias gs='git status'
+alias gcl='git clone'
+alias gpu='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias ga='git add'
+alias gm='git commit -m'
+alias gc='git commit'
+alias gl='git log'
+alias gb='git branch'
+alias gco='git checkout'
+
+# virtualbox configuration
+function changeip {
+    sudo ifconfig eth1 192.168.56.$1
+}

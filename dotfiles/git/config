@@ -1,0 +1,7 @@
+[user]
+	name = Kevin Le Brun
+	email = lebrun.k@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = true

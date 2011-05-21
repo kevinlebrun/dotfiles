@@ -1,0 +1,32 @@
+# procédure d'installation d'un environnement de développement LAMP avec RVM
+
+su -
+# vim comme éditeur par défaut
+apt-get install vim 
+update-alternatives --config editor
+
+# ajout d'un groupe adm avec tous droits sudo
+visudo # %adm ALL=(ALL) ALL
+# ajout de l'utilisateur dans le groupe adm
+adduser {{user}} adm
+
+apt-get install mercurial git apache2 mysql-server mysql-client php5 php5-cli php5-mysql php-pear libapache2-mod-php5
+apt-get install php5-dev
+
+apt-get install tree curl
+sudo apt-get install sqlite3 php5-sqlite php5-curl
+
+pear upgrade pear
+pecl install xdebug
+# PHPUnit http://www.phpunit.de/manual/current/en/installation.html
+# CodeSniffer http://pear.php.net/package/PHP_CodeSniffer 
+# Phing http://www.phing.info
+# PHP Mess Detector http://phpmd.org
+# PHP_CodeBrowser https://github.com/mayflowergmbh/PHP_CodeBrowser
+# PHP Copy/Paste Detector https://github.com/mayflowergmbh/phpcpd
+
+a2enmod rewrite
+/etc/init.d/apache2 restart
+
+# Ruby Version Manager https://rvm.beginrescueend.com/rvm/install/
+mkdir ~/{work,play}

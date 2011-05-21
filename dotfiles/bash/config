@@ -1,0 +1,96 @@
+if [[ -n "$PS1" ]] ; then
+    # misc
+    NO_COLOR='\e[0m' #disable any colors
+    # regular colors
+    BLACK='\e[0;30m'
+    RED='\e[0;31m'
+    GREEN='\e[0;32m'
+    YELLOW='\e[0;33m'
+    BLUE='\e[0;34m'
+    MAGENTA='\e[0;35m'
+    CYAN='\e[0;36m'
+    WHITE='\e[0;37m'
+    # emphasized (bolded) colors
+    EBLACK='\e[1;30m'
+    ERED='\e[1;31m'
+    EGREEN='\e[1;32m'
+    EYELLOW='\e[1;33m'
+    EBLUE='\e[1;34m'
+    EMAGENTA='\e[1;35m'
+    ECYAN='\e[1;36m'
+    EWHITE='\e[1;37m'
+    # underlined colors
+    UBLACK='\e[4;30m'
+    URED='\e[4;31m'
+    UGREEN='\e[4;32m'
+    UYELLOW='\e[4;33m'
+    UBLUE='\e[4;34m'
+    UMAGENTA='\e[4;35m'
+    UCYAN='\e[4;36m'
+    UWHITE='\e[4;37m'
+    # background colors
+    BBLACK='\e[40m'
+    BRED='\e[41m'
+    BGREEN='\e[42m'
+    BYELLOW='\e[43m'
+    BBLUE='\e[44m'
+    BMAGENTA='\e[45m'
+    BCYAN='\e[46m'
+    BWHITE='\e[47m'
+
+	HISTCONTROL=ignoreboth
+
+    # append to the history file, don't overwrite it
+	shopt -s histappend
+
+	HISTSIZE=10000
+	HISTFILESIZE=20000
+
+    # check the window size after each command and, if necessary,
+    # update the values of LINES and COLUMNS.
+	shopt -s checkwinsize
+
+    # set variable identifying the chroot you work in (used in the prompt below)
+	if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+        debian_chroot=$(cat /etc/debian_chroot)
+	fi
+    
+    function minutes_since_last_commit {
+        local now=`date +%s`
+        local last_commit=`git log --pretty=format:'%at' -1 2>/dev/null`
+        if [ -n "$last_commit" ]; then
+            local seconds_since_last_commit=$((now - last_commit))
+            local minutes_since_last_commit=$((seconds_since_last_commit / 60))
+            echo $minutes_since_last_commit
+        fi
+    }
+
+    function gitprompt {
+        if [ -n "$(__gitdir)" ]; then
+            local minutes_since_last_commit=`minutes_since_last_commit` 
+            if [ -n "$minutes_since_last_commit" ]; then
+                if [ $minutes_since_last_commit -gt 30 ]; then
+                    local color=$RED
+                elif [ $minutes_since_last_commit -gt 10 ]; then
+                    local color=$YELLOW
+                else
+                    local color=$GREEN
+                fi
+                echo -e "$color$(minutes_since_last_commit)m$NO_COLOR "
+            fi
+        fi
+    }
+
+#	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)\[$NO_COLOR\]\$(gitprompt)\$ "
+
+    # enable programmable completion features (you don't need to enable
+    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+	if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+	. /etc/bash_completion
+	fi
+fi
+
+# load RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
