@@ -68,11 +68,20 @@ if [[ -n "$PS1" ]] ; then
     function gitprompt {
         if [ -n "$(__gitdir 2>/dev/null)" ]; then
             local minutes_since_last_commit=`minutes_since_last_commit` 
-            echo "${minutes_since_last_commit}m "
+            if [ -n "$minutes_since_last_commit" ]; then
+                if [ "$minutes_since_last_commit" -gt 40 ]; then
+                    local flag='!'
+                elif [ "$minutes_since_last_commit" -gt 20 ]; then
+                    local flag='*'
+                else
+                    local flag=''
+                fi
+                echo "|${flag}${minutes_since_last_commit}m"
+            fi
         fi
     }
 
-    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)\$(gitprompt)\[$NO_COLOR\]\$ "
+    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt -f \"[%n:%b%m%u\$(gitprompt)] \")\[$NO_COLOR\]\$ "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
