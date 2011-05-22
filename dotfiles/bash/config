@@ -66,23 +66,13 @@ if [[ -n "$PS1" ]] ; then
     }
 
     function gitprompt {
-        if [ -d "$(__gitdir 2>/dev/null)" ]; then
+        if [ -n "$(__gitdir 2>/dev/null)" ]; then
             local minutes_since_last_commit=`minutes_since_last_commit` 
-            if [ -n "$minutes_since_last_commit" ]; then
-                if [ $minutes_since_last_commit -gt 30 ]; then
-                    local color=$RED
-                elif [ $minutes_since_last_commit -gt 10 ]; then
-                    local color=$YELLOW
-                else
-                    local color=$GREEN
-                fi
-                echo "\[$color\]$(minutes_since_last_commit)m "
-            fi
+            echo "${minutes_since_last_commit}m "
         fi
     }
 
-#	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)$(gitprompt)\[$NO_COLOR\]\$ "
+    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt)\$(gitprompt)\[$NO_COLOR\]\$ "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
