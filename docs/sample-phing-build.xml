@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sample" basedir="." default="build">
+    <property name="builddir" value="${project.basedir}/build" />
+    <property name="srcdir" value="${project.basedir}" override="true" />
+    
+    <fileset dir="${srcdir}" id="phpsrc">
+        <include name="**/*.php" />
+        <include name="**/*.phtml" />
+    </fileset>
+
+    <target name="clean">
+        <echo>Cleaning the build environment...</echo>
+        <delete dir="${builddir}" />
+    </target>
+
+    <target name="prepare" depends="clean">
+        <echo>Preparing the build environment...</echo>
+        <mkdir dir="${builddir}" />
+        <mkdir dir="${builddir}/docs" />
+        <mkdir dir="${builddir}/logs" />
+        <mkdir dir="${builddir}/logs/coverage" />
+    </target>
+
+    <target name="build" depends="prepare">
+        <echo>Building...</echo>
+        <phingcall target="phplint" />
+        <phingcall target="phpunit" />
+        <phingcall target="phpdoc" />
+        <phingcall target="phpcpd" />
+        <phingcall target="pdepend" />
+        <phingcall target="phppmd" />
+        <phingcall target="phpcodesniffer" />
+        <phingcall target="phpcb" />
+        <phingcall target="phploc" />
+    </target>
+
+    <target name="phpunit" description="Run unit tests and coverage analysis">
+        <exec command="phpunit --coverage-html ${builddir}/logs/coverage/ 
+            --log-junit ${builddir}/logs/phpunit.xml ${srcdir}/tests" />
+    </target>
+
+    <target name="phpdoc" description="Generate documentation">
+        <phpdoc title="FEL API Documentation" destdir="${builddir}/docs" sourcecode="true"
+            parseprivate="true" output="HTML:Smarty:PHP">
+            <fileset refid="phpsrc" />
+        </phpdoc>
+    </target>
+
+    <target name="phpcpd" description="Copy/Paste Detector">
+        <phpcpd minTokens="5" minLines="3">
+            <fileset refid="phpsrc" />
+            <formatter type="pmd" outfile="${builddir}/logs/pmd-cpd.xml" />
+        </phpcpd>
+    </target>
+
+    <target name="pdepend" description="Generate JDepend report">
+        <phpdepend>
+            <fileset refid="phpsrc" />
+            <logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml" />
+        </phpdepend>
+    </target>
+
+    <target name="phppmd" description="Generate PHP Mess Detector report">
+        <phpmd rulesets="codesize,naming,unusedcode,design">
+            <fileset refid="phpsrc" />
+            <formatter type="xml" outfile="${builddir}/logs/pmd.xml" />
+        </phpmd>
+    </target>
+
+    <target name="phplint" description="Check PHP syntax">
+        <phplint deprecatedAsError="true"> 
+            <fileset refid="phpsrc" />
+        </phplint>
+    </target>
+
+    <target name="phpcodesniffer" description="Detect violation of coding standards">
+        <!--<phpcodesniffer standard="Zend" showSniffs="true" showWarnings="true"> 
+            <fileset refid="phpsrc" />
+            <formatter type="default" usefile="false" />
+            <formatter type="checkstyle" outfile="${builddir}/logs/checkstyle.xml" />
+        </phpcodesniffer> bug task on command line arguments (see pear bug tracker for resolution)-->
+        <exec command="phpcs
+            --standard=Zend --report=checkstyle
+            --extensions=php,phtml --ignore=*/library/Zend/*,*/build/*
+            --encoding=utf-8
+            ${srcdir} ${builddir}/logs/checkstyle.xml" escape="false" />
+    </target>
+
+    <target name="phpcb" description="Generate code browser">
+        <exec command="phpcb
+            --log ${builddir}/logs
+            --source ${srcdir} --exclude=*/build/*,*/data/*,*/logs/*
+            --output ${builddir}/browser" />
+    </target>
+
+    <target name="phploc" description="Generate LOC report">
+        <exec command="phploc --count-tests --log-xml ${builddir}/logs/loc.xml ${srcdir}" />
+    </target>
+</project>

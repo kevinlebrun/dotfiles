@@ -24,6 +24,7 @@ pecl install xdebug
 # PHP Mess Detector http://phpmd.org
 # PHP_CodeBrowser https://github.com/mayflowergmbh/PHP_CodeBrowser
 # PHP Copy/Paste Detector https://github.com/mayflowergmbh/phpcpd
+# PHP Line Of Code https://github.com/sebastianbergmann/phploc
 
 a2enmod rewrite
 /etc/init.d/apache2 restart

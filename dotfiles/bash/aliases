@@ -32,6 +32,15 @@ alias a2='sudo invoke-rc.d apache2'
 
 # PHP
 alias php_error_log='tail -f /var/log/php5/error.log'
+alias pu='phpunit'
+alias pl='find . -name \*.phtml -o -name \*.php -exec php -l {} \\;'
+alias plo='phploc --count-tests .'
+alias pcs='phpcs --standard=Zend --extensions=php,phtml --ignore=*/tests/*,*/library/Zend/*,*/build/* .'
+function pall {
+    pl
+    pcs
+    plo
+}
 
 # Zend Framework
 alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
@@ -72,3 +81,5 @@ alias gco='git checkout'
 function changeip {
     sudo ifconfig eth1 192.168.56.$1
 }
+
+alias iw="iceweasel"
