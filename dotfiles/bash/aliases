@@ -83,3 +83,5 @@ function changeip {
 }
 
 alias iw="iceweasel"
+
+alias mntsfrcp="sudo mount -t vboxsf SFR_CP/ ~/work/SFR_CP/"
