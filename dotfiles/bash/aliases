@@ -33,7 +33,7 @@ alias a2='sudo invoke-rc.d apache2'
 # PHP
 alias php_error_log='tail -f /var/log/php5/error.log'
 alias pu='phpunit'
-alias pl='find . -name \*.phtml -o -name \*.php -exec php -l {} \\;'
+alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 alias plo='phploc --count-tests .'
 alias pcs='phpcs --standard=Zend --extensions=php,phtml --ignore=*/tests/*,*/library/Zend/*,*/build/* .'
 function pall {
@@ -44,6 +44,9 @@ function pall {
 
 # Zend Framework
 alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
+
+# Ruby
+alias rb="ruby"
 
 # Mercurial
 alias hi='hg init'
@@ -84,4 +87,4 @@ function changeip {
 
 alias iw="iceweasel"
 
-alias mntsfrcp="sudo mount -t vboxsf SFR_CP/ ~/work/SFR_CP/"
+alias mntsfrcp="sudo mount -t vboxsf SFR_CP/ SFR_CP/"
