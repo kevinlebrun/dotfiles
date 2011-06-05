@@ -1,6 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""
-" MyVimrc based on all good .vimrc i saw
-"
+" MyVimrc based on all good .vimrc i saw "
+" TODO
+"  - ajouter des snippets pour PHP
+"  - créer des squelettes pour le Zend Framework
 """"""""""""""""""""""""""""""""""""""""
 set nocompatible
 
@@ -21,8 +23,9 @@ set encoding=utf-8
 let g:molokai_original = 1
 
 if has("gui_running")
-    set background=dark
+    set background=light
     " let g:solarized_termcolors=256
+    " colorscheme molokai
     colorscheme solarized
     set mousehide
     set guioptions=ce
@@ -35,8 +38,8 @@ else
     colorscheme molokai
 endif
 
-" au BufWinLeave * silent! mkview " make vim save view state
-" au BufWinEnter * silent! loadview " make vim load view state
+au BufWinLeave * silent! mkview " make vim save view state
+au BufWinEnter * silent! loadview " make vim load view state
 
 set hid
 
@@ -106,6 +109,8 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
+nnoremap / /\v
+vnoremap / /\v
 nmap <silent> <C-N> :silent noh<CR>
 
 set list
@@ -131,6 +136,7 @@ map <F5> :FufFile<CR>
 map <F6> :FufBuffer<CR>
 map <F7> :FufTag<CR>
 map <F8> :FufLine<CR>
+nnoremap <F9> :GundoToggle<CR>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
@@ -163,7 +169,7 @@ fun! ResizeWindow()
     if &bt == ""
         :vertical res
     endif
-    if &bt == "nofile"
+    if &bt == "nofile" " NERDTree & co. splits
         :vertical res 31
     endif
 endfunction
@@ -207,6 +213,18 @@ vmap <A-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 imap <leader>; <esc>A;
+
+"---------------------------------------------------------------------------
+" Search for <cword> and replace with input() in all open buffers
+"---------------------------------------------------------------------------
+"
+fun! Replace()
+    let s:word = input("Replace " . expand('<cword>') . " with:")
+    :exe 'bufdo! %s/' . expand('<cword>') . '/' . s:word . '/ge'
+    :unlet! s:word
+endfun
+
+map <leader>r :call Replace()<CR>
 
 " Delete trailing white space, useful for Python ;)
 func! DeleteTrailingWS()
@@ -260,7 +278,23 @@ map <leader>f :MRU<CR>
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc,.hg
 
-set tags=./tags;/,$HOME/.vimtags
+" set tags=./tags;/,$HOME/.vimtags
+set tags=./tags;/
+" Load a tag file
+" Loads a tag file from ~/.vim.tags/, based on the argument provided. The
+" " command "Ltag"" is mapped to this function.
+function! LoadTags(file)
+   let tagspath = $HOME . "/.vimtags/" . a:file
+   let tagcommand = 'set tags+=' . tagspath
+   execute tagcommand
+endfunction
+command! -nargs=1 Ltag :call LoadTags("<args>")
+
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Close_On_Select = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Display_Tag_Scope = 1
 
 " Too slow for now
 " let g:easytags_cmd = 'ctags'
@@ -270,6 +304,7 @@ set tags=./tags;/,$HOME/.vimtags
 " endif
 
 let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
+
 " Shortcut for reloading snippets, useful when developing
 nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 
@@ -278,6 +313,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeKeepTreeInNewTab = 1
 let NERDTreeShowBookmarks = 1
+let NERDTreeChDirMode = 2
 
 " use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))

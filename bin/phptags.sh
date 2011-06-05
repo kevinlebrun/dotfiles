@@ -5,7 +5,6 @@ ctags-exuberant -f ~/.vimtags -h ".php" -R \
 --exclude="\.svn" \
 --exclude="\.git" \
 --exclude="\.hg" \
---exclude="\.js" \
 --totals=yes \
 --tag-relative=yes \
 --PHP-kinds=+cfi \
@@ -19,7 +18,6 @@ ctags-exuberant -f ~/.vimtags -h ".php" -a -R \
 --exclude="\.svn" \
 --exclude="\.git" \
 --exclude="\.hg" \
---exclude="\.js" \
 --totals=yes \
 --tag-relative=yes \
 --PHP-kinds=+cfi \

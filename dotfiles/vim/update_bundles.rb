@@ -2,6 +2,7 @@
 # working with symfony https://github.com/geoffrey/vim-symfony
 # github scripts http://vim-scripts.org/vim/scripts.html
 # TVO https://github.com/vim-scripts/TVO--The-Vim-Outliner.git
+# Conque http://code.google.com/p/conque/
 
 git_bundles = [ 
     "https://github.com/msanders/snipmate.vim.git",
@@ -41,6 +42,7 @@ git_bundles = [
     "https://github.com/leshill/vim-json.git",
     # "https://github.com/xolox/vim-easytags.git",
     "https://github.com/vim-scripts/phpfolding.vim.git",
+    "https://github.com/sjl/gundo.vim.git",
 ]
 
 require 'fileutils'

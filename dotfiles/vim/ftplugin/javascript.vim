@@ -1,4 +1,3 @@
-call JavaScriptFold()
 setl fen
 setl nocindent
 
@@ -16,3 +15,4 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
+call JavaScriptFold()
