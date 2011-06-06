@@ -25,6 +25,7 @@ pecl install xdebug
 # PHP_CodeBrowser https://github.com/mayflowergmbh/PHP_CodeBrowser
 # PHP Copy/Paste Detector https://github.com/mayflowergmbh/phpcpd
 # PHP Line Of Code https://github.com/sebastianbergmann/phploc
+# DocBlox http://www.docblox-project.org/documentation/installation/
 
 a2enmod rewrite
 /etc/init.d/apache2 restart

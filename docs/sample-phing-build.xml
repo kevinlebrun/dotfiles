@@ -2,7 +2,7 @@
 <project name="sample" basedir="." default="build">
     <property name="builddir" value="${project.basedir}/build" />
     <property name="srcdir" value="${project.basedir}" override="true" />
-    
+
     <fileset dir="${srcdir}" id="phpsrc">
         <include name="**/*.php" />
         <include name="**/*.phtml" />
@@ -15,7 +15,6 @@
 
     <target name="prepare" depends="clean">
         <echo>Preparing the build environment...</echo>
-        <mkdir dir="${builddir}" />
         <mkdir dir="${builddir}/docs" />
         <mkdir dir="${builddir}/logs" />
         <mkdir dir="${builddir}/logs/coverage" />
@@ -35,14 +34,18 @@
     </target>
 
     <target name="phpunit" description="Run unit tests and coverage analysis">
-        <exec command="phpunit --coverage-html ${builddir}/logs/coverage/ 
-            --log-junit ${builddir}/logs/phpunit.xml ${srcdir}/tests" />
+        <exec command="phpunit
+            --coverage-html ${builddir}/logs/coverage/
+            --testdox-html ${builddir}/logs/textdox.html
+            --log-junit ${builddir}/logs/phpunit.xml -c ${srcdir}/tests/phpunit.xml" />
     </target>
 
     <target name="phpdoc" description="Generate documentation">
         <phpdoc title="FEL API Documentation" destdir="${builddir}/docs" sourcecode="true"
             parseprivate="true" output="HTML:Smarty:PHP">
-            <fileset refid="phpsrc" />
+            <fileset dir="${srcdir}">
+                <include name="**/*.php" />
+            </fileset>
         </phpdoc>
     </target>
 
@@ -68,13 +71,13 @@
     </target>
 
     <target name="phplint" description="Check PHP syntax">
-        <phplint deprecatedAsError="true"> 
+        <phplint deprecatedAsError="true">
             <fileset refid="phpsrc" />
         </phplint>
     </target>
 
     <target name="phpcodesniffer" description="Detect violation of coding standards">
-        <!--<phpcodesniffer standard="Zend" showSniffs="true" showWarnings="true"> 
+        <!--<phpcodesniffer standard="Zend" showSniffs="true" showWarnings="true">
             <fileset refid="phpsrc" />
             <formatter type="default" usefile="false" />
             <formatter type="checkstyle" outfile="${builddir}/logs/checkstyle.xml" />
@@ -89,7 +92,7 @@
     <target name="phpcb" description="Generate code browser">
         <exec command="phpcb
             --log ${builddir}/logs
-            --source ${srcdir} --exclude=*/build/*,*/data/*,*/logs/*
+            --source ${srcdir} -e **/build/** -e **/data/** -e **/logs/**
             --output ${builddir}/browser" />
     </target>
 

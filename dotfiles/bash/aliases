@@ -48,6 +48,11 @@ alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
 # Ruby
 alias rb="ruby"
 
+# MongoDB
+alias mgd="mongod --dbpath=/data/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend --fork --rest"
+alias mgdb="mongod --dbpath=/data/mongodb/"
+alias mg="mongo"
+
 # Mercurial
 alias hi='hg init'
 alias hs='hg st'

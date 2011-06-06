@@ -22,6 +22,7 @@ endif
 " The completion dictionary is provided by Rasmus:
 " http://lerdorf.com/funclist.txt
 setl dictionary-=~/.vim/ftplugin/php-funclist.txt dictionary+=~/.vim/ftplugin/php-funclist.txt
+setl dictionary-=~/.vim/ftplugin/php-xdebug2.txt dictionary+=~/.vim/ftplugin/php-xdebug2.txt
 " Use the dictionary completion
 setl complete-=k complete+=k
 
