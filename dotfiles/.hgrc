@@ -1,0 +1,11 @@
+[alias]
+untrack = rm -Af
+
+[extensions]
+convert =
+color =
+hgext.graphlog =
+pager =
+
+[pager]
+pager = LESS='FSRX' less

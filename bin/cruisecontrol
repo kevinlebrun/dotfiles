@@ -1,0 +1,136 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: cruisecontrol
+# Required-Start: $local_fs $remote_fs $network $syslog
+# Required-Stop: $local_fs $remote_fs $network $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start/stop cruisecontrol CI server
+### END INIT INFO
+#
+# cruisecontrol This init.d script is used to start cruisecontrol.
+# It basically just calls cruisecontrol.sh.
+
+# ENV="env -i LANG=C PATH=/usr/local/bin:/usr/bin:/bin"
+
+CCON_PATH=/opt/cruisecontrol
+CCON_USER=root
+PIDFILE=$CCON_PATH/cc.pid
+LOGFILE=/var/log/cruisecontrol.log
+export JAVA_HOME=/usr
+
+. /lib/lsb/init-functions
+
+log_daemon_msg() {
+    logger "$@";
+}
+
+log_end_msg() {
+    [ $1 -eq 0 ] && RES=OK; logger ${RES:=FAIL};
+}
+
+ccon_is_running() {
+    if [ -f $PIDFILE ]; then
+        PID=`cat $PIDFILE`
+        PID_COUNT=`ps aux | grep -E $PID | grep -v grep | wc -l`
+        if [ $PID_COUNT = 1 ]; then
+            return 1
+        fi
+    fi
+
+    return 0
+}
+
+ccon_start() {
+    ccon_is_running
+    rc=$?
+    if [ $rc -eq 1 ]; then
+        log_failure_msg "CruiseControl is already running"
+        exit
+    else
+        log_daemon_msg "Starting CI server" "CruiseControl"
+        cd $CCON_PATH
+        sudo -E -u $CCON_USER ./cruisecontrol.sh -u cruisecontrol >> $LOGFILE 2>&1
+        log_end_msg $?
+    fi
+    ccon_is_running
+    rc=$?
+    if [ $rc -eq 1 ]; then
+        log_success_msg "Starting CI server" "CruiseControl"
+    fi
+}
+
+ccon_stop() {
+    ccon_is_running
+    rc=$?
+    if [ $rc -eq 1 ]; then
+        log_daemon_msg "Stopping CI server" "CruiseControl"
+        PID=`cat $PIDFILE`
+
+        retval=0
+        i=0
+        while $(kill "$PID" 2> /dev/null); do
+            if [ $i = '60' ]; then
+                echo ""
+                log_failure_msg "CruiseControl is taking too long to shutdown"
+                retval=1
+                break
+            else
+                if [ $i = '0' ]; then
+                    echo -n " ... waiting "
+                else
+                    echo -n "."
+                fi
+                i=$(($i+1))
+                sleep 1
+            fi
+        done
+
+        log_end_msg $retval
+    else
+        log_failure_msg "CruiseControl is not running"
+        exit
+    fi
+    ccon_is_running
+    rc=$?
+    if [ $rc -eq 0 ]; then
+        log_success_msg "Shutting down CI server" "CruiseControl"
+    fi
+}
+
+ccon_status() {
+    ccon_is_running
+    rc=$?
+    if [ $rc -eq 1 ]; then
+        PID=`cat $PIDFILE`
+        log_success_msg "CruiseControl is running (pid $PID)."
+    else
+        log_failure_msg "CruiseControl is not running."
+    fi
+
+}
+
+case $1 in
+    start)
+        ccon_start
+        echo
+        ;;
+    stop)
+        ccon_stop
+        echo
+        ;;
+    restart)
+        ccon_stop
+        ccon_start
+        ;;
+    status)
+        ccon_status
+        echo
+        ;;
+    *)
+        log_success_msg "Usage: /etc/init.d/cruisecontrol {start|stop|restart|status}"
+        echo
+        exit 1
+        ;;
+esac
+# vim: set ft=sh: 

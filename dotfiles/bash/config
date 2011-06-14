@@ -76,12 +76,15 @@ if [[ -n "$PS1" ]] ; then
                 else
                     local flag=''
                 fi
-                echo "|${flag}${minutes_since_last_commit}m"
+                local minutes="$((minutes_since_last_commit % 60))m"
+                local hours="$((minutes_since_last_commit / 60))h"
+                local time_since_last_commit="${hours}${minutes}"
+                echo "${flag}${time_since_last_commit} "
             fi
         fi
     }
 
-    PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt -f \"[%n:%b%m%u\$(gitprompt)] \")\[$NO_COLOR\]\$ "
+    export PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt -f \"[%n:%b%m%u] \")\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\$ "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -93,3 +96,4 @@ fi
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+#/* vim: set ft=sh: */

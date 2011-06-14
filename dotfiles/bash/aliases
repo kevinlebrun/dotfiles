@@ -35,12 +35,13 @@ alias php_error_log='tail -f /var/log/php5/error.log'
 alias pu='phpunit'
 alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 alias plo='phploc --count-tests .'
-alias pcs='phpcs --standard=Zend --extensions=php,phtml --ignore=*/tests/*,*/library/Zend/*,*/build/* .'
+alias pcs='phpcs --standard=Zend --extensions=php,phtml --ignore=*/library/Phly/*,*/library/Zend/*,*/build/* .'
 function pall {
     pl
     pcs
     plo
 }
+alias puc='sudo /etc/init.d/cruisecontrol'
 
 # Zend Framework
 alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
@@ -70,6 +71,7 @@ alias hh='hg heads'
 alias hbs='hg branches'
 alias hin='hg inc'
 alias hout='hg out'
+alias hr='hg resolve'
 
 # Git
 alias gi='git init'
