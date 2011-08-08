@@ -1,5 +1,6 @@
 setl fen
-setl nocindent
+
+set omnifunc=javascriptcomplete#CompleteJS
 
 imap <c-a> alert();<esc>hi
 imap <c-d> console.log();<esc>hi

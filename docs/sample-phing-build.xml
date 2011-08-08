@@ -1,30 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="sample" basedir="." default="build">
-    <property name="builddir" value="${project.basedir}/build" />
-    <property name="srcdir" value="${project.basedir}" override="true" />
+<project name="site.cloud_priv.sfr.com" basedir="." default="build">
+    <property file="./build.properties" />
+    <property name="builddir" value="${project.basedir}${dir.build}" />
+    <property name="srcdir" value="${project.basedir}${dir.src}" />
 
     <fileset dir="${srcdir}" id="phpsrc">
         <include name="**/*.php" />
         <include name="**/*.phtml" />
+        <exclude name="**/Bisna/**" />
     </fileset>
 
     <target name="clean">
-        <echo>Cleaning the build environment...</echo>
         <delete dir="${builddir}" />
     </target>
 
+    <target name="init-ci">
+        <delete dir="${srcdir}" />
+        <exec command="hg clone ${repository} ${srcdir}" />
+        <phingcall target="install" />
+    </target>
+
+    <target name="install">
+        <available file="/usr/share/php5/phly/Phly_PubSub/library/Phly/" type="dir" property="library.phly" />
+        <fail unless="library.phly" message="Librairie Phly manquante !" />
+        <exec command="ln -s /usr/share/php5/phly/Phly_PubSub/library/Phly/ ${srcdir}/library/Phly" />
+
+        <available file="/usr/share/php5/ZendFramework-latest/library/Zend/" type="dir" property="library.zend" />
+        <fail unless="library.zend" message="Framework Zend manquant !" />
+        <exec command="ln -s /usr/share/php5/ZendFramework-latest/library/Zend/ ${srcdir}/library/Zend" />
+
+        <available file="/usr/share/php/Doctrine/" type="dir" property="library.doctrine" />
+        <fail unless="library.doctrine" message="ORM Doctrine manquant !" />
+        <exec command="ln -s /usr/share/php/Doctrine/ ${srcdir}/library/Doctrine" />
+
+        <exec command="sudo chgrp www-data -R ${srcdir}/logs" />
+        <exec command="sudo chmod g+w -R ${srcdir}/logs" />
+    </target>
+
     <target name="prepare" depends="clean">
-        <echo>Preparing the build environment...</echo>
         <mkdir dir="${builddir}/docs" />
         <mkdir dir="${builddir}/logs" />
-        <mkdir dir="${builddir}/logs/coverage" />
+        <mkdir dir="${builddir}/coverage" />
+        <mkdir dir="${builddir}/graph" />
+    </target>
+
+    <target name="pull">
+        <exec command="hg pull" dir="${srcdir}" />
+        <exec command="hg update" dir="${srcdir}" />
+    </target>
+
+    <target name="build-ci">
+        <phingcall target="pull" />
+        <phingcall target="build" />
     </target>
 
     <target name="build" depends="prepare">
-        <echo>Building...</echo>
         <phingcall target="phplint" />
         <phingcall target="phpunit" />
-        <phingcall target="phpdoc" />
+        <!--<phingcall target="phpdoc" />-->
+        <phingcall target="docblox" />
         <phingcall target="phpcpd" />
         <phingcall target="pdepend" />
         <phingcall target="phppmd" />
@@ -35,22 +69,32 @@
 
     <target name="phpunit" description="Run unit tests and coverage analysis">
         <exec command="phpunit
-            --coverage-html ${builddir}/logs/coverage/
+            --coverage-html ${builddir}/coverage/
             --testdox-html ${builddir}/logs/textdox.html
+            --coverage-clover ${builddir}/build/logs/phpunit.coverage.xml
             --log-junit ${builddir}/logs/phpunit.xml -c ${srcdir}/tests/phpunit.xml" />
     </target>
 
     <target name="phpdoc" description="Generate documentation">
+        <!-- set meta utf-8 in the header.tpl file -->
         <phpdoc title="FEL API Documentation" destdir="${builddir}/docs" sourcecode="true"
-            parseprivate="true" output="HTML:Smarty:PHP">
+            templatebase="/usr/share/php/data/phpUnderControl/data/phpdoc"
+            parseprivate="true" output="HTML:Phpuc:phpuc">
             <fileset dir="${srcdir}">
                 <include name="**/*.php" />
+                <exclude name="**/Bisna/**" />
             </fileset>
         </phpdoc>
     </target>
 
+    <target name="docblox" description="Generate documentation using docblox">
+        <!-- set meta utf-8 in the header.tpl file -->
+        <exec command="docblox run -d ${srcdir} -t ${builddir}/docs 
+            -i tests/*,library/Bisna/*,build/*,logs/* --template zend"/>
+    </target>
+
     <target name="phpcpd" description="Copy/Paste Detector">
-        <phpcpd minTokens="5" minLines="3">
+        <phpcpd minTokens="50" minLines="5">
             <fileset refid="phpsrc" />
             <formatter type="pmd" outfile="${builddir}/logs/pmd-cpd.xml" />
         </phpcpd>
@@ -59,15 +103,20 @@
     <target name="pdepend" description="Generate JDepend report">
         <phpdepend>
             <fileset refid="phpsrc" />
-            <logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml" />
+            <logger type="jdepend-xml" outfile="${builddir}/logs/pdepend.xml" />
+            <logger type="jdepend-chart" outfile="${builddir}/graph/10-dependencies.svg" />
+            <logger type="overview-pyramid" outfile="${builddir}/graph/11-software-metrics-pyramid.svg" />
+            <analyzer type="coderank-mode" value="inheritance" />
+            <analyzer type="coderank-mode" value="property" />
+            <analyzer type="coderank-mode" value="method" />
         </phpdepend>
     </target>
 
     <target name="phppmd" description="Generate PHP Mess Detector report">
-        <phpmd rulesets="codesize,naming,unusedcode,design">
-            <fileset refid="phpsrc" />
-            <formatter type="xml" outfile="${builddir}/logs/pmd.xml" />
-        </phpmd>
+        <exec command="phpmd ${srcdir} xml ${srcdir}/tests/phppmd.xml
+            --reportfile ${builddir}/logs/pmd.xml
+            --extensions php,phtml,inc
+            --ignore **/Bisna/**" escape="false" />
     </target>
 
     <target name="phplint" description="Check PHP syntax">
@@ -77,16 +126,9 @@
     </target>
 
     <target name="phpcodesniffer" description="Detect violation of coding standards">
-        <!--<phpcodesniffer standard="Zend" showSniffs="true" showWarnings="true">
-            <fileset refid="phpsrc" />
-            <formatter type="default" usefile="false" />
-            <formatter type="checkstyle" outfile="${builddir}/logs/checkstyle.xml" />
-        </phpcodesniffer> bug task on command line arguments (see pear bug tracker for resolution)-->
         <exec command="phpcs
-            --standard=Zend --report=checkstyle
-            --extensions=php,phtml --ignore=*/library/Zend/*,*/build/*
-            --encoding=utf-8
-            ${srcdir} ${builddir}/logs/checkstyle.xml" escape="false" />
+            --standard=${srcdir}/tests/phpcs.xml --report-checkstyle=${builddir}/logs/checkstyle.xml
+            --extensions=php,phtml --encoding=utf-8 ${srcdir}" escape="false" />
     </target>
 
     <target name="phpcb" description="Generate code browser">

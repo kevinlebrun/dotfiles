@@ -72,6 +72,8 @@ alias hbs='hg branches'
 alias hin='hg inc'
 alias hout='hg out'
 alias hr='hg resolve'
+alias hclean='find . -name \*.orig -exec rm {} \;'
+alias hla='hg latest'
 
 # Git
 alias gi='git init'
@@ -95,3 +97,5 @@ function changeip {
 alias iw="iceweasel"
 
 alias mntsfrcp="sudo mount -t vboxsf SFR_CP/ SFR_CP/"
+
+alias cloud9="node ~/.npm/cloud9/0.3.0/package/bin/cloud9.js -l 192.168.56.102"

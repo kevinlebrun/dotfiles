@@ -17,6 +17,8 @@ filetype plugin indent on
 au filetype html set omnifunc=htmlcomplete#CompleteTags
 au filetype css set omnifunc=csscomplete#CompleteCSS
 
+au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
+
 set encoding=utf-8
 
 " use original theme molokai

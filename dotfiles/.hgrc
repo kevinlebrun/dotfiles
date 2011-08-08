@@ -1,11 +1,20 @@
+[ui]
+username = Kevin Le Brun <lebrun.k@gmail.com>
+;style = compact
+verbose = True
+ignore = ~/.hgignore
+
 [alias]
 untrack = rm -Af
+latest = log -l 10 --template '\x1B[0;31m{node|short} \x1B[0m{date|shortdate} \x1B[0;36m{author|person} \x1B[0m{desc|firstline}\n'
 
 [extensions]
 convert =
 color =
 hgext.graphlog =
 pager =
+hgext.churn =
+
 
 [pager]
 pager = LESS='FSRX' less

@@ -8,8 +8,8 @@ git_bundles = [
     "https://github.com/msanders/snipmate.vim.git",
     "https://github.com/scrooloose/nerdtree.git",
     # "https://github.com/scrooloose/nerdcommenter.git",
-    "https://github.com/vim-scripts/taglist.vim",
-    # "https://github.com/majutsushi/tagbar.git",
+    # "https://github.com/vim-scripts/taglist.vim",
+    "https://github.com/int3/vim-taglist-plus.git",
     "https://github.com/tpope/vim-fugitive.git",
     "https://github.com/tpope/vim-surround.git",
     # "https://github.com/tpope/vim-vividchalk.git",
@@ -43,6 +43,10 @@ git_bundles = [
     # "https://github.com/xolox/vim-easytags.git",
     "https://github.com/vim-scripts/phpfolding.vim.git",
     "https://github.com/sjl/gundo.vim.git",
+    "https://github.com/kchmck/vim-cofee-script.git",
+    "https://github.com/majutsushi/tagbar.git",
+    "https://github.com/tpope/vim-cucumber.git",
+    "https://github.com/pangloss/vim-javascript.git",
 ]
 
 require 'fileutils'
