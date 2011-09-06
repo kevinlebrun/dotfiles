@@ -1,8 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""
 " MyVimrc based on all good .vimrc i saw "
-" TODO
-"  - ajouter des snippets pour PHP
-"  - créer des squelettes pour le Zend Framework
 """"""""""""""""""""""""""""""""""""""""
 set nocompatible
 
@@ -213,7 +210,6 @@ nmap <A-j> mz:m+<cr>`z
 nmap <A-k> mz:m-2<cr>`z
 vmap <A-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 imap <leader>; <esc>A;
 
 "---------------------------------------------------------------------------
