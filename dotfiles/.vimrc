@@ -167,7 +167,7 @@ map <C-l> <C-W>l :call ResizeWindow()<CR>
 fun! ResizeWindow()
     " NERDTree & co. splits
     if empty(&bt)
-        :vertical res
+        :vertical res 90
     elseif &bt == "nofile"
         :vertical res 31
     endif
