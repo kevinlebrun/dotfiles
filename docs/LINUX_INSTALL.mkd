@@ -1,6 +1,5 @@
 # Linux Installation
 
-    ```
     su -
     apt-get install vim
     update-alternatives --config editor
@@ -9,11 +8,9 @@
     visudo # %adm ALL=(ALL) ALL
     # ajout de l'utilisateur dans le groupe adm
     adduser kevin adm
-    ```
 
 ## Tools
 
-    ```
     apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop ntop iotop atop nmap vnstat
     apt-get install gvim # if gui installed
 
@@ -25,19 +22,18 @@
 
     cd ~/.smile/dotfiles/vim
     ./update_bundles.rb # with ruby 1.8.7
-    ```
 
 ## LAMP
 
-apt-get install apache2 php5 php5-cli php-pear libapache2-mod-php5 php5-dev php5-curl
-apt-get install mysql-server mysql-client php5-mysql
-apt-get install sqlite3 php5-sqlite
+    apt-get install apache2 php5 php5-cli php-pear libapache2-mod-php5 php5-dev php5-curl
+    apt-get install mysql-server mysql-client php5-mysql
+    apt-get install sqlite3 php5-sqlite
 
-pear upgrade pear
-pecl install xdebug
+    pear upgrade pear
+    pecl install xdebug
 
-a2enmod rewrite
-/etc/init.d/apache2 restart
+    a2enmod rewrite
+    /etc/init.d/apache2 restart
 
 - PHPUnit http://www.phpunit.de/manual/current/en/installation.html
 - CodeSniffer http://pear.php.net/package/PHP_CodeSniffer 
@@ -50,12 +46,12 @@ a2enmod rewrite
 
 ## Ruby
 
-https://rvm.beginrescueend.com/rvm/install/
+- RVM https://rvm.beginrescueend.com/rvm/install/
 
 ## Node.js
 
-https://github.com/isaacs/nave
-https://github.com/creationix/nvm
+- Nave https://github.com/isaacs/nave
+- NVM https://github.com/creationix/nvm
 
-https://github.com/isaacs/npm
+- NPM https://github.com/isaacs/npm
 
