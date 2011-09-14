@@ -159,16 +159,16 @@ map <leader>m :make<CR>
 " map <C-j> <C-w>j
 " map <C-k> <C-w>k
 " map <C-l> <C-w>l
-map <C-h> <C-W>h
+map <C-h> <C-W>h :call ResizeWindow()<CR>
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
-map <C-l> <C-W>l
+map <C-l> <C-W>l :call ResizeWindow()<CR>
 
 fun! ResizeWindow()
     " NERDTree & co. splits
-    if empty(&bt)
+    if empty(&bt) && winwidth(0) < 90
         :vertical res 90
-    elseif &bt == "nofile"
+    elseif &bt == "nofile" && winwidth(0) < 31
         :vertical res 31
     endif
 endfunction
@@ -195,7 +195,7 @@ map - <C-W>-
 map + <C-W>+
 map <M-,> <C-W>>
 map <M-.> <C-W><
-nmap <C-i> :vertical res 90<CR>
+nmap <C-i> :vertical res 120<CR>
 
 ino jj <ESC>
 cno jj <C-c>
