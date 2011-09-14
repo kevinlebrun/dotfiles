@@ -159,16 +159,16 @@ map <leader>m :make<CR>
 " map <C-j> <C-w>j
 " map <C-k> <C-w>k
 " map <C-l> <C-w>l
-map <C-h> <C-W>h :call ResizeWindow()<CR>
+map <C-h> <C-W>h
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
-map <C-l> <C-W>l :call ResizeWindow()<CR>
+map <C-l> <C-W>l
 
 fun! ResizeWindow()
     " NERDTree & co. splits
-    if empty(&bt) && &columns < 90
+    if empty(&bt)
         :vertical res 90
-    elseif &bt == "nofile" && &columns < 31
+    elseif &bt == "nofile"
         :vertical res 31
     endif
 endfunction
@@ -189,12 +189,13 @@ vno > >gv
 " help
 au filetype help nno <buffer><cr> <c-]>
 au filetype help nno <buffer><bs> <c-T>
-
+"
 " resize windows
 map - <C-W>-
 map + <C-W>+
 map <M-,> <C-W>>
 map <M-.> <C-W><
+nmap <C-i> :vertical res 90<CR>
 
 ino jj <ESC>
 cno jj <C-c>
