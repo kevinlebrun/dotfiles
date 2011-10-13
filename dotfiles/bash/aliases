@@ -16,7 +16,7 @@ fi
 
 alias l='ls -lah'
 alias t='tree -a'
-alias ti='tree -a -I ".git*|.hg*|*.log"'
+alias ti='tree -a -I ".git*|.hg*|*.log|node_modules/"'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias p='pushd'
@@ -35,16 +35,13 @@ alias php_error_log='tail -f /var/log/php5/error.log'
 alias pu='phpunit'
 alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 alias plo='phploc --count-tests .'
-alias pcs='phpcs --standard=Zend --extensions=php,phtml --ignore=*/library/Phly/*,*/library/Zend/*,*/build/* .'
+alias pcs='phpcs --extensions=php,phtml --ignore=*/library/Zend/* .'
 function pall {
     pl
     pcs
     plo
 }
 alias puc='sudo /etc/init.d/cruisecontrol'
-
-# Zend Framework
-alias zf='/usr/share/php5/ZendFramework-1.11.6/bin/zf.sh'
 
 # Ruby
 alias rb="ruby"
@@ -88,14 +85,3 @@ alias gc='git commit'
 alias gl='git log'
 alias gb='git branch'
 alias gco='git checkout'
-
-# virtualbox configuration
-function changeip {
-    sudo ifconfig eth1 192.168.56.$1
-}
-
-alias iw="iceweasel"
-
-alias mntsfrcp="sudo mount -t vboxsf SFR_CP/ SFR_CP/"
-
-alias cloud9="node ~/.npm/cloud9/0.3.0/package/bin/cloud9.js -l 192.168.56.102"
