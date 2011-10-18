@@ -33,8 +33,8 @@ if has("gui_running")
     set columns=80
     set lines=40
 else
-    set t_Co=256
     colorscheme molokai
+    set t_Co=256
 endif
 
 au BufWinLeave * silent! mkview " make vim save view state
@@ -62,8 +62,11 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
 set title " show title in console title bar
 set ttyfast " smoother changes
 
-set winminheight=0
-set winminwidth=20
+set winwidth=31
+set winminwidth=31
+set winheight=5 " hack against error setting winminheight
+set winminheight=5
+set winheight=999
 
 set laststatus=2 " always show the status line
 " Broken down into easily includeable segments
@@ -136,6 +139,7 @@ map <F6> :FufBuffer<CR>
 map <F7> :FufTag<CR>
 map <F8> :FufLine<CR>
 nnoremap <F9> :GundoToggle<CR>
+nmap <C-T> :CommandT<CR>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
@@ -155,20 +159,16 @@ map <leader>cd :cd %:p:h<CR>:pwd<CR>
 map <leader>m :make<CR>
 
 " moving around windows
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
 map <C-h> <C-W>h :call ResizeWindow()<CR>
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
 map <C-l> <C-W>l :call ResizeWindow()<CR>
 
 fun! ResizeWindow()
-    " NERDTree & co. splits
-    if empty(&bt) && winwidth(0) < 90
-        :vertical res 90
+    if empty(&bt)
+        :vertical res
     elseif &bt == "nofile" && winwidth(0) < 31
+        " NERDTree & co. splits
         :vertical res 31
     endif
 endfunction
@@ -179,8 +179,8 @@ nnoremap k gk
 
 map <right> :bn<cr>
 map <left> :bp<cr>
-map <up> <nop>
-map <down> <nop>
+" map <up> <nop>
+" map <down> <nop>
 
 " reselect after shifting
 vno < <gv
@@ -207,10 +207,10 @@ map 0 ^
 " editing shortcuts
 """""""""""""""""""
 " Move a line of text using ALT+[jk], see :help mz
-nmap <A-j> mz:m+<cr>`z
-nmap <A-k> mz:m-2<cr>`z
-vmap <A-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <down> mz:m+<cr>`z
+nmap <up> mz:m-2<cr>`z
+vmap <down> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <up> :m'<-2<cr>`>my`<mzgv`yo`z
 imap <leader>; <esc>A;
 
 "---------------------------------------------------------------------------

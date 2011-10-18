@@ -1,7 +1,6 @@
 setl omnifunc=phpcomplete#CompletePHP
 call LoadTags('zf1')
 call LoadTags('phpunit')
-call LoadTags('doctrine')
 
 setl textwidth=80
 setl makeprg=php\ %
@@ -66,7 +65,7 @@ vmap <leader>pd :call PhpDocRange()<cr>
 nmap <leader>pd :call PhpDocSingle()<cr>
 
 func! LaunchPHPManual()
-    let l:cmd='iceweasel http://www.php.net/' . expand('<cword>')
+    let l:cmd='firefox http://www.php.net/' . expand('<cword>')
     exec "!" . l:cmd
 endfunction
 inoremap <leader>H <esc>:call LaunchPHPManual()<cr><cr>

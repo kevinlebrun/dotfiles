@@ -12,13 +12,17 @@
 ## Tools
 
     apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop ntop iotop atop nmap vnstat
-    apt-get install gvim # if gui installed
+    apt-get install vim-gtk # if gui installed
 
     cd ~
     git clone https://github.com/kevinlebrun/dotfiles.git .smile
     ln -s ~/.smile/dotfiles/.vimrc ~/.vimrc
+    ln -s ~/.smile/dotfiles/vim ~/.vim
     ln -s ~/.smile/dotfiles/git/config ~/.gitconfig
     ln -s ~/.smile/dotfiles/.hgrc ~/.hgrc
+    ln -s ~/.smile/dotfiles/.ackrc ~/.ackrc
+    mkdir ~/.ssh
+    ln -s ~/.smile/dotfiles/ssh/config ~/.ssh/config
 
     cd ~/.smile/dotfiles/vim
     ./update_bundles.rb # with ruby 1.8.7
