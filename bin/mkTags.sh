@@ -14,6 +14,10 @@
 # Tags are created in $HOME/.vim.tags/
 dest=$HOME/.vimtags
 
+if [ ! -d $dest ]; then
+    mkdir $dest
+fi
+
 dir=""
 name=""
 if [ $# -ge 2 ] ; then
