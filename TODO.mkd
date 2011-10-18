@@ -6,3 +6,4 @@
  - deploy.sh ?!
  - doc configuration PHP
  - rulesets base phpcs et phpmd
+ - .rvmrc pour update_bundles.rb
