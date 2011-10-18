@@ -20,6 +20,7 @@
     ln -s ~/.smile/dotfiles/vim ~/.vim
     ln -s ~/.smile/dotfiles/git/config ~/.gitconfig
     ln -s ~/.smile/dotfiles/.hgrc ~/.hgrc
+    ln -s ~/.smile/dotfiles/.ackrc ~/.ackrc
     mkdir ~/.ssh
     ln -s ~/.smile/dotfiles/ssh/config ~/.ssh/config
 
