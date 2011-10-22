@@ -94,7 +94,6 @@ set autoread
 
 set scrolloff=3 "leave few lines on top
 
-set nowrap
 set backspace=indent,eol,start
 
 set tabstop=4
@@ -102,6 +101,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
+
+set nowrap
+" set textwidth=90
 
 set smartindent
 set autoindent
@@ -159,10 +161,10 @@ map <leader>cd :cd %:p:h<CR>:pwd<CR>
 map <leader>m :make<CR>
 
 " moving around windows
-map <C-h> <C-W>h :call ResizeWindow()<CR>
-map <C-j> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
-map <C-l> <C-W>l :call ResizeWindow()<CR>
+map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
+map <C-W>j <C-W>j<C-W>_
+map <C-W>k <C-W>k<C-W>_
+map <C-W>l <C-W>l:call ResizeWindow()<CR>ze
 
 fun! ResizeWindow()
     if empty(&bt)
@@ -207,10 +209,10 @@ map 0 ^
 " editing shortcuts
 """""""""""""""""""
 " Move a line of text using ALT+[jk], see :help mz
-nmap <down> mz:m+<cr>`z
-nmap <up> mz:m-2<cr>`z
-vmap <down> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <up> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <C-down> mz:m+<cr>`z
+nmap <C-up> mz:m-2<cr>`z
+vmap <C-down> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <C-up> :m'<-2<cr>`>my`<mzgv`yo`z
 imap <leader>; <esc>A;
 
 "---------------------------------------------------------------------------

@@ -5,4 +5,4 @@
  - install.sh
  - deploy.sh ?!
  - doc configuration PHP
- - rulesets base phpcs et phpmd
+ - rulesets base phpcs et phpmd et aliases
