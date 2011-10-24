@@ -18,7 +18,6 @@ git_bundles = [
     "https://github.com/godlygeek/tabular.git",
     "https://github.com/mattn/zencoding-vim.git",
     "https://github.com/altercation/vim-colors-solarized.git",
-    # "https://github.com/vim-scripts/ZoomWin.git",
     ["https://github.com/vim-scripts/Command-T.git", lambda {
         puts "** Installing Command-T..."
         FileUtils.cd("Command-T/ruby/command-t")
@@ -31,12 +30,11 @@ git_bundles = [
     "https://github.com/ervandew/supertab.git",
     "https://github.com/vim-scripts/mru.vim.git",
     "https://github.com/vim-scripts/matchit.zip.git",
-    # "https://github.com/vim-scripts/bufexplorer.zip.git",
     "https://github.com/vim-scripts/jQuery.git",
     "https://github.com/vim-scripts/L9.git",
     "https://github.com/vim-scripts/FuzzyFinder.git",
-    "https://github.com/vim-scripts/project.tar.gz.git",
-    # "https://github.com/Shougo/neocomplcache.git",
+    # "https://github.com/vim-scripts/project.tar.gz.git",
+    "https://github.com/Shougo/neocomplcache.git",
     "https://github.com/sukima/xmledit.git",
     # "https://github.com/spf13/PIV.git",
     "https://github.com/leshill/vim-json.git",

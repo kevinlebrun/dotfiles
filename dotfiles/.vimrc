@@ -17,14 +17,13 @@ au filetype css set omnifunc=csscomplete#CompleteCSS
 au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
 
 set encoding=utf-8
+set termencoding=utf-8
 
 " use original theme molokai
 let g:molokai_original = 1
 
 if has("gui_running")
     set background=light
-    " let g:solarized_termcolors=256
-    " colorscheme molokai
     colorscheme solarized
     set mousehide
     set guioptions=ce
@@ -62,11 +61,11 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
 set title " show title in console title bar
 set ttyfast " smoother changes
 
-set winwidth=31
-set winminwidth=31
-set winheight=5 " hack against error setting winminheight
-set winminheight=5
-set winheight=999
+au VimEnter * set winwidth=31
+au VimEnter * set winminwidth=31
+au VimEnter * set winheight=5 " hack against error setting winminheight
+au VimEnter * set winminheight=5
+au VimEnter * set winheight=999
 
 set laststatus=2 " always show the status line
 " Broken down into easily includeable segments
@@ -135,13 +134,10 @@ map <F1> <nop>
 set pastetoggle=<F1>
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Tlist<CR>
-map <F4> :CommandT<CR>
-map <F5> :FufFile<CR>
-map <F6> :FufBuffer<CR>
-map <F7> :FufTag<CR>
-map <F8> :FufLine<CR>
-nnoremap <F9> :GundoToggle<CR>
-nmap <C-T> :CommandT<CR>
+map <F4> :FufFile<CR>
+map <F5> :FufBuffer<CR>
+map <F6> :FufTag<CR>
+map <F7> :FufLine<CR>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
@@ -152,13 +148,17 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestHighlight = 1
 
 no <leader>w :w!<CR>
+no <leader>q :q<CR>
 " force saving with permissions
 cmap w!! w !sudo tee % > /dev/null
 
 " change working directory to the current file directory
-map <leader>cd :cd %:p:h<CR>:pwd<CR>
+no <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 map <leader>m :make<CR>
+
+no <leader>a :Ack 
+no <leader>u :GundoToggle<CR>
 
 " moving around windows
 map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
@@ -181,8 +181,8 @@ nnoremap k gk
 
 map <right> :bn<cr>
 map <left> :bp<cr>
-" map <up> <nop>
-" map <down> <nop>
+map <up> <nop>
+map <down> <nop>
 
 " reselect after shifting
 vno < <gv
@@ -269,13 +269,12 @@ vmap <leader>a> :Tabularize /=><CR>
 nmap <leader>T :Tabularize /
 vmap <leader>T :Tabularize /
 
-map <leader>o :BufExplorer<cr>
-
 " MRU plugin
 let MRU_Max_Entries = 400
 map <leader>f :MRU<CR>
 
 " Command-T
+no <leader>o :CommandT<CR>
 let g:CommandTMaxHeight = 15
 set wildignore+=*.o,*.obj,.git,*.pyc,.hg
 
@@ -309,7 +308,7 @@ let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
 " Shortcut for reloading snippets, useful when developing
 nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 
-let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn']
+let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node-modules']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeKeepTreeInNewTab = 1

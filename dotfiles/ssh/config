@@ -6,3 +6,7 @@ Host blablable.no.de
     Port 23111
     User node
     ForwardAgent yes
+
+Host extia
+    HostName ssh.cluster002.ovh.net
+    User extia
