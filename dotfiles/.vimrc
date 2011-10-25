@@ -13,6 +13,7 @@ filetype plugin indent on
 
 au filetype html set omnifunc=htmlcomplete#CompleteTags
 au filetype css set omnifunc=csscomplete#CompleteCSS
+au FileType python set omnifunc=pythoncomplete#Complete
 
 au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
 
@@ -133,19 +134,14 @@ let mapleader=','
 map <F1> <nop>
 set pastetoggle=<F1>
 map <F2> :NERDTreeToggle<CR>
-map <F3> :Tlist<CR>
-map <F4> :FufFile<CR>
-map <F5> :FufBuffer<CR>
-map <F6> :FufTag<CR>
-map <F7> :FufLine<CR>
+map <F3> :FufFile<CR>
+map <F4> :FufBuffer<CR>
+map <F5> :FufTag<CR>
+map <F6> :FufLine<CR>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
 set completeopt=menu,menuone,longest
-
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabLongestHighlight = 1
 
 no <leader>w :w!<CR>
 no <leader>q :q<CR>
@@ -159,6 +155,8 @@ map <leader>m :make<CR>
 
 no <leader>a :Ack 
 no <leader>u :GundoToggle<CR>
+
+no <leader>ta :TagbarToggle<cr>
 
 " moving around windows
 map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
@@ -275,7 +273,7 @@ map <leader>f :MRU<CR>
 
 " Command-T
 no <leader>o :CommandT<CR>
-let g:CommandTMaxHeight = 15
+let g:CommandTMaxHeight = 7
 set wildignore+=*.o,*.obj,.git,*.pyc,.hg
 
 " set tags=./tags;/,$HOME/.vimtags
@@ -289,12 +287,6 @@ function! LoadTags(file)
    execute tagcommand
 endfunction
 command! -nargs=1 Ltag :call LoadTags("<args>")
-
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Close_On_Select = 1
-let Tlist_Process_File_Always = 1
-let Tlist_Display_Tag_Scope = 1
 
 " Too slow for now
 " let g:easytags_cmd = 'ctags'
