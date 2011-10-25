@@ -134,10 +134,6 @@ let mapleader=','
 map <F1> <nop>
 set pastetoggle=<F1>
 map <F2> :NERDTreeToggle<CR>
-map <F3> :FufFile<CR>
-map <F4> :FufBuffer<CR>
-map <F5> :FufTag<CR>
-map <F6> :FufLine<CR>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
