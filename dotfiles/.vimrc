@@ -46,6 +46,8 @@ set hid
 set nobackup
 set noswapfile
 
+set nopaste
+
 set visualbell t_vb= " turn off error beep/flash
 set novisualbell
 
@@ -131,8 +133,6 @@ autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buff
 
 let mapleader=','
 
-map <F1> <nop>
-set pastetoggle=<F1>
 map <F2> :NERDTreeToggle<CR>
 
 " autocompletion shortcut
@@ -296,7 +296,7 @@ let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
 " Shortcut for reloading snippets, useful when developing
 nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 
-let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node-modules']
+let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node_modules']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeKeepTreeInNewTab = 1

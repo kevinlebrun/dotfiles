@@ -31,7 +31,6 @@ function take {
 alias a2='sudo invoke-rc.d apache2'
 
 # PHP
-alias php_error_log='tail -f /var/log/php5/error.log'
 alias pu='phpunit'
 alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 alias plo='phploc --count-tests .'

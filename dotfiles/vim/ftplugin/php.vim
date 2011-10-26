@@ -1,6 +1,7 @@
-setl omnifunc=phpcomplete#CompletePHP
 call LoadTags('zf1')
 call LoadTags('phpunit')
+
+setl omnifunc=phpcomplete#CompletePHP
 
 setl textwidth=80
 setl makeprg=php\ %
