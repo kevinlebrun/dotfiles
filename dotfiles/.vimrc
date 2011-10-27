@@ -146,13 +146,11 @@ cmap w!! w !sudo tee % > /dev/null
 
 " change working directory to the current file directory
 no <leader>cd :cd %:p:h<CR>:pwd<CR>
-
 map <leader>m :make<CR>
-
 no <leader>a :Ack 
 no <leader>u :GundoToggle<CR>
-
 no <leader>ta :TagbarToggle<cr>
+no <leader>nd :NERDTreeToggle 
 
 " moving around windows
 map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
