@@ -43,6 +43,7 @@ git_bundles = [
     "https://github.com/digitaltoad/vim-jade",
     "https://github.com/wavded/vim-stylus.git",
     "https://github.com/mileszs/ack.vim.git",
+    "https://github.com/beyondwords/vim-twig",
 ]
 
 require 'fileutils'
