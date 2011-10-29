@@ -16,7 +16,7 @@ fi
 
 alias l='ls -lah'
 alias t='tree -a'
-alias ti='tree -a -I ".git*|.hg*|*.log|node_modules/"'
+alias ti='tree -a -I ".git*|.hg*|*.log|node_modules/|.sass-cache/"'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias p='pushd'
@@ -27,6 +27,9 @@ function take {
     cd $1
 }
 
+alias s='screen'
+alias sr='screen -r'
+
 # apache2 aliases
 alias a2='sudo invoke-rc.d apache2'
 
@@ -34,13 +37,6 @@ alias a2='sudo invoke-rc.d apache2'
 alias pu='phpunit'
 alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 alias plo='phploc --count-tests .'
-alias pcs='phpcs --extensions=php,phtml --ignore=*/library/Zend/* .'
-function pall {
-    pl
-    pcs
-    plo
-}
-alias puc='sudo /etc/init.d/cruisecontrol'
 
 # Ruby
 alias rb="ruby"
@@ -72,6 +68,7 @@ alias hclean='find . -name \*.orig -exec rm {} \;'
 alias hla='hg latest'
 
 # Git
+alias g='git'
 alias gi='git init'
 alias gs='git status'
 alias gcl='git clone'
@@ -85,3 +82,7 @@ alias gc='git commit'
 alias gl='git log'
 alias gb='git branch'
 alias gco='git checkout'
+
+function hstat {
+    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+}

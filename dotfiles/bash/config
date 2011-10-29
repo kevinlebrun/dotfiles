@@ -45,6 +45,7 @@ if [[ -n "$PS1" ]] ; then
 
 	HISTSIZE=10000
 	HISTFILESIZE=20000
+    HISTIGNORE="ls:[bf]g:exit:reset:clear:cd *"
 
     # check the window size after each command and, if necessary,
     # update the values of LINES and COLUMNS.
@@ -54,7 +55,7 @@ if [[ -n "$PS1" ]] ; then
 	if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
 	fi
-    
+
     function minutes_since_last_commit {
         local now=`date +%s`
         local last_commit=`git log --pretty=format:'%at' -1 2>/dev/null`
@@ -67,7 +68,7 @@ if [[ -n "$PS1" ]] ; then
 
     function gitprompt {
         if [ -n "$(__gitdir 2>/dev/null)" ]; then
-            local minutes_since_last_commit=`minutes_since_last_commit` 
+            local minutes_since_last_commit=`minutes_since_last_commit`
             if [ -n "$minutes_since_last_commit" ]; then
                 if [ "$minutes_since_last_commit" -gt 40 ]; then
                     local flag='!'
@@ -94,6 +95,4 @@ if [[ -n "$PS1" ]] ; then
 	fi
 fi
 
-# load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 #/* vim: set ft=sh: */

@@ -1,5 +1,5 @@
 Host infosenvrac
-    HostName infosenvrac.fr
+    HostName ssh.cluster002.ovh.net
     User infosenv
 
 Host blablable.no.de
