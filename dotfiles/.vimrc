@@ -16,6 +16,8 @@ au filetype css set omnifunc=csscomplete#CompleteCSS
 au FileType python set omnifunc=pythoncomplete#Complete
 
 au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
+au BufReadPost,BufNewFile *.twig set filetype=htmljinja.htmltwig
+au BufReadPost,BufNewFile *.phtml set filetype=php.html
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -134,12 +136,13 @@ autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buff
 let mapleader=','
 
 map <F2> :NERDTreeToggle<CR>
+map <F5> yyp!!sh<cr>
 
 " autocompletion shortcut
 ino <S-space> <C-x><C-o>
 set completeopt=menu,menuone,longest
 
-no <leader>w :w!<CR>
+no <leader>w :w<CR>
 no <leader>q :q<CR>
 " force saving with permissions
 cmap w!! w !sudo tee % > /dev/null
@@ -193,9 +196,6 @@ nmap <C-i> :vertical res 120<CR>
 
 ino jj <ESC>
 cno jj <C-c>
-
-" Remap VIM 0
-map 0 ^
 
 """""""""""""""""""
 " editing shortcuts
@@ -262,13 +262,13 @@ nmap <leader>T :Tabularize /
 vmap <leader>T :Tabularize /
 
 " MRU plugin
-let MRU_Max_Entries = 400
+let MRU_Max_Entries = 100
 map <leader>f :MRU<CR>
 
 " Command-T
 no <leader>o :CommandT<CR>
-let g:CommandTMaxHeight = 7
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg
+let g:CommandTMaxHeight = 10
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache
 
 " set tags=./tags;/,$HOME/.vimtags
 set tags=./tags;/
@@ -282,13 +282,6 @@ function! LoadTags(file)
 endfunction
 command! -nargs=1 Ltag :call LoadTags("<args>")
 
-" Too slow for now
-" let g:easytags_cmd = 'ctags'
-" let g:easytags_dynamic_files = 1
-" if !has('win32') && !has('win64')
-"     let g:easytags_resolve_links = 1
-" endif
-
 let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
 
 " Shortcut for reloading snippets, useful when developing
@@ -301,8 +294,9 @@ let NERDTreeKeepTreeInNewTab = 1
 let NERDTreeShowBookmarks = 1
 let NERDTreeChDirMode = 2
 
+let g:notes_directory = '~/Documents/Notes'
+
 " use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
