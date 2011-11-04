@@ -11,8 +11,9 @@
 
 ## Tools
 
-    apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop ntop iotop atop nmap vnstat
-    apt-get install vim-gtk # if gui installed
+    apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop ntop iotop atop nmap vnstat gawk
+    apt-get install vim-gtk terminator # if gui installed
+    # install ia32lib if ubuntu 11.10 and 64bits issues
 
     cd ~
     git clone https://github.com/kevinlebrun/dotfiles.git .smile
@@ -25,16 +26,18 @@
     ln -s ~/.smile/dotfiles/ssh/config ~/.ssh/config
 
     cd ~/.smile/dotfiles/vim
-    ./update_bundles.rb # with ruby 1.8.7
+    ./update_bundles.rb
 
 ## LAMP
 
     apt-get install apache2 php5 php5-cli php-pear libapache2-mod-php5 php5-dev php5-curl
     apt-get install mysql-server mysql-client php5-mysql
-    apt-get install sqlite3 php5-sqlite
+    apt-get install sqlite3 php5-sqlite # a warning may occur when using php; corrected disabling the wrong sqlite.ini
+
+    # tweak the two php.ini files for dev. : enable error reporting, etc.
 
     pear upgrade pear
-    pecl install xdebug
+    pecl install xdebug # don't forget to enable the extension
 
     a2enmod rewrite
     /etc/init.d/apache2 restart
@@ -47,6 +50,7 @@
 - PHP Copy/Paste Detector https://github.com/mayflowergmbh/phpcpd
 - PHP Line Of Code https://github.com/sebastianbergmann/phploc
 - DocBlox http://www.docblox-project.org/documentation/installation/
+- Behat, PHPSPEC, Mockery, etc.
 
 ## Ruby
 
