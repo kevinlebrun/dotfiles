@@ -17,13 +17,9 @@
 
     cd ~
     git clone https://github.com/kevinlebrun/dotfiles.git .smile
-    ln -s ~/.smile/dotfiles/.vimrc ~/.vimrc
-    ln -s ~/.smile/dotfiles/vim ~/.vim
-    ln -s ~/.smile/dotfiles/git/config ~/.gitconfig
-    ln -s ~/.smile/dotfiles/.hgrc ~/.hgrc
-    ln -s ~/.smile/dotfiles/.ackrc ~/.ackrc
-    mkdir ~/.ssh
-    ln -s ~/.smile/dotfiles/ssh/config ~/.ssh/config
+
+    cd ~/.smile/
+    ./install.sh
 
     cd ~/.smile/dotfiles/vim
     ./update_bundles.rb
@@ -43,7 +39,7 @@
     /etc/init.d/apache2 restart
 
 - PHPUnit http://www.phpunit.de/manual/current/en/installation.html
-- CodeSniffer http://pear.php.net/package/PHP_CodeSniffer 
+- CodeSniffer http://pear.php.net/package/PHP_CodeSniffer
 - Phing http://www.phing.info
 - PHP Mess Detector http://phpmd.org
 - PHP_CodeBrowser https://github.com/mayflowergmbh/PHP_CodeBrowser
