@@ -9,7 +9,8 @@ git_bundles = [
     "https://github.com/scrooloose/nerdtree.git",
     "https://github.com/tpope/vim-fugitive.git",
     "https://github.com/tpope/vim-surround.git",
-    "https://github.com/tomtom/tcomment_vim",
+    # "https://github.com/tomtom/tcomment_vim",
+    "https://github.com/scrooloose/nerdcommenter.git",
     "https://github.com/vim-ruby/vim-ruby.git",
     "https://github.com/godlygeek/tabular.git",
     "https://github.com/mattn/zencoding-vim.git",
@@ -23,7 +24,7 @@ git_bundles = [
         %x(make)
         FileUtils.cd("../../..")
     }],
-    "https://github.com/vim-scripts/mru.vim.git",
+    # "https://github.com/vim-scripts/mru.vim.git",
     "https://github.com/vim-scripts/matchit.zip.git",
     "https://github.com/vim-scripts/jQuery.git",
     "https://github.com/vim-scripts/L9.git",
@@ -39,13 +40,16 @@ git_bundles = [
     "https://github.com/tpope/vim-cucumber.git",
     "https://github.com/pangloss/vim-javascript.git",
     "https://github.com/tpope/vim-haml.git",
+    "https://github.com/cakebaker/scss-syntax.vim",
+    #"https://github.com/hail2u/vim-css3-syntax.git",
+    "https://github.com/groenewege/vim-less",
     "https://github.com/plasticboy/vim-markdown.git",
     "https://github.com/digitaltoad/vim-jade",
     "https://github.com/wavded/vim-stylus.git",
     "https://github.com/mileszs/ack.vim.git",
     "https://github.com/beyondwords/vim-twig.git",
-    "https://github.com/xolox/vim-notes.git",
     "https://github.com/othree/html5.vim.git",
+    "https://github.com/veloce/vim-behat.git",
 ]
 
 require 'fileutils'

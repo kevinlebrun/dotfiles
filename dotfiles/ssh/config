@@ -10,3 +10,11 @@ Host blablable.no.de
 Host extia
     HostName ssh.cluster002.ovh.net
     User extia
+
+Host kimsufi
+    HostName 188.165.213.175
+    User kevin
+
+Host cecif
+    HostName 91.121.133.157
+    User kevin

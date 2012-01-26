@@ -11,7 +11,7 @@
 
 ## Tools
 
-    apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop ntop iotop atop nmap vnstat gawk
+    apt-get install tree curl byobu netcat-openbsd multitail mercurial git sysstat htop iotop atop nmap gawk
     apt-get install vim-gtk terminator # if gui installed
     # install ia32lib if ubuntu 11.10 and 64bits issues
 
@@ -56,6 +56,7 @@
 
 - Nave https://github.com/isaacs/nave
 - NVM https://github.com/creationix/nvm
+- N https://github.com/visionmedia/n
 
 - NPM https://github.com/isaacs/npm
 

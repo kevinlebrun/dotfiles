@@ -15,9 +15,10 @@ au filetype html set omnifunc=htmlcomplete#CompleteTags
 au filetype css set omnifunc=csscomplete#CompleteCSS
 au FileType python set omnifunc=pythoncomplete#Complete
 
-au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
+"au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
+let feature_filetype='behat'
 au BufReadPost,BufNewFile *.twig set filetype=htmljinja.htmltwig
-au BufReadPost,BufNewFile *.phtml set filetype=php.html
+" au BufReadPost,BufNewFile *.phtml set filetype=php.html
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -91,7 +92,7 @@ set lazyredraw
 
 set wildmenu
 set wildmode=longest,list
-" set wildignore+=*.pyc
+set wildignore+=*.pyc,**/build/**,log/**
 
 " set to auto read when a file is changed from the outside
 set autoread
@@ -287,7 +288,7 @@ let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
 " Shortcut for reloading snippets, useful when developing
 nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 
-let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node_modules']
+let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node_modules', 'build$']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeKeepTreeInNewTab = 1

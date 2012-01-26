@@ -3,6 +3,7 @@ username = Kevin Le Brun <lebrun.k@gmail.com>
 ;style = compact
 verbose = True
 ignore = ~/.hgignore
+merge = internal:merge
 
 [alias]
 untrack = rm -Af
