@@ -20,3 +20,5 @@
     insteadOf = "gist:"
 [url "git@heroku.com:"]
     insteadOf = "heroku:"
+[github]
+	user = kevinlebrun

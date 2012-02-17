@@ -7,8 +7,6 @@ set nocompatible
 call pathogen#infect()
 
 syntax on
-filetype on
-filetype plugin on
 filetype plugin indent on
 
 au filetype html set omnifunc=htmlcomplete#CompleteTags
@@ -17,8 +15,7 @@ au FileType python set omnifunc=pythoncomplete#Complete
 
 "au BufReadPost,BufNewFile *.feature,*.story set filetype=cucumber
 let feature_filetype='behat'
-au BufReadPost,BufNewFile *.twig set filetype=htmljinja.htmltwig
-" au BufReadPost,BufNewFile *.phtml set filetype=php.html
+au BufReadPost,BufNewFile *.phtml set filetype=php.html
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -262,13 +259,11 @@ vmap <leader>a> :Tabularize /=><CR>
 nmap <leader>T :Tabularize /
 vmap <leader>T :Tabularize /
 
-" MRU plugin
-let MRU_Max_Entries = 100
-map <leader>f :MRU<CR>
 
-" Command-T
-no <leader>o :CommandT<CR>
-let g:CommandTMaxHeight = 10
+" CtrlP
+no <leader>o :CtrlP<CR>
+map <leader>f :CtrlPMRU<CR>
+map <leader>p :CtrlPBuffer<CR>
 set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache
 
 " set tags=./tags;/,$HOME/.vimtags
@@ -296,6 +291,9 @@ let NERDTreeShowBookmarks = 1
 let NERDTreeChDirMode = 2
 
 let g:notes_directory = '~/Documents/Notes'
+
+let g:gist_show_privates = 1
+let g:gist_private = 1
 
 " use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))

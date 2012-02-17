@@ -15,16 +15,17 @@ git_bundles = [
     "https://github.com/godlygeek/tabular.git",
     "https://github.com/mattn/zencoding-vim.git",
     "https://github.com/altercation/vim-colors-solarized.git",
-    ["https://github.com/vim-scripts/Command-T.git", lambda {
-        puts "** Installing Command-T..."
-        FileUtils.cd("Command-T/ruby/command-t")
-        puts FileUtils.pwd
-        # NOTE use the same ruby version as vim
-        %x(ruby extconf.rb)
-        %x(make)
-        FileUtils.cd("../../..")
-    }],
+    #["https://github.com/vim-scripts/Command-T.git", lambda {
+        #puts "** Installing Command-T..."
+        #FileUtils.cd("Command-T/ruby/command-t")
+        #puts FileUtils.pwd
+        ## NOTE use the same ruby version as vim
+        #%x(ruby extconf.rb)
+        #%x(make)
+        #FileUtils.cd("../../..")
+    #}],
     # "https://github.com/vim-scripts/mru.vim.git",
+    "https://github.com/kien/ctrlp.vim.git",
     "https://github.com/vim-scripts/matchit.zip.git",
     "https://github.com/vim-scripts/jQuery.git",
     "https://github.com/vim-scripts/L9.git",
@@ -48,8 +49,12 @@ git_bundles = [
     "https://github.com/wavded/vim-stylus.git",
     "https://github.com/mileszs/ack.vim.git",
     "https://github.com/beyondwords/vim-twig.git",
-    "https://github.com/othree/html5.vim.git",
+    #"https://github.com/othree/html5.vim.git",
+    "https://github.com/shawncplus/phpcomplete.vim.git",
     "https://github.com/veloce/vim-behat.git",
+    "https://github.com/scrooloose/syntastic.git",
+    "https://github.com/mattn/gist-vim.git",
+    "https://github.com/2072/PHP-Indenting-for-VIm.git",
 ]
 
 require 'fileutils'
