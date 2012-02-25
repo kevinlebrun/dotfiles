@@ -283,14 +283,12 @@ let g:snips_author = 'Kevin Le Brun <lebrun.k@gmail.com>'
 " Shortcut for reloading snippets, useful when developing
 nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 
-let NERDTreeIgnore = ['\.swp', '\.git', '\.hg', '\.svn', '\.sass-cache', 'node_modules', 'build$']
+let NERDTreeIgnore = ['\.swp', '\.git$', '\.hg$', '\.svn', '\.sass-cache', 'node_modules', 'build$']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeKeepTreeInNewTab = 1
 let NERDTreeShowBookmarks = 1
 let NERDTreeChDirMode = 2
-
-let g:notes_directory = '~/Documents/Notes'
 
 let g:gist_show_privates = 1
 let g:gist_private = 1

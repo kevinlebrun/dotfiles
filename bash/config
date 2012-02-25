@@ -38,23 +38,23 @@ if [[ -n "$PS1" ]] ; then
     BCYAN='\e[46m'
     BWHITE='\e[47m'
 
-	HISTCONTROL=ignoreboth
+    HISTCONTROL=ignoreboth
 
     # append to the history file, don't overwrite it
-	shopt -s histappend
+    shopt -s histappend
 
-	HISTSIZE=10000
-	HISTFILESIZE=20000
+    HISTSIZE=10000
+    HISTFILESIZE=20000
     HISTIGNORE="ls:[bf]g:exit:reset:clear:cd *"
 
     # check the window size after each command and, if necessary,
     # update the values of LINES and COLUMNS.
-	shopt -s checkwinsize
+    shopt -s checkwinsize
 
     # set variable identifying the chroot you work in (used in the prompt below)
-	if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
         debian_chroot=$(cat /etc/debian_chroot)
-	fi
+    fi
 
     function minutes_since_last_commit {
         local now=`date +%s`
@@ -90,9 +90,9 @@ if [[ -n "$PS1" ]] ; then
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
     # sources /etc/bash.bashrc).
-	if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     	. /etc/bash_completion
-	fi
+    fi
 fi
 
 #/* vim: set ft=sh: */
