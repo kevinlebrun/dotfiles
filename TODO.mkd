@@ -1,5 +1,0 @@
- - binaires git et mercurial
- - revoir .gitconfig
- - revoir .hgrc
- - doc configuration PHP
- - rulesets base phpcs et phpmd et aliases

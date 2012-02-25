@@ -1,3 +1,20 @@
 # SMILE
 
-My personal dotfiles.
+My personal dotfiles
+
+## Install
+
+    cd ~
+    git clone https://github.com/kevinlebrun/dotfiles.git .smile
+
+    cd ~/.smile/
+    ./install.sh
+
+    cd ~/.smile/dotfiles/vim
+    ./update_bundles.rb
+
+## TODO
+
+ - include git and mercurial tools
+ - improve .gitconfig
+ - improve .hgrc
