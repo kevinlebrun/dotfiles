@@ -295,6 +295,8 @@ let g:notes_directory = '~/Documents/Notes'
 let g:gist_show_privates = 1
 let g:gist_private = 1
 
+let g:ctrlp_working_path_mode = 0
+
 " use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
