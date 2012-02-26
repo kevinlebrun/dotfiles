@@ -4,7 +4,7 @@
 # TVO https://github.com/vim-scripts/TVO--The-Vim-Outliner.git
 # Conque http://code.google.com/p/conque/
 
-git_bundles = [ 
+git_bundles = [
     "https://github.com/msanders/snipmate.vim.git",
     "https://github.com/scrooloose/nerdtree.git",
     "https://github.com/tpope/vim-fugitive.git",
@@ -50,6 +50,10 @@ git_bundles = [
     "https://github.com/2072/PHP-Indenting-for-VIm.git",
 ]
 
+hg_bundles = [
+    "https://bitbucket.org/ludovicchabant/vim-lawrencium",
+]
+
 require 'fileutils'
 require 'open-uri'
 
@@ -73,6 +77,18 @@ git_bundles.each do |url, func|
     puts "  Unpacking #{url} into #{dir}"
     `git clone #{url} #{dir}`
     FileUtils.rm_rf(File.join(dir, ".git"))
+    func.call unless func.nil?
+end
+
+hg_bundles.each do |url, func|
+    dir = url.split('/').last.sub(/\.hg$/, '')
+    if notrash && File.exists?(dir)
+        puts "  Skipping #{dir}"
+        next
+    end
+    puts "  Unpacking #{url} into #{dir}"
+    `hg clone #{url} #{dir}`
+    FileUtils.rm_rf(File.join(dir, ".hg"))
     func.call unless func.nil?
 end
 
