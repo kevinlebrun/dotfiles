@@ -7,4 +7,4 @@ cd ~/src
 hg clone http://vc.gerg.ca/hg/vcprompt/
 cd vcprompt
 make
-cp vcprompt $SMILE_BIN/vcprompt
+cp vcprompt $SMILE/bin/vcprompt
