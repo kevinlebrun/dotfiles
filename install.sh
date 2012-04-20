@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+install_vcprompt() {
+    ~/.smile/bin/vcprompt-install
+}
+
 install_dotfiles() {
     ln -sf ~/.smile/vim ~/.vim
     ln -sf ~/.smile/git/config ~/.gitconfig
@@ -17,3 +21,4 @@ install_dotfiles() {
 }
 
 install_dotfiles
+install_vcprompt
