@@ -67,6 +67,7 @@ if [[ -n "$PS1" ]] ; then
     }
 
     function gitprompt {
+        local ret_val=$?
         if [ -n "$(__gitdir 2>/dev/null)" ]; then
             local minutes_since_last_commit=`minutes_since_last_commit`
             if [ -n "$minutes_since_last_commit" ]; then
@@ -83,15 +84,32 @@ if [[ -n "$PS1" ]] ; then
                 echo "${flag}${time_since_last_commit} "
             fi
         fi
+        return $ret_val
     }
 
-    export PS1="\[$EMAGENTA\]\w\[$EBLACK\] \$(vcprompt -f \"[%n:%b%m%u] \")\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\$ "
+    function wrap_vcprompt {
+        local ret_val=$?
+        vcprompt -f "[%n:%b%m%u] "
+        return $ret_val
+    }
+
+    function smiley {
+        local ret_val=$?
+        if [ "$ret_val" = "0" ]; then
+            echo -e '\e[32m☺\e[0m'
+        else
+            echo -e '\e[31m☹\e[0m'
+        fi
+        return $ret_val
+    }
+
+    export PS1="\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\$(smiley) "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
     # sources /etc/bash.bashrc).
     if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    	. /etc/bash_completion
+        . /etc/bash_completion
     fi
 fi
 
