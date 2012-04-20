@@ -1,6 +1,7 @@
-Host infosenvrac
-    HostName ssh.cluster002.ovh.net
-    User infosenv
+Host lebrun-k-gmail-com
+    HostName git01.phpfog.com
+    User git
+    IdentityFile ~/.ssh/lebrun-k-gmail-com
 
 Host blablable.no.de
     Port 23111
@@ -11,10 +12,24 @@ Host extia
     HostName ssh.cluster002.ovh.net
     User extia
 
-Host kimsufi
-    HostName 188.165.213.175
-    User kevin
+Host int.front.1
+    HostName 10.170.8.118
+    User klebrun
 
-Host cecif
-    HostName 91.121.133.157
+Host int.back.1
+    HostName 10.170.8.120
+    User klebrun
+
+Host int.dns.1
+    HostName 10.170.8.119
+    User klebrun
+
+Host github.com
+    User git
+    Hostname github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa
+
+Host vps
     User kevin
+    Hostname 37.59.125.99
