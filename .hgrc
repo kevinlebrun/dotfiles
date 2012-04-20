@@ -7,15 +7,19 @@ merge = internal:merge
 
 [alias]
 untrack = rm -Af
-latest = log -l 10 --template '\x1B[0;31m{node|short} \x1B[0m{date|shortdate} \x1B[0;36m{author|person} \x1B[0m{desc|firstline}\n'
+latest = log -l 10 --template '\x1B[0;33m{node|short}\x1B[0m|\x1B[0m{date|shortdate}|\x1B[0;36m{author|person}|\x1B[0m{desc|firstline} \x1B[1;31m{branches}\x1B[0m \x1B[1;33m{tags}\x1B[0m\n'
+nlog = log --style=$SMILE/hg/map-cmdline.nlog
+dlog = log --style=$SMILE/hg/map-cmdline.dlog
+slog = log --style=$SMILE/hg/map-cmdline.slog
+sglog = glog --style=$SMILE/hg/map-cmdline.sglog
 
 [extensions]
 convert =
 color =
-hgext.graphlog =
+graphlog =
 pager =
-hgext.churn =
-mq = 
+churn =
+mq =
 
 
 [pager]
