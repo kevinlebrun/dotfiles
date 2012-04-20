@@ -65,7 +65,7 @@ alias hin='hg inc'
 alias hout='hg out'
 alias hr='hg resolve'
 alias hclean='find . -name \*.orig -exec rm {} \;'
-alias hla='hg latest'
+alias hla='hg latest | column -s "|" -t'
 
 # Git
 alias g='git'
