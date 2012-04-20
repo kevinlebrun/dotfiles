@@ -5,6 +5,8 @@
 	editor = vim
 [color]
 	ui = true
+[alias]
+    l = "log --oneline --decorate --graph"
 
 [url "git@github.com:"]
     insteadOf = "gh:"

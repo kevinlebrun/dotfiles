@@ -13,8 +13,3 @@ My personal dotfiles
     cd ~/.smile/vim
     ./update_bundles.rb
 
-## TODO
-
- - include git and mercurial tools
- - improve .gitconfig
- - improve .hgrc
