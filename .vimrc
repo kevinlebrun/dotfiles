@@ -264,7 +264,7 @@ vmap <leader>T :Tabularize /
 no <leader>o :CtrlP<CR>
 map <leader>f :CtrlPMRU<CR>
 map <leader>p :CtrlPBuffer<CR>
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor
 
 " set tags=./tags;/,$HOME/.vimtags
 set tags=./tags;/

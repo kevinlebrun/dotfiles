@@ -45,7 +45,7 @@ git_bundles = [
     "https://github.com/beyondwords/vim-twig.git",
     "https://github.com/shawncplus/phpcomplete.vim.git",
     "https://github.com/veloce/vim-behat.git",
-    "https://github.com/scrooloose/syntastic.git",
+    #"https://github.com/scrooloose/syntastic.git",
     "https://github.com/mattn/gist-vim.git",
     "https://github.com/2072/PHP-Indenting-for-VIm.git",
 ]
