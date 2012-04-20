@@ -1,6 +1,6 @@
 # general aliases
-alias reload="source $SMILE_DOTFILES/bash/aliases"
-alias ea="vim $SMILE_DOTFILES/bash/aliases && reload"
+alias reload="source $SMILE/bash/aliases"
+alias ea="vim $SMILE/bash/aliases && reload"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
