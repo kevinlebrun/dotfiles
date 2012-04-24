@@ -96,14 +96,24 @@ if [[ -n "$PS1" ]] ; then
     function smiley {
         local ret_val=$?
         if [ "$ret_val" = "0" ]; then
-            echo -e '\e[32m☺\e[0m'
+            echo "☺"
         else
-            echo -e '\e[31m☹\e[0m'
+            echo "☹"
         fi
         return $ret_val
     }
 
-    export PS1="\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\$(smiley) "
+    function smiley_color {
+        local ret_val=$?
+        if [ "$ret_val" = "0" ]; then
+            echo -e $EGREEN
+        else
+            echo -e $ERED
+        fi
+        return $ret_val
+    }
+
+    export PS1="\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\[\$(smiley_color)\]\$(smiley)\[$NO_COLOR\] "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
