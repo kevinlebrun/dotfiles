@@ -1,4 +1,3 @@
-call LoadTags('zf1')
 call LoadTags('phpunit')
 
 setl omnifunc=phpcomplete#CompletePHP

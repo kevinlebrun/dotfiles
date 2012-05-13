@@ -85,6 +85,8 @@ set linespace=0 " no extra spaces between rows
 set cmdheight=2
 set showcmd
 
+set shellcmdflag=-ic
+
 set lazyredraw
 
 set wildmenu

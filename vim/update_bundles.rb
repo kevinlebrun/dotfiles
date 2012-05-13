@@ -30,7 +30,7 @@ git_bundles = [
     "https://github.com/sukima/xmledit.git",
     "https://github.com/leshill/vim-json.git",
     "https://github.com/vim-scripts/phpfolding.vim.git",
-    "https://github.com/sjl/gundo.vim.git",
+    #"https://github.com/sjl/gundo.vim.git",
     "https://github.com/kchmck/vim-coffee-script.git",
     "https://github.com/majutsushi/tagbar.git",
     "https://github.com/tpope/vim-cucumber.git",
