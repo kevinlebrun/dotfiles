@@ -113,7 +113,7 @@ if [[ -n "$PS1" ]] ; then
         return $ret_val
     }
 
-    export PS1="\[\033[G\]\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\[\$(smiley_color)\]\$(smiley)\[$NO_COLOR\] "
+    export PS1="\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\[\$(smiley_color)\]\$(smiley)\[$NO_COLOR\] "
 
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
