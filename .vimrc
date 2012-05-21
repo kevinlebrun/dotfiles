@@ -91,7 +91,7 @@ set lazyredraw
 
 set wildmenu
 set wildmode=longest,list
-set wildignore+=*.pyc,**/build/**,log/**
+set wildignore+=*.pyc,**build**
 
 " set to auto read when a file is changed from the outside
 set autoread
@@ -295,7 +295,8 @@ let NERDTreeChDirMode = 2
 let g:gist_show_privates = 1
 let g:gist_private = 1
 
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_working_path_mode = 2
 
 " use local vimrc if available
 if filereadable(expand("~/.vimrc.local"))
