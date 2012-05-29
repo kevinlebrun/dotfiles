@@ -1,7 +1,6 @@
 // http://www.jshint.com/options/
 {
     // Settings
-    "passfail"      : false,  // Stop on first error.
     "maxerr"        : 100,    // Maximum error before stopping.
 
 
@@ -11,7 +10,7 @@
     "node"          : true,
     "rhino"         : false,
     "couch"         : false,
-    "wsh"           : true,   // Windows Scripting Host.
+    "wsh"           : false,   // Windows Scripting Host.
 
     "jquery"        : false,
     "prototypejs"   : false,
@@ -19,21 +18,13 @@
     "dojo"          : false,
 
     "predef"        : [  // Custom globals.
-        "jasmine",
-        "spyOn",
-        "it",
-        "console",
-        "describe",
-        "expect",
-        "beforeEach",
-        "waits",
-        "waitsFor",
-        "runs"
+        "define",
+        "require"
     ],
 
 
     // Development.
-    "debug"         : false,  // Allow debugger statements e.g. browser breakpoints.
+    "debug"         : false,   // Allow debugger statements e.g. browser breakpoints.
     "devel"         : false,   // Allow developments statements e.g. `console.log();`.
 
 
@@ -50,7 +41,7 @@
     "boss"          : true,   // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
     "curly"         : true,   // Require {} for every new block or scope.
     "eqeqeq"        : true,   // Require triple equals i.e. `===`.
-    "eqnull"        : true,  // Tolerate use of `== null`.
+    "eqnull"        : true,   // Tolerate use of `== null`.
     "evil"          : false,  // Tolerate use of `eval`.
     "expr"          : false,  // Tolerate `ExpressionStatement` as Programs.
     "forin"         : false,  // Tolerate `for in` loops without `hasOwnPrototype`.
@@ -73,10 +64,10 @@
     "noempty"       : true,   // Prohibit use of empty blocks.
     "nonew"         : true,   // Prohibit use of constructors for side-effects.
     "nomen"         : false,  // Prohibit use of initial or trailing underbars in names.
-    "onevar"        : true,   // Allow only one `var` statement per function.
+    "onevar"        : false,  // Allow only one `var` statement per function.
     "plusplus"      : false,  // Prohibit use of `++` & `--`.
     "sub"           : true,   // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
     "trailing"      : true,   // Prohibit trailing whitespaces.
-    "white"         : true,   // Check against strict whitespace and indentation rules.
     "indent"        : 4       // Specify indentation spacing
+    "funcscope"     : false   // Suppresses warnings about declaring variables inside of control structures while accessing them later from the outside.
 }
