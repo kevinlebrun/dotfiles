@@ -10,3 +10,8 @@
 --type-set=RDOC=rdoc
 --type-set=styl=sass,less,styl
 --type-set=coffee=coffee
+
+--ignore-dir=build
+--ignore-dir=vendor
+--ignore-dir=log
+--ignore-dir=cache
