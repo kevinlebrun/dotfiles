@@ -1,4 +1,3 @@
-# general aliases
 alias reload="source $SMILE/bash/aliases"
 alias ea="vim $SMILE/bash/aliases && reload"
 
@@ -15,18 +14,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias l='ls -lah'
-alias t='tree -a'
-alias ti='tree -a -I ".git*|.hg*|*.log|node_modules/|.sass-cache/"'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias p='pushd'
 alias o='popd'
 
-function take {
-    mkdir $1
-    cd $1
-}
-
+alias t='tmux'
 alias s='screen'
 alias sr='screen -r'
 
@@ -35,54 +28,52 @@ alias a2='sudo invoke-rc.d apache2'
 
 # PHP
 alias pu='phpunit'
-alias pl="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
-alias plo='phploc --count-tests .'
+alias be='behat'
 
-# Ruby
-alias rb="ruby"
+alias plint="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
 
 # MongoDB
 alias mgd="mongod --dbpath=/data/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend --fork --rest"
-alias mgdb="mongod --dbpath=/data/mongodb/"
-alias mg="mongo"
 
 # Mercurial
-alias hi='hg init'
-alias hs='hg st'
-alias hpu='hg pull'
-alias hp='hg push'
-alias hm='hg commit -m'
-alias hc='hg commit'
-alias hd='hg diff'
-alias hl='hg log'
-alias ha='hg add'
 alias hcl='hg clone'
-alias hu='hg update'
+alias hpu='hg pull -u'
+alias hp='hg push'
+alias hs='hg status'
+
+alias hc='hg commit'
+alias hl='hg log'
 alias hb='hg branch'
-alias hh='hg heads'
-alias hbs='hg branches'
+alias hba='hg branches'
+alias hd='hg diff'
+alias hu='hg update'
+alias hr='hg resolve'
 alias hin='hg inc'
 alias hout='hg out'
-alias hr='hg resolve'
-alias hclean='find . -name \*.orig -exec rm {} \;'
+
 alias hla='hg latest | column -s "|" -t'
+alias hclean='find . -name \*.orig -exec rm {} \;'
 
 # Git
 alias g='git'
-alias gi='git init'
-alias gs='git status'
+
 alias gcl='git clone'
 alias gpu='git pull'
 alias gp='git push'
-alias gd='git diff'
-alias ga='git add'
-alias gaa='git add --all'
-alias gm='git commit -m'
+alias gs='git status'
+
 alias gc='git commit'
 alias gl='git log'
 alias gb='git branch'
+alias gd='git diff'
+alias ga='git add'
+alias gaa='git add --all'
 alias gco='git checkout'
 
 function hstat {
-    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+    history | awk '{a[$4]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
+}
+
+function psu {
+    ps -ef | awk '{print $1}' | sort | uniq -c | sort -rn
 }

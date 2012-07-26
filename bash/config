@@ -1,3 +1,12 @@
+export PATH=$PATH:$SMILE/bin
+
+hash vim &>/dev/null && export EDITOR=vim
+
+ASITES=/etc/apache2/sites-available
+ALOG=/var/log/apache2
+PHPCNF=/etc/php5/conf.d
+PHPLOG=/var/log/php5
+
 if [[ -n "$PS1" ]] ; then
     # misc
     NO_COLOR='\e[0m' #disable any colors
@@ -37,24 +46,6 @@ if [[ -n "$PS1" ]] ; then
     BMAGENTA='\e[45m'
     BCYAN='\e[46m'
     BWHITE='\e[47m'
-
-    HISTCONTROL=ignoreboth
-
-    # append to the history file, don't overwrite it
-    shopt -s histappend
-
-    HISTSIZE=10000
-    HISTFILESIZE=20000
-    HISTIGNORE="ls:[bf]g:exit:reset:clear:cd *"
-
-    # check the window size after each command and, if necessary,
-    # update the values of LINES and COLUMNS.
-    shopt -s checkwinsize
-
-    # set variable identifying the chroot you work in (used in the prompt below)
-    if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-        debian_chroot=$(cat /etc/debian_chroot)
-    fi
 
     function minutes_since_last_commit {
         local now=`date +%s`
@@ -114,13 +105,44 @@ if [[ -n "$PS1" ]] ; then
     }
 
     export PS1="\[$EGREEN\]\u@\h \[$EMAGENTA\]\w\[$EBLACK\] \$(wrap_vcprompt)\[$EGREEN\]\$(gitprompt)\[$NO_COLOR\]\\n\[\$(smiley_color)\]\$(smiley)\[$NO_COLOR\] "
+fi
 
-    # enable programmable completion features (you don't need to enable
-    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-    # sources /etc/bash.bashrc).
-    if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-        . /etc/bash_completion
-    fi
+# disable annoying beep
+setterm -bfreq 0
+
+# disable flow control
+stty -ixon
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+#HISTFILESIZE=20000
+unset HISTFILESIZE
+HISTSIZE=100000
+HISTCONTROL=ignoreboth
+HISTIGNORE="ls:[bf]g:history:exit:reset:clear:cd *"
+HISTTIMEFORMAT="%F %T "
+
+# merge multiline commands in history into one line
+shopt -s cmdhist
+
+# records each line of history as you issue it
+PROMPT_COMMAND="history -a; history -n"
+
+# search in my $HOME directory as fallback
+CDPATH=.:~
+
+shopt -s cdspell
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
+# enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
