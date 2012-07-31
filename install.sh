@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 install_vcprompt() {
-    ~/.smile/bin/vcprompt-install
+    curl -sL https://https://github.com/djl/vcprompt/raw/master/bin/vcprompt > $SMILE/bin/vcprompt
 }
 
 install_dotfiles() {
