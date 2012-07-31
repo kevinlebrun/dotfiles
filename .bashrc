@@ -1,4 +1,4 @@
-export SMILE=~/.smile
+export SMILE=$(dirname $0)
 
 . $SMILE/bash/config
 . $SMILE/bash/aliases
