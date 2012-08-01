@@ -20,7 +20,7 @@ set termencoding=utf-8
 colorscheme molokai
 let g:molokai_original = 1
 
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
 
 set t_Co=256
@@ -42,7 +42,10 @@ set modelines=3 " number lines checked for modelines
 set history=500 "lines of history VIM has to remember
 set undolevels=1000
 
-set colorcolumn=121
+if exists('+colorcolumn')
+    set colorcolumn=121
+endif
+
 set cursorline " hightlight the current line
 set number " show line numbers
 set ruler " show the current position
