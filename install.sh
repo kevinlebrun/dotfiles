@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-SMILE_PATH=$(dirname $0)
+# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+SMILE_PATH="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 install_vcprompt() {
-    curl -sL https://https://github.com/djl/vcprompt/raw/master/bin/vcprompt > $SMILE_PATH/bin/vcprompt
+    curl -sL https://https://github.com/djl/vcprompt/raw/master/bin/vcprompt > ${SMILE_PATH}/bin/vcprompt
 }
 
 install_dotfiles() {
@@ -24,3 +25,5 @@ install_dotfiles() {
 
 install_dotfiles
 install_vcprompt
+
+echo "export SMILE=$SMILE_PATH" > ~/.smile.conf
