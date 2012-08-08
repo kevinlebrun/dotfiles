@@ -8,6 +8,7 @@ install_vcprompt() {
 }
 
 install_dotfiles() {
+function install_dotfiles {
     ln -sf ${SMILE_PATH}/vim ~/.vim
 
     for dotfile in ${SMILE_PATH}/.*
@@ -22,7 +23,12 @@ install_dotfiles() {
     ln -sf ${SMILE_PATH}/ssh/config ~/.ssh/config
 }
 
+function install_hg_prompt {
+    hg clone http://bitbucket.org/sjl/hg-prompt/ ~/.hg_prompt
+}
+
 install_dotfiles
 install_vcprompt
+install_hg_prompt
 
 echo "export SMILE=$SMILE_PATH" > ~/.smile.conf

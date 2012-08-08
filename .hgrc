@@ -20,7 +20,12 @@ graphlog =
 pager =
 churn =
 mq =
+record =
+prompt = ~/.hg_prompt/prompt.py
+bookmarks =
 
+[bookmarks]
+track.current = True
 
 [pager]
 pager = LESS='FSRX' less
