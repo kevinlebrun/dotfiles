@@ -1,0 +1,21 @@
+prompt_git() {
+    git branch &>/dev/null || return 1
+    HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
+    BRANCH="${HEAD##*/}"
+    [[ -n "$(git status 2>/dev/null | \
+        grep -F 'working directory clean')" ]] || STATUS="!"
+    echo "$RESET_COLOR on ${MAGENTA}${BRANCH:-unknown}${GREEN}${STATUS}${RESET_COLOR}"
+}
+
+prompt_hg() {
+    hg branch &>/dev/null || return 1
+    BRANCH="$(hg branch 2>/dev/null)"
+    [[ -n "$(hg status 2>/dev/null)" ]] && STATUS="!"
+    echo "$RESET_COLOR on ${MAGENTA}${BRANCH:-unknown}${GREEN}${STATUS}${RESET_COLOR}"
+}
+
+prompt_vcs() {
+    prompt_git || prompt_hg
+}
+
+# vim: set syn=sh :
