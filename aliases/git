@@ -1,0 +1,9 @@
+alias g='git'
+alias gs='git status'
+alias gc='git commit'
+alias gm='git commit -m'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gl='git log'
+
+# vim: set syn=sh :

@@ -1,0 +1,23 @@
+function psu {
+    ps -ef | awk '{print $1}' | sort | uniq -c | sort -rn
+}
+
+function box_name {
+    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+}
+
+function prompt_char {
+    git branch >/dev/null 2>/dev/null && echo '±' && return
+    hg root >/dev/null 2>/dev/null && echo '☿' && return
+    echo '○'
+}
+
+function hstat {
+    history | awk '{a[$4]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
+}
+
+function tmw {
+    tmux split-window -dh "$*"
+}
+
+# vim: set syn=sh :

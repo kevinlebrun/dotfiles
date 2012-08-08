@@ -1,0 +1,20 @@
+alias h='hg'
+alias hpu='hg pull'
+alias hpuu='hg pull -u'
+alias hp='hg push'
+alias hs='hg status'
+alias hc='hg commit'
+alias hm='hg commit -m'
+alias hl='hg log'
+alias hb='hg branch'
+alias hba='hg branches'
+alias hd='hg diff'
+alias hu='hg update'
+alias hr='hg resolve'
+alias hin='hg inc'
+alias hout='hg out'
+
+alias hla='hg latest | column -s "|" -t'
+alias hclean='find . -name \*.orig -exec rm {} \;'
+
+# vim: set syn=sh :

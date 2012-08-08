@@ -1,0 +1,30 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias l='ls -lah'
+alias t='tree'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias p='pushd'
+alias o='popd'
+
+alias tm='tmux'
+alias sc='screen'
+alias scr='screen -r'
+
+alias f='find . -iname'
+alias ducks='du -hck -d 1 | sort -rn | head -n 11'
+alias systail='tail -f /var/log/system.log'
+
+alias count="sort | uniq -c | sort -n"
