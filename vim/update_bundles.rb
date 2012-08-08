@@ -2,10 +2,6 @@
 
 git_bundles = [
     # snipmate and dependencies
-    "https://github.com/tomtom/tlib_vim.git",
-    "https://github.com/MarcWeber/vim-addon-mw-utils.git",
-    "https://github.com/honza/snipmate-snippets.git",
-    "https://github.com/garbas/vim-snipmate.git",
     "https://github.com/scrooloose/nerdtree.git",
     "https://github.com/tpope/vim-fugitive.git",
     "https://github.com/tpope/vim-surround.git",
@@ -38,7 +34,6 @@ git_bundles = [
     "https://github.com/mattn/webapi-vim.git",
     "https://github.com/mattn/gist-vim.git",
     "https://github.com/Lokaltog/vim-powerline.git",
-    #"https://github.com/alfredodeza/jacinto.vim.git",
     #"https://github.com/zaiste/tmux.vim.git",
     "https://github.com/kight/CSS3-syntax-file-for-vim.git",
     "https://github.com/Lokaltog/vim-easymotion.git",
