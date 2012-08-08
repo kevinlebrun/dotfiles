@@ -1,10 +1,10 @@
 [user]
-	name = Kevin Le Brun
-	email = lebrun.k@gmail.com
+    name = Kevin Le Brun
+    email = lebrun.k@gmail.com
 [core]
-	editor = vim
+    editor = vim
 [color]
-	ui = true
+    ui = true
 [alias]
     l = "log --oneline --decorate --graph"
 
@@ -23,4 +23,4 @@
 [url "git@heroku.com:"]
     insteadOf = "heroku:"
 [github]
-	user = kevinlebrun
+    user = kevinlebrun

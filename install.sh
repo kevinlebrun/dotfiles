@@ -9,7 +9,6 @@ install_vcprompt() {
 
 install_dotfiles() {
     ln -sf ${SMILE_PATH}/vim ~/.vim
-    ln -sf ${SMILE_PATH}/git/config ~/.gitconfig
 
     for dotfile in ${SMILE_PATH}/.*
     do
