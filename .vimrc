@@ -64,7 +64,9 @@ set linespace=0 " no extra spaces between rows
 
 set showcmd
 
-set shellcmdflag=-ic
+set shell=bash
+"set shell=zsh\ -i
+"set shellcmdflag=-ic
 
 set lazyredraw
 
@@ -130,7 +132,7 @@ no <leader>cd :cd %:p:h<CR>:pwd<CR>
 no <leader>a :Ack 
 no <leader>u :GundoToggle<CR>
 no <leader>ta :TagbarToggle<cr>
-map <F2> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " moving around windows
 map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
@@ -247,6 +249,8 @@ let g:user_zen_leader_key = '<c-e>'
 let g:user_zen_complete_tag = 1
 " }}}
 
-if filereadable(expand("~/.vimrc.local"))
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
+if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
