@@ -3,6 +3,7 @@
     email = lebrun.k@gmail.com
 [core]
     editor = vim
+    excludesfile = ~/.gitignore
 [color]
     ui = true
 [alias]
