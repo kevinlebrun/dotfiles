@@ -1,6 +1,8 @@
 source $HOME/.smile.conf
 source $SMILE/env
 
+bindkey -e
+
 setopt menucomplete
 
 autoload compinit
