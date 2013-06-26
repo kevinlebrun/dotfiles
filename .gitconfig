@@ -12,6 +12,7 @@
     pushNonFastForward = false
     statusHints = false
 [alias]
+    c = commit -v
     amend = commit --amend -C HEAD
     authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
     changes = diff --name-status -r
