@@ -191,6 +191,8 @@ map <M-.> <C-W><
 nmap <C-i> :vertical res 121<CR>
 
 nmap <leader><leader>o :vs ~/Dropbox/Workspace/scratch.markdown<cr>
+nmap <leader><leader>p :vs ~/Dropbox/Workspace/pomodoro.markdown<cr>
+nmap <leader><leader>l :vs ~/Dropbox/Workspace/log.markdown<cr>
 
 ino jj <ESC>
 cno jj <C-c>
@@ -256,12 +258,11 @@ let g:gist_private = 1
 " }}}
 
 " CtrP {{{
-no <leader>o :CtrlP<CR>
 map <leader>f :CtrlPMRU<CR>
-map <leader>p :CtrlPBuffer<CR>
+map <leader>b :CtrlPBuffer<CR>
 
 let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'build$'
 " }}}
 
