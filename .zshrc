@@ -2,6 +2,8 @@ source $HOME/.smile.conf
 source $SMILE/env
 
 bindkey -e
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 setopt menucomplete
 
@@ -16,12 +18,15 @@ for config_file ($SMILE/zsh/*.zsh) source $config_file
 for aliases_file ($SMILE/aliases/*) source $aliases_file
 for functions_file ($SMILE/functions/*) source $functions_file
 
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
 local last_code="%(?,,%{$fg[red]%}[%?]%{$reset_color%})"
 
 PROMPT='
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}$(box_name)%{$reset_color%} in %{$fg[green]%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
-$ '
-#$(prompt_char) '
+$(prompt_char) '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
