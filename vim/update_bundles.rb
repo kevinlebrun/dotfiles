@@ -24,7 +24,6 @@ git_bundles = [
     "https://github.com/tpope/vim-surround.git",
 
     "https://github.com/sjl/clam.vim.git",
-    "https://github.com/tpope/vim-eunuch.git",
 
     "https://github.com/mattn/webapi-vim.git",
     "https://github.com/mattn/gist-vim.git",

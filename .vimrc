@@ -28,7 +28,7 @@ colorscheme solarized
 "let g:molokai_original = 1
 "colorscheme molokai
 
- set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 let g:Powerline_theme="skwp"
 let g:Powerline_colorscheme="skwp"
@@ -140,6 +140,7 @@ no <leader>q :q<CR>
 no <leader>s :sus<CR>
 " force saving with permissions
 cmap w!! w !sudo tee % > /dev/null
+map <leader>e :execute '!chmod +x %'<cr> :e!<cr>
 
 " change working directory to the current file directory
 no <leader>cd :cd %:p:h<CR>:pwd<CR>
