@@ -1,0 +1,21 @@
+#!/bin/sh
+# Based on https://coderwall.com/p/y5eiiq
+
+SCP_USER='kevin'
+SCP_HOST='37.59.125.99'
+SCP_PATH='/live/kevinlebrun.fr/public/x/'
+
+HTTP_URL="http://kevinlebrun.fr/x/"
+
+FILENAME=`(cat /dev/random | head -c 10; date) | md5 -q | head -c 10`.png
+FILEPATH=/tmp/$FILENAME
+
+screencapture -i $@ $FILEPATH
+if [ -f $FILEPATH ]
+then
+    echo $HTTP_URL$FILENAME | pbcopy
+    scp $FILEPATH ${SCP_USER}@${SCP_HOST}:$SCP_PATH
+    rm $FILEPATH
+
+    echo `date` $HTTP_URL$FILENAME >> ~/scapt.log
+fi
