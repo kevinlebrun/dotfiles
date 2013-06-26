@@ -1,3 +1,13 @@
+show-logfile = true
+logging = true
+protocol = HTTP/1.1
+chunked = true
+cache = false
+connection = close
+delay = 1
+accept-encoding = gzip
+spinner = true
+internet = true
 verbose = false
-concurrent = 10
+concurrent = 15
 benchmark = true
