@@ -13,6 +13,9 @@ dlog = log --style=$SMILE/hg/map-cmdline.dlog
 slog = log --style=$SMILE/hg/map-cmdline.slog
 sglog = glog --style=$SMILE/hg/map-cmdline.sglog
 
+mybugs = log -u lebrun.k@gmail.com --template '{date|isodate}: {desc}\n'
+lastweek = mybugs --date "-7"
+
 [extensions]
 convert =
 color =

@@ -1,3 +1,4 @@
 syntax: glob
 *.my
 .DS_Store
+.idea
