@@ -10,6 +10,7 @@
 --type-set=RDOC=rdoc
 --type-set=styl=sass,less,styl
 --type-set=coffee=coffee
+--type-set=phtml=phtml
 
 --ignore-dir=build
 --ignore-dir=vendor
