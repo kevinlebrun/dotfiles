@@ -186,6 +186,8 @@ map <M-,> <C-W>>
 map <M-.> <C-W><
 nmap <C-i> :vertical res 121<CR>
 
+nmap <leader><leader>o :vs ~/Dropbox/Workspace/scratch.markdown<cr>
+
 ino jj <ESC>
 cno jj <C-c>
 
