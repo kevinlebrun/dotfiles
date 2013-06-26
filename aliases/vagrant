@@ -1,14 +1,4 @@
-alias v='vagrant'
-alias vs='vagrant suspend'
-alias vp='vagrant provision'
-alias vu='vagrant up'
-alias vunp='vagrant up --no-provision'
-alias vh='vagrant halt'
-alias vr='vagrant reload'
-alias vss='vagrant ssh'
-
-function turnoffthedamnboxvagrant () {
-    VBoxManage list vms | grep "$1" | cut -d' ' -f1 | tr -d '"\n ' | xargs -0 -I BOX VBoxManage controlvm BOX poweroff
-}
+alias v='/usr/bin/vagrant'
+alias vunp='/usr/bin/vagrant up --no-provision'
 
 # vim: set syn=sh :

@@ -20,4 +20,21 @@ function tmw {
     tmux split-window -dh "$*"
 }
 
+function paranoid_erase {
+    for n in `seq 7`; do dd if=/dev/urandom of=$1 bs=8b conv=notrunc; done
+}
+
+function fs {
+    du -s ./* | sort -n | cut -f 2- | xargs -Ix du -sh x
+}
+
+function getcomposer {
+    curl -s https://getcomposer.org/installer | php
+}
+
+function geoip {
+    local ip=${1:-$(curl -s icanhazip.com)}
+    curl -s "http://www.geody.com/geoip.php?ip=${ip}" | sed '/^IP:/!d;s/<[^>][^>]*>//g'
+}
+
 # vim: set syn=sh :

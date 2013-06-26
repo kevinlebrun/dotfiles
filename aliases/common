@@ -28,3 +28,11 @@ alias ducks='du -hck -d 1 | sort -rn | head -n 11'
 alias systail='tail -f /var/log/system.log'
 
 alias count="sort | uniq -c | sort -n"
+
+alias myip="curl ifconfig.me"
+alias pint="curl ifconfig.me/all"
+
+alias py="python"
+alias ipy="ipython"
+
+alias ltail="less -S -N +F --follow-name "

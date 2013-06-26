@@ -2,3 +2,4 @@ alias pu='phpunit'
 alias be='behat'
 
 alias plint="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"
+alias pcs="./scripts/phpcs --standard=phpcs.xml --extensions=php --ignore='*/vendor/*','*/build/*','*/scripts/*'' -p ."
