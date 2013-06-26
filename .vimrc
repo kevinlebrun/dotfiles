@@ -194,6 +194,15 @@ nmap <leader><leader>o :vs ~/Dropbox/Workspace/scratch.markdown<cr>
 nmap <leader><leader>p :vs ~/Dropbox/Workspace/pomodoro.markdown<cr>
 nmap <leader><leader>l :vs ~/Dropbox/Workspace/log.markdown<cr>
 
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Delete>
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
+cnoremap <M-d>  <S-right><Delete>
+cnoremap <C-g>  <C-c>
+
 ino jj <ESC>
 cno jj <C-c>
 
