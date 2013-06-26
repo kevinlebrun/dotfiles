@@ -19,7 +19,9 @@ function install_dotfiles {
 }
 
 function install_hg_prompt {
-    hg clone http://bitbucket.org/sjl/hg-prompt/ ~/.hg_prompt
+    if [ ! -d ~/.hg_prompt ]; then
+        hg clone http://bitbucket.org/sjl/hg-prompt/ ~/.hg_prompt
+    fi
 }
 
 install_dotfiles
