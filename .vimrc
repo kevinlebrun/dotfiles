@@ -7,20 +7,33 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 
-au filetype html set omnifunc=htmlcomplete#CompleteTags
-au filetype css set omnifunc=csscomplete#CompleteCSS
-au FileType python set omnifunc=pythoncomplete#Complete
+au filetype html setlocal omnifunc=htmlcomplete#CompleteTags
+au filetype css setlocal omnifunc=csscomplete#CompleteCSS
+au FileType python setlocal omnifunc=pythoncomplete#Complete
+au FileType mkd,markdown setlocal nofoldenable
 
 let feature_filetype='behat'
-au BufReadPost,BufNewFile *.phtml set filetype=php.html
+au BufReadPost,BufNewFile *.phtml setlocal filetype=php.html
 
 set encoding=utf-8
 set termencoding=utf-8
 
-colorscheme molokai
-let g:molokai_original = 1
+set background=dark
+" solarized options
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
 
-"let g:Powerline_symbols = 'fancy'
+"let g:molokai_original = 1
+"colorscheme molokai
+
+ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+let g:Powerline_theme="skwp"
+let g:Powerline_colorscheme="skwp"
+
+let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
 
 set t_Co=256
@@ -72,7 +85,7 @@ set lazyredraw
 
 set wildmenu
 set wildmode=longest,list
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,cache
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache
 
 set autoread
 
@@ -80,6 +93,7 @@ set scrolloff=3
 
 set backspace=indent,eol,start
 
+" TODO define for specific files
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -129,7 +143,7 @@ cmap w!! w !sudo tee % > /dev/null
 
 " change working directory to the current file directory
 no <leader>cd :cd %:p:h<CR>:pwd<CR>
-no <leader>a :Ack 
+no <leader>a :Ack
 no <leader>u :GundoToggle<CR>
 no <leader>ta :TagbarToggle<cr>
 map <leader>n :NERDTreeToggle<CR>
@@ -175,6 +189,8 @@ nmap <C-i> :vertical res 121<CR>
 ino jj <ESC>
 cno jj <C-c>
 
+map SS :set sw=4 ts=4 sts=4<CR>
+
 " Search for <cword> and replace with input() in all open buffers {{{
 fun! Replace()
     let s:word = input("Replace " . expand('<cword>') . " with:")
@@ -186,6 +202,8 @@ map <leader>r :call Replace()<CR>
 
 " reload vimrc file with notification
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>vi :e ~/.vimrc<CR>
+map <leader>vm :e ~/.vim/update_bundles.rb<CR>
 
 " Clean all end of line extra whitespace with ,S {{{
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
@@ -247,6 +265,11 @@ let g:user_zen_settings = {
 \}
 let g:user_zen_leader_key = '<c-e>'
 let g:user_zen_complete_tag = 1
+" }}}
+
+" Clam {{{
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
 " }}}
 
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
