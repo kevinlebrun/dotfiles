@@ -45,6 +45,7 @@ get_bin   git-rank-contributors  http://git-wt-commit.rubyforge.org/git-rank-con
 get_bin   git-wtf                http://git-wt-commit.rubyforge.org/git-wtf
 get_bin   git-thanks             https://gist.github.com/rkh/74335/raw/47397a6c7fc7d6bc10eef8d619a5e752e829e5c9/git-thanks
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
+get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
 
 # TODO How to handle gem / brew / etc. deps ?
 # https://github.com/aanand/git-up
