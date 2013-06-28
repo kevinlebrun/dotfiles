@@ -19,5 +19,5 @@ COMMIT=$(git rev-parse --no-flags --default HEAD "$@")
           "git name-rev --name-only --refs=\"" mbs[i] "\" " $3 | getline nr
           if (nr != "undefined") print $1, $2, nr   # skip unreachable commits
         }
-      }
+      } 
     }' | git -p column   # paginate output

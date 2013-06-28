@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# https://raw.github.com/benhoskings/dot-files/master/files/bin/gbrt
 
 def format_commit_info timestamp, time_desc, commit_id, message, ref_name
   [

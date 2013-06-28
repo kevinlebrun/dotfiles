@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Emits Git metadata for use in a Bash prompt.
+# Emits Git metadata for use in a Zsh prompt.
 #
 # Based on Geoffrey Grosenbach's modified version of:
 #   https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info

@@ -63,3 +63,4 @@ else
   exec "git config branch.#{branch}.remote #{remote}"
   exec "git config branch.#{branch}.merge refs/heads/#{branch}"
 end
+
