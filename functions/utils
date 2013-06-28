@@ -13,7 +13,7 @@ function prompt_char {
 }
 
 function hstat {
-    history | awk '{a[$4]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
+    history 1 | awk '{a[$2]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
 function tmw {

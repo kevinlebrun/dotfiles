@@ -36,3 +36,6 @@ alias py="python"
 alias ipy="ipython"
 
 alias ltail="less -S -N +F --follow-name "
+
+alias v="vim"
+alias a="ack"
