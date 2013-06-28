@@ -7,6 +7,8 @@ bindkey '^[[1;5D' backward-word
 
 setopt menucomplete
 
+setopt -s glob_dots
+
 autoload compinit
 compinit
 
