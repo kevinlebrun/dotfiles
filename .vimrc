@@ -10,7 +10,6 @@ filetype plugin indent on
 au filetype html setlocal omnifunc=htmlcomplete#CompleteTags
 au filetype css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType python setlocal omnifunc=pythoncomplete#Complete
-au FileType mkd,markdown setlocal nofoldenable
 
 let feature_filetype='behat'
 au BufReadPost,BufNewFile *.phtml setlocal filetype=php.html
@@ -288,7 +287,12 @@ nnoremap ! :Clam<space>
 vnoremap ! :ClamVisual<space>
 " }}}
 
-nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+" Markdown {{{
+let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript']
+au FileType markdown setlocal nofoldenable
+au FileType markdownn noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+" }}}
+
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
