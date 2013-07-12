@@ -13,7 +13,7 @@ function prompt_char {
 }
 
 function hstat {
-    history 1 | awk '{a[$2]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
+    history | awk '{a[$4]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
 function tmw {
@@ -35,6 +35,15 @@ function getcomposer {
 function geoip {
     local ip=${1:-$(curl -s icanhazip.com)}
     curl -s "http://www.geody.com/geoip.php?ip=${ip}" | sed '/^IP:/!d;s/<[^>][^>]*>//g'
+}
+
+function take {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+function path {
+    echo $PATH | tr ":" "\n"
 }
 
 # vim: set syn=sh :

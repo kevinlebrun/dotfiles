@@ -1,15 +1,12 @@
-# append to the history file, don't overwrite it
 shopt -s histappend
+# merge multiline commands in history into one line
+shopt -s cmdhist
 
-#HISTFILESIZE=20000
 unset HISTFILESIZE
 HISTSIZE=10000
 HISTCONTROL=ignoreboth
 HISTIGNORE="ls:[bf]g:history:exit:reset:clear:cd *"
 HISTTIMEFORMAT="%F %T "
-
-# merge multiline commands in history into one line
-shopt -s cmdhist
 
 export PROMPT_COMMAND='history -a'
 

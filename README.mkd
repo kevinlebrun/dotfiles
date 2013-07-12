@@ -9,7 +9,3 @@ My personal dotfiles
 
     cd ~/.smile/
     ./install.sh
-
-    cd ~/.smile/vim
-    ./update_bundles.rb
-

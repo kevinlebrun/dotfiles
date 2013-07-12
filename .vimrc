@@ -18,8 +18,14 @@ set encoding=utf-8
 set termencoding=utf-8
 
 set background=dark
+
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+    set t_Co=256
+
+    let g:solarized_termcolors = 256
+endif
+
 " solarized options
-let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
@@ -42,8 +48,6 @@ let g:Powerline_colorscheme="skwp"
 
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
-
-set t_Co=256
 
 set hid
 
@@ -92,7 +96,7 @@ set lazyredraw
 
 set wildmenu
 set wildmode=longest,list
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor
 
 set autoread
 
@@ -171,6 +175,9 @@ fun! ResizeWindow()
     endif
 endfunction
 
+set splitbelow
+set splitright
+
 " wrapped lines goes down/up to next row, rather than next line in file
 nnoremap j gj
 nnoremap k gk
@@ -201,6 +208,11 @@ cnoremap <M-b>  <S-Left>
 cnoremap <M-f>  <S-Right>
 cnoremap <M-d>  <S-right><Delete>
 cnoremap <C-g>  <C-c>
+
+noremap <left> :tabp<cr>
+noremap <right> :tabn<cr>
+noremap <up> :tabr<cr>
+noremap <down> :tabl<cr>
 
 ino jj <ESC>
 cno jj <C-c>
@@ -271,7 +283,6 @@ map <leader>b :CtrlPBuffer<CR>
 
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = 'build$'
 " }}}
 
 " Zen Coding {{{
@@ -288,9 +299,9 @@ vnoremap ! :ClamVisual<space>
 " }}}
 
 " Markdown {{{
-let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript']
+let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript', 'js=javascript', 'json=javascript', 'sh=bash', 'sh']
 au FileType markdown setlocal nofoldenable
-au FileType markdownn noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+au FileType markdown noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " }}}
 
 

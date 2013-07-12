@@ -1,4 +1,8 @@
-alias v='/usr/bin/vagrant'
-alias vunp='/usr/bin/vagrant up --no-provision'
+alias v='vagrant'
+alias vunp='vagrant up --no-provision'
+
+if [[ "$(type -t _vagrant)" = "function" ]]; then
+    complete -F _vagrant v
+fi
 
 # vim: set syn=sh :

@@ -1,0 +1,11 @@
+prompt_hg() {
+    hg branch &>/dev/null || return 1
+    hg prompt --angle-brackets "\
+< on ${MAGENTA}<branch>$RESET_COLOR>\
+< at $BLUE<bookmark>$RESET_COLOR>\
+< at $YELLOW<tags|$RESET_COLOR, $YELLOW>$RESET_COLOR>\
+$GREEN<status|modified|unknown><update>$RESET_COLOR<
+patches: <patches|join( → )|pre_applied($YELLOW)|post_applied($RESET_COLOR)|pre_unapplied($BLACK)|post_unapplied($RESET_COLOR)>>" 2> /dev/null
+}
+
+# vim: set ft=sh:

@@ -28,6 +28,11 @@ function get_bin {
     curl $2 -sLo "$binfile" && chmod +x "$binfile"
 }
 
+function get_completion {
+    local file="$SMILE_PATH/bash_completion/$1"
+    curl $2 -sLo "$file"
+}
+
 install_dotfiles
 
 hg_clone  ~/.hg_prompt           http://bitbucket.org/sjl/hg-prompt/
@@ -47,7 +52,21 @@ get_bin   git-thanks             https://gist.github.com/rkh/74335/raw/47397a6c7
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
 
+get_completion vagrant           https://raw.github.com/kura/vagrant-bash-completion/master/vagrant
+get_completion git               https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+get_completion ssh               https://raw.github.com/revans/bash-it/master/completion/available/ssh.completion.bash
+get_completion tmux              https://raw.github.com/revans/bash-it/master/completion/available/tmux.completion.bash
+# get_completion default           https://raw.github.com/revans/bash-it/master/completion/available/defaults.completion.bash
+# get_completion brew              https://raw.github.com/revans/bash-it/master/completion/available/brew.completion.bash
+
 # TODO How to handle gem / brew / etc. deps ?
 # https://github.com/aanand/git-up
 
+
+if [ -e "ruby" ]; then
+    "*SMILE_PATH/vim/update_bundles.rb" --notrash
+fi
+
+
 echo "export SMILE=$SMILE_PATH" > ~/.smile.conf
+

@@ -9,4 +9,8 @@ alias gdw='git diff --color-words="."'
 alias gdcw='git diff --cached --color-words="."'
 alias gl='git log'
 
+if [[ "$(type -t __git_complete)" = "function" ]]; then
+    __git_complete g __git_main
+fi
+
 # vim: set syn=sh :
