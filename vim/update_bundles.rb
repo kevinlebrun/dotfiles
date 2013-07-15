@@ -8,7 +8,10 @@ git_bundles = [
     "https://github.com/mileszs/ack.vim.git",
     # "https://github.com/plasticboy/vim-markdown.git",
     "https://github.com/tpope/vim-markdown.git",
-    "https://github.com/Lokaltog/powerline.git",
+
+    # "https://github.com/Lokaltog/powerline.git",
+    "https://github.com/bling/vim-airline.git",
+
     "https://github.com/rodjek/vim-puppet.git",
     "https://github.com/airblade/vim-gitgutter.git",
     "https://github.com/tpope/vim-git.git",

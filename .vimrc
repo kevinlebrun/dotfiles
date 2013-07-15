@@ -42,13 +42,16 @@ endif
 "let g:molokai_original = 1
 "colorscheme molokai
 
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-let g:Powerline_theme="skwp"
-let g:Powerline_colorscheme="skwp"
-
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" 
+" let g:Powerline_theme="skwp"
+" let g:Powerline_colorscheme="skwp"
+" 
+" let g:Powerline_symbols = 'fancy'
+" let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
+let g:airline_powerline_fonts = 1
+let g:airline_theme='simple'
+let g:airline_enable_fugitive=1
 
 set hid
 
