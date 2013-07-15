@@ -60,13 +60,16 @@ get_completion tmux              https://raw.github.com/revans/bash-it/master/co
 # get_completion brew              https://raw.github.com/revans/bash-it/master/completion/available/brew.completion.bash
 
 # TODO How to handle gem / brew / etc. deps ?
+# -> with proper dotfiles .pip .gem .npm .apt etc
 # https://github.com/aanand/git-up
 
+if [ ! -f "$HOME/.tmux.local.conf" ]; then
+    touch "$HOME/.tmux.local.conf"
+fi
 
-if [ -e "ruby" ]; then
+if [ -x "ruby" ]; then
     "*SMILE_PATH/vim/update_bundles.rb" --notrash
 fi
 
 
 echo "export SMILE=$SMILE_PATH" > ~/.smile.conf
-
