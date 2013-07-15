@@ -16,8 +16,21 @@ hash vim &>/dev/null && export EDITOR=vim
 # disable flow control
 stty -ixon
 
+# search in my $HOME directory as fallback
+CDPATH=.:~
+
+shopt -s autocd
+# shopt -s cdable_vars # TEST with numergy / home / smile / etc.
+shopt -s cdspell
+shopt -s dotglob extglob
+# shopt -s nullglob # don't work very well with bash_completion
+shopt -s checkjobs
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-if which rbenv > /dev/null; then
+if [ -d "$HOME/.rbenv" ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)";
 fi
@@ -28,11 +41,17 @@ case "$TERM" in
     xterm*) export TERM=xterm-256color
 esac
 
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if ! shopt -oq posix; then
+    if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+        . /usr/local/share/bash-completion/bash_completion
+    elif [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
-for file in $SMILE/bash_completion/*; do source "$file"; done
+for file in $SMILE/bash_completion/!(.gitignore); do source "$file"; done
 
 for i in $SMILE/bash/*; do source $i ; done
 for i in $SMILE/functions/*; do source $i ; done
@@ -61,19 +80,6 @@ if [[ -n "$PS1" ]] ; then
 
     prompt_on
 fi
-
-# search in my $HOME directory as fallback
-CDPATH=.:~
-
-shopt -s autocd
-# shopt -s cdable_vars # TEST with numergy / home / smile / etc.
-shopt -s cdspell
-shopt -s dotglob nullglob extglob
-shopt -s checkjobs
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
 
 [ -e "$HOME/.bashrc_local" ] && source "$HOME/.bashrc_local"
 

@@ -19,9 +19,10 @@ set termencoding=utf-8
 
 set background=dark
 
-if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+if $COLORTERM == "gnome-terminal"
+    set t_Co=16
+elseif $TERM == "xterm-256color" || $TERM == "screen-256color"
     set t_Co=256
-
     let g:solarized_termcolors = 256
 endif
 

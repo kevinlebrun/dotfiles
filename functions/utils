@@ -46,4 +46,8 @@ function path {
     echo $PATH | tr ":" "\n"
 }
 
+lfunc() {
+    compgen -A function ${1:-}
+}
+
 # vim: set syn=sh :
