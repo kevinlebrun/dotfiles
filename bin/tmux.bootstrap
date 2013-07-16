@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e -u
+
+shopt -s nullglob extglob
+
+for script in $HOME/.tmux.d/*
+do
+    echo "executing ${script##*/}..."
+    "$script"
+done
