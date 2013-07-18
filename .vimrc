@@ -303,7 +303,7 @@ vnoremap ! :ClamVisual<space>
 " }}}
 
 " Markdown {{{
-let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript', 'js=javascript', 'json=javascript', 'sh=bash', 'sh']
+let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript', 'js=javascript', 'json=javascript', 'sh']
 au FileType markdown setlocal nofoldenable
 au FileType markdown noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " }}}

@@ -3,39 +3,63 @@
 # http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 SMILE_PATH="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-function install_dotfiles {
-    if [ ! -d ~/.vim ]; then
-        ln -s ${SMILE_PATH}/vim ~/.vim
+# TODO install without download (private servers and rsync)
+
+install_dotfiles() {
+    if [ ! -d "$HOME/.vim" ]; then
+        ln -s "${SMILE_PATH}/vim" "$HOME/.vim"
     fi
 
-    for dotfile in ${SMILE_PATH}/.*
+    for dotfile in "${SMILE_PATH}"/.*
     do
         if [ -f "$dotfile" ]
         then
-            ln -sf $dotfile ~/$(basename $dotfile)
+            ln -sf "$dotfile" "$HOME/$(basename "$dotfile")"
         fi
     done
 }
 
-function hg_clone {
-    if [ ! -d "$1" ]; then
-        hg clone "$2" "$1"
+get_hg() {
+    if [ ! -x hg ]; then
+        echo "Mercurial not found on the system"
+        echo "Skipping $2 installation"
+        return 1
+    fi
+
+    local dest="$HOME/$1"
+
+    if [ ! -d "$dest" ]; then
+        hg clone "$2" "$dest"
+    elif $(hg --cwd "$dest" branch &> /dev/null); then
+        hg --cwd "$dest" pull
+        hg --cwd "$dest" update
     fi
 }
 
-function get_bin {
-    local binfile="$SMILE_PATH/bin/$1"
-    curl $2 -sLo "$binfile" && chmod +x "$binfile"
+download() {
+    if [ -e curl ]; then
+        curl "$2" -sLo "$1"
+    elif [ -e wget ]; then
+        wget -qO "$1" "$2"
+    else
+        echo "Cannot download $2"
+        return 1
+    fi
 }
 
-function get_completion {
+get_bin() {
+    local binfile="$SMILE_PATH/bin/$1"
+    download "$2" "$binfile" && chmod +x "$binfile"
+}
+
+get_completion() {
     local file="$SMILE_PATH/bash_completion/$1"
-    curl $2 -sLo "$file"
+    download "$2" "$file"
 }
 
 install_dotfiles
 
-hg_clone  ~/.hg_prompt           http://bitbucket.org/sjl/hg-prompt/
+get_hg    .hg_prompt             http://bitbucket.org/sjl/hg-prompt/
 
 get_bin   hub                    http://defunkt.io/hub/standalone # http://defunkt.io/hub/
 get_bin   ack                    http://beyondgrep.com/ack-2.04-single-file
@@ -56,12 +80,6 @@ get_completion vagrant           https://raw.github.com/kura/vagrant-bash-comple
 get_completion git               https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
 get_completion ssh               https://raw.github.com/revans/bash-it/master/completion/available/ssh.completion.bash
 get_completion tmux              https://raw.github.com/revans/bash-it/master/completion/available/tmux.completion.bash
-# get_completion default           https://raw.github.com/revans/bash-it/master/completion/available/defaults.completion.bash
-# get_completion brew              https://raw.github.com/revans/bash-it/master/completion/available/brew.completion.bash
-
-# TODO How to handle gem / brew / etc. deps ?
-# -> with proper dotfiles .pip .gem .npm .apt etc
-# https://github.com/aanand/git-up
 
 if [ ! -f "$HOME/.tmux.local.conf" ]; then
     touch "$HOME/.tmux.local.conf"
@@ -72,4 +90,4 @@ if [ -x "ruby" ]; then
 fi
 
 
-echo "export SMILE=$SMILE_PATH" > ~/.smile.conf
+echo "export SMILE=$SMILE_PATH" > "$HOME/.smile.conf"
