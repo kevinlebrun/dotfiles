@@ -1,3 +1,5 @@
+[ -z "$PS1" ] && return
+
 source $HOME/.smile.conf
 
 export PATH=$SMILE/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -86,6 +88,8 @@ if [[ -n "$PS1" ]] ; then
     prompt_on
 fi
 
-[ -e "$HOME/.bashrc_local" ] && source "$HOME/.bashrc_local"
+if [ -e "$HOME/.bashrc_local" ]; then
+    source "$HOME/.bashrc_local"
+fi
 
 #/* vim: set ft=sh: */
