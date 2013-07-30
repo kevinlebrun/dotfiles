@@ -1,5 +1,3 @@
-set editing-mode vi
-
 set bell-style none
 
 set completion-ignore-case on
@@ -10,3 +8,9 @@ set show-all-if-unmodified on
 set visible-stats on
 
 TAB: menu-complete
+# Those two were still existing
+"\e[5C": forward-word
+"\e[5D": backward-word
+# # And now two more
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
