@@ -50,4 +50,15 @@ lfunc() {
     compgen -A function ${1:-}
 }
 
+lcoreutils() {
+    curl 'http://www.gnu.org/software/coreutils/manual/coreutils.html' 2>/dev/null \
+    | grep 'h3 class' \
+    | grep 'class="command"' \
+    | sed 's/.*class="command">//' \
+    | sed 's|</span></samp>||' \
+    | sed 's|</h3>||' \
+    | grep ':' \
+    | sort
+}
+
 # vim: set syn=sh :
