@@ -4,8 +4,10 @@ set -e -u
 
 shopt -s nullglob extglob
 
-for script in $HOME/.tmux.d/*
+for script in $HOME/.tmux.d/*.active
 do
-    echo "executing ${script##*/}..."
+    name=${script##*/}
+    name=${name%%.active}
+    echo "executing $name..."
     "$script"
 done
