@@ -23,6 +23,7 @@ function marks {
         *)
         echo "$OSTYPE not supported"
         ;;
+    esac
 }
 
 # vim: set syntax=sh :
