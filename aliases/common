@@ -38,3 +38,5 @@ alias ipy="ipython"
 alias ltail="less -S -N +F --follow-name "
 
 alias a="ack"
+
+alias rh="runhaskell"
