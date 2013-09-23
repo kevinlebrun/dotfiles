@@ -9,6 +9,20 @@ git_bundles = [
     # "https://github.com/plasticboy/vim-markdown.git",
     "https://github.com/tpope/vim-markdown.git",
 
+    "https://github.com/kana/vim-textobj-user.git",
+    "https://github.com/kana/vim-textobj-indent.git",
+
+    "https://github.com/Shougo/neocomplete.vim.git",
+    "https://github.com/majutsushi/tagbar.git",
+
+    "https://github.com/Shougo/vimshell.vim.git",
+
+    "https://github.com/dag/vim2hs.git",
+    "https://github.com/ujihisa/neco-ghc.git",
+    "https://github.com/Shougo/vimproc.vim.git", # needed for ghcmod and need to be build (make)
+    "https://github.com/eagletmt/ghcmod-vim.git",
+    "https://github.com/bitc/lushtags.git",
+
     # "https://github.com/Lokaltog/powerline.git",
     "https://github.com/bling/vim-airline.git",
 
