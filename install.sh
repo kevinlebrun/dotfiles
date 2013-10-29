@@ -37,9 +37,9 @@ get_hg() {
 }
 
 download() {
-    if [ -e curl ]; then
+    if which curl 1>/dev/null 2>&1; then
         curl "$2" -sLo "$1"
-    elif [ -e wget ]; then
+    elif which curl 1>/dev/null 2>&1; then
         wget -qO "$1" "$2"
     else
         echo "Cannot download $2"
@@ -63,7 +63,7 @@ get_hg    .hg_prompt             http://bitbucket.org/sjl/hg-prompt/
 
 get_bin   hub                    http://defunkt.io/hub/standalone # http://defunkt.io/hub/
 get_bin   ack                    http://beyondgrep.com/ack-2.04-single-file
-get_bin   cloc                   http://kent.dl.sourceforge.net/project/cloc/cloc/v1.58/cloc-1.58.pl
+get_bin   cloc                   http://kent.dl.sourceforge.net/project/cloc/cloc/v1.60/cloc-1.60.pl
 get_bin   git-publish-branch     http://git-wt-commit.rubyforge.org/git-publish-branch
 get_bin   gbrt                   https://raw.github.com/benhoskings/dot-files/master/files/bin/gbrt
 get_bin   git-cwd-info           https://raw.github.com/topfunky/zsh-simple/master/bin/git-cwd-info
@@ -86,7 +86,7 @@ if [ ! -f "$HOME/.tmux.local.conf" ]; then
 fi
 
 if [ -x "ruby" ]; then
-    "*SMILE_PATH/vim/update_bundles.rb" --notrash
+    "$SMILE_PATH/vim/update_bundles.rb" --notrash
 fi
 
 
