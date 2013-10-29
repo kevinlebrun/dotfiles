@@ -31,7 +31,7 @@
 [github]
     user = kevinlebrun
 [push]
-    default = upstream
+    default = tracking
 [merge]
     stat = true
     diff = vimdiff

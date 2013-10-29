@@ -2,3 +2,4 @@
 .Powerline.cache
 .DS_Store
 .idea
+*.pyc
