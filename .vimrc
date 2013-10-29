@@ -37,14 +37,6 @@ endif
 
 "let g:molokai_original = 1
 "colorscheme molokai
-
-" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" 
-" let g:Powerline_theme="skwp"
-" let g:Powerline_colorscheme="skwp"
-" 
-" let g:Powerline_symbols = 'fancy'
-" let g:Powerline_cache_file = expand("~/.vim/.Powerline.cache")
 let g:airline_powerline_fonts = 1
 let g:airline_theme='simple'
 let g:airline_enable_fugitive=1
@@ -161,10 +153,10 @@ no <leader>ta :TagbarToggle<cr>
 map <leader>n :NERDTreeToggle<CR>
 
 " moving around windows
-map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
-map <C-W>j <C-W>j<C-W>_
-map <C-W>k <C-W>k<C-W>_
-map <C-W>l <C-W>l:call ResizeWindow()<CR>ze
+" map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
+" map <C-W>j <C-W>j<C-W>_
+" map <C-W>k <C-W>k<C-W>_
+" map <C-W>l <C-W>l:call ResizeWindow()<CR>ze
 
 fun! ResizeWindow()
     if empty(&bt)
@@ -209,8 +201,8 @@ cnoremap <M-f>  <S-Right>
 cnoremap <M-d>  <S-right><Delete>
 cnoremap <C-g>  <C-c>
 
-noremap <left> :tabp<cr>
-noremap <right> :tabn<cr>
+noremap <left> :bp<cr>
+noremap <right> :bn<cr>
 noremap <up> :tabr<cr>
 noremap <down> :tabl<cr>
 
@@ -283,6 +275,14 @@ map <leader>b :CtrlPBuffer<CR>
 
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'ra'
+" }}}
+
+" Fugitive {{{
+map <leader>gs :Gstatus<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gb :Gblame<CR>
+map <leader>gl :Glog<CR>
 " }}}
 
 " Zen Coding {{{
@@ -362,6 +362,16 @@ let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
 
+" undotree {{{
+if has("persistent_undo")
+    set undodir=$HOME.'/.undotree',
+    set undofile
+endif
+" }}}
+
+" Python Mode {{{
+let g:pymode_folding = 0
+" }}}
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local

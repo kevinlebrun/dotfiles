@@ -23,7 +23,6 @@ git_bundles = [
     "https://github.com/eagletmt/ghcmod-vim.git",
     "https://github.com/bitc/lushtags.git",
 
-    # "https://github.com/Lokaltog/powerline.git",
     "https://github.com/bling/vim-airline.git",
 
     "https://github.com/rodjek/vim-puppet.git",
@@ -42,6 +41,8 @@ git_bundles = [
     "https://github.com/tpope/vim-repeat.git",
     "https://github.com/tpope/vim-surround.git",
 
+    "https://github.com/klen/python-mode.git",
+
     "https://github.com/sjl/clam.vim.git",
 
     "https://github.com/mattn/webapi-vim.git",
@@ -53,9 +54,6 @@ git_bundles = [
     "https://github.com/mattn/zencoding-vim.git",
     "https://github.com/robmiller/vim-movar.git",
 
-    #"https://github.com/shawncplus/phpcomplete.vim.git",
-    #"https://github.com/majutsushi/tagbar.git",
-
     "https://github.com/kchmck/vim-coffee-script.git",
     "https://github.com/evidens/vim-twig.git",
     "https://github.com/veloce/vim-behat.git",
@@ -64,11 +62,10 @@ git_bundles = [
     "https://github.com/tpope/vim-cucumber.git",
 
     #"https://github.com/msanders/snipmate.vim.git",
-    #"https://github.com/tpope/vim-haml.git",
-    #"https://github.com/cakebaker/scss-syntax.vim",
-    #"https://github.com/wavded/vim-stylus.git",
-    #"https://github.com/digitaltoad/vim-jade",
     #"https://github.com/scrooloose/nerdcommenter.git",
+    "https://github.com/digitaltoad/vim-jade",
+    "https://github.com/mbbill/undotree.git",
+    # "https://github.com/scrooloose/syntastic.git",
 ]
 
 hg_bundles = [
