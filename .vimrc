@@ -116,6 +116,8 @@ set incsearch
 
 set tildeop " allow 3~
 
+set cryptmethod=blowfish
+
 nnoremap / /\v
 vnoremap / /\v
 

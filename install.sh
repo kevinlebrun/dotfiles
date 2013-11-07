@@ -38,8 +38,9 @@ get_hg() {
 
 download() {
     if which curl 1>/dev/null 2>&1; then
-        curl "$2" -sLo "$1"
-    elif which curl 1>/dev/null 2>&1; then
+        echo "download: $1 ($2)"
+        curl "$1" -sLo "$2"
+    elif which wget 1>/dev/null 2>&1; then
         wget -qO "$1" "$2"
     else
         echo "Cannot download $2"
@@ -73,6 +74,7 @@ get_bin   git-divergence         https://raw.github.com/garybernhardt/dotfiles/m
 get_bin   git-rank-contributors  http://git-wt-commit.rubyforge.org/git-rank-contributors
 get_bin   git-wtf                http://git-wt-commit.rubyforge.org/git-wtf
 get_bin   git-thanks             https://gist.github.com/rkh/74335/raw/47397a6c7fc7d6bc10eef8d619a5e752e829e5c9/git-thanks
+get_bin   fresh-chrome           https://gist.github.com/stuartsierra/6220797/raw/af23e82e79125c6993a836ae9604e8c69518d265/fresh-chrome.sh
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
 
