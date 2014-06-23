@@ -1,5 +1,6 @@
 .netrwhist
 .Powerline.cache
+.ropeproject
 .DS_Store
 .idea
 *.pyc

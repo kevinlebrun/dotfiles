@@ -2,7 +2,66 @@
 
 set nocompatible
 
-call pathogen#infect()
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
+
+NeoBundle 'Valloric/YouCompleteMe' , {
+    \ 'build' : {
+    \    'unix' : './install.sh --clang-completer --system-libclang'
+    \ },
+\ }
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'bitc/lushtags'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'chase/vim-ansible-yaml'
+NeoBundle 'dag/vim2hs'
+NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'klen/python-mode'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'rizzatti/dash.vim'
+NeoBundle 'robmiller/vim-movar'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'sjl/clam.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-tbone'
+NeoBundle 'ujihisa/neco-ghc'
+NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'walm/jshint.vim'
+NeoBundle 'junegunn/goyo.vim'
+
+NeoBundle 'maxbrunsfeld/vim-yankstack'
+
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+
+call neobundle#end()
 
 syntax on
 filetype plugin indent on
@@ -68,11 +127,11 @@ set ruler " show the current position
 set title " show title in console title bar
 set ttyfast " smoother changes
 
-au VimEnter * set winwidth=31
-au VimEnter * set winminwidth=31
-au VimEnter * set winheight=5 " hack against error setting winminheight
-au VimEnter * set winminheight=5
-au VimEnter * set winheight=999
+au VimEnter * silent! set winwidth=31
+au VimEnter * silent! set winminwidth=31
+au VimEnter * silent! set winheight=5 " hack against error setting winminheight
+au VimEnter * silent! set winminheight=5
+au VimEnter * silent! set winheight=999
 
 set laststatus=2 " always show the status line
 
@@ -222,10 +281,42 @@ endfun
 map <leader>r :call Replace()<CR>
 " }}}
 
+nnoremap <Leader><Space> :Goyo<CR>
+
+" YankStack configuration {{{
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+" }}}
+
+" ultisnips {{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" }}}
+
+" Snippets vars {{{
+let g:snips_author = "Kevin Le Brun"
+let g:snips_email = "lebrun.k@gmail.com"
+let g:snips_github = "https://github.com/kevinlebrun"
+" }}}
+
 " reload vimrc file with notification
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 map <leader>vi :e ~/.vimrc<CR>
-map <leader>vm :e ~/.vim/update_bundles.rb<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
+
+" DashSearch (<leader>d) {{{
+nmap <silent> <leader>d <Plug>DashSearch
+" }}}
 
 " Clean all end of line extra whitespace with ,S {{{
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
@@ -306,62 +397,12 @@ au FileType markdown setlocal nofoldenable
 au FileType markdown noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " }}}
 
-" Neocomplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" Enable omni completion.
+" AutoComplete {{{
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " }}}
 
 " undotree {{{
@@ -373,8 +414,15 @@ endif
 
 " Python Mode {{{
 let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_fly = 0
+let g:pymode_rope = 0
+let g:pymode_syntax = 0
 " }}}
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+NeoBundleCheck

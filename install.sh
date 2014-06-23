@@ -87,9 +87,4 @@ if [ ! -f "$HOME/.tmux.local.conf" ]; then
     touch "$HOME/.tmux.local.conf"
 fi
 
-if [ -x "ruby" ]; then
-    "$SMILE_PATH/vim/update_bundles.rb" --notrash
-fi
-
-
 echo "export SMILE=$SMILE_PATH" > "$HOME/.smile.conf"
