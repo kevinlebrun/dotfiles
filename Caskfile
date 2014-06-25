@@ -1,0 +1,44 @@
+# Install native apps
+# Usage: `brew bundle Caskfile`
+
+tap caskroom/cask
+install brew-cask
+tap caskroom/versions
+
+cask install adium
+cask install adobe-reader
+cask install alfred
+cask install balsamiq-mockups
+cask install codekit
+cask install dash
+cask install dropbox
+cask install firefox
+cask install google-chrome
+cask install google-chrome-canary
+cask install googledrive
+cask install grandperspective
+cask install handbreak
+cask install hipchat
+cask install imagealpha
+cask install imageoptim
+cask install iterm2
+cask install limechat
+cask install macaw
+cask install mysqlworkbench
+cask install opera
+cask install opera-developer
+cask install opera-next
+cask install postgres
+cask install screenflow
+cask install skype
+cask install spotify
+cask install sublime-text
+cask install transmission
+cask install transmit
+cask install vagrant
+cask install virtualbox
+cask install vlc
+cask install vmware-fusion
+cask install xquartz
+
+cask cleanup

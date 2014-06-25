@@ -1,11 +1,5 @@
-setl omnifunc=phpcomplete#CompletePHP
-
 setl formatoptions=qroct
 
-" The completion dictionary is provided by Rasmus:
-" http://lerdorf.com/funclist.txt
-setl dictionary-=~/.vim/ftplugin/php-funclist.txt dictionary+=~/.vim/ftplugin/php-funclist.txt
-setl dictionary-=~/.vim/ftplugin/php-xdebug2.txt dictionary+=~/.vim/ftplugin/php-xdebug2.txt
 " Use the dictionary completion
 setl complete-=k complete+=k
 
@@ -23,6 +17,6 @@ if exists("loaded_matchit")
 endif
 
 let php_sql_query=1
-let php_htmlInStrings=1
+let php_html_in_strings=1
 let php_parent_error_close = 1
 let php_parent_error_open = 1

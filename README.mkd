@@ -9,3 +9,24 @@ My personal dotfiles
 
     cd ~/.smile/
     ./install.sh
+
+## OS X installation
+
+Install [brew](http://brew.sh/) first.
+
+    $ brew bundle Brewfile
+    $ brew bundle Caskfile
+    $ pip install -r Pipfile
+    $ gem install
+
+You should then install [phpbrew](https://github.com/phpbrew/phpbrew).
+
+Don't forget to update the timezone.
+
+    $ curl -sS https://getcomposer.org/installer | php
+    $ sudo mv composer.phar /usr/local/bin/composer
+
+    $ cabal install pandoc
+
+    $ ./.osx
+

@@ -20,10 +20,10 @@ alias p='pushd'
 alias o='popd'
 
 alias tm='tmux'
-alias sc='screen'
-alias scr='screen -r'
 
 alias f='find . -iname'
+alias mf='mdfind'
+
 alias ducks='du -hck -d 1 | sort -rn | head -n 11'
 alias systail='tail -f /var/log/system.log'
 
@@ -40,3 +40,5 @@ alias ltail="less -S -N +F --follow-name "
 alias a="ack"
 
 alias rh="runhaskell"
+
+alias sc="screencapture"

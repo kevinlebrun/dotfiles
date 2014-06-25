@@ -53,18 +53,11 @@ get_bin() {
     download "$2" "$binfile" && chmod +x "$binfile"
 }
 
-get_completion() {
-    local file="$SMILE_PATH/bash_completion/$1"
-    download "$2" "$file"
-}
-
 install_dotfiles
 
 get_hg    .hg_prompt             http://bitbucket.org/sjl/hg-prompt/
 
 get_bin   hub                    http://defunkt.io/hub/standalone # http://defunkt.io/hub/
-get_bin   ack                    http://beyondgrep.com/ack-2.04-single-file
-get_bin   cloc                   http://kent.dl.sourceforge.net/project/cloc/cloc/v1.60/cloc-1.60.pl
 get_bin   git-publish-branch     http://git-wt-commit.rubyforge.org/git-publish-branch
 get_bin   gbrt                   https://raw.github.com/benhoskings/dot-files/master/files/bin/gbrt
 get_bin   git-cwd-info           https://raw.github.com/topfunky/zsh-simple/master/bin/git-cwd-info
@@ -77,11 +70,6 @@ get_bin   git-thanks             https://gist.github.com/rkh/74335/raw/47397a6c7
 get_bin   fresh-chrome           https://gist.github.com/stuartsierra/6220797/raw/af23e82e79125c6993a836ae9604e8c69518d265/fresh-chrome.sh
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
-
-get_completion vagrant           https://raw.github.com/kura/vagrant-bash-completion/master/vagrant
-get_completion git               https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
-get_completion ssh               https://raw.github.com/revans/bash-it/master/completion/available/ssh.completion.bash
-get_completion tmux              https://raw.github.com/revans/bash-it/master/completion/available/tmux.completion.bash
 
 if [ ! -f "$HOME/.tmux.local.conf" ]; then
     touch "$HOME/.tmux.local.conf"

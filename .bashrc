@@ -26,10 +26,12 @@ stty -ixon
 # search in my $HOME directory as fallback
 CDPATH=.:~
 
+GLOBIGNORE=.
+
 shopt -s autocd
 # shopt -s cdable_vars # TEST with numergy / home / smile / etc.
 shopt -s cdspell
-shopt -s dotglob extglob
+shopt -s dotglob extglob globstar nocaseglob
 # shopt -s nullglob # don't work very well with bash_completion
 shopt -s checkjobs
 # check the window size after each command and, if necessary,
@@ -49,16 +51,28 @@ case "$TERM" in
 esac
 
 if ! shopt -oq posix; then
-    if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+    if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+        . "$(brew --prefix)/etc/bash_completion";
+    elif [ -f /usr/local/share/bash-completion/bash_completion ]; then
         . /usr/local/share/bash-completion/bash_completion
     elif [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
     elif [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
     fi
-fi
 
-for file in $SMILE/bash_completion/!(.gitignore); do source "$file"; done
+    # Enable tab completion for `g` by marking it as an alias for `git`
+    if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+        complete -o default -o nospace -F _git g;
+    fi;
+
+    # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+    [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh;
+
+    # Add tab completion for `defaults read|write NSGlobalDomain`
+    # You could just use `-g` instead, but I like being explicit
+    complete -W "NSGlobalDomain" defaults;
+fi
 
 for i in $SMILE/bash/*; do source $i ; done
 for i in $SMILE/functions/*; do source $i ; done

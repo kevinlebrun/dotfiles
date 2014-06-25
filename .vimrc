@@ -16,6 +16,7 @@ NeoBundle 'Valloric/YouCompleteMe' , {
     \ },
 \ }
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'tomasr/molokai'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bitc/lushtags'
@@ -60,6 +61,8 @@ NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
+
+NeoBundle 'editorconfig/editorconfig-vim'
 
 call neobundle#end()
 
@@ -403,6 +406,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 " }}}
 
 " undotree {{{
