@@ -55,4 +55,4 @@ virtualenv-clone
 virtualenvwrapper
 watchdog
 xlrd
-xmpppy
+xmpppy==0.5.0rc1

@@ -24,6 +24,7 @@ cask install imageoptim
 cask install iterm2
 cask install limechat
 cask install macaw
+cask install macdown
 cask install mysqlworkbench
 cask install opera
 cask install opera-developer

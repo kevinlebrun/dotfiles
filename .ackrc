@@ -16,3 +16,4 @@
 --ignore-dir=vendor
 --ignore-dir=log
 --ignore-dir=cache
+--ignore-dir=node_modules
