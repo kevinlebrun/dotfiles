@@ -1,7 +1,6 @@
-" vim:fdm=marker
-
 set nocompatible
 
+" NeoBundle plugins {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -12,11 +11,15 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
 
 NeoBundle 'Valloric/YouCompleteMe' , {
     \ 'build' : {
-    \    'unix' : './install.sh --clang-completer --system-libclang'
+    \    'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+    \    'mac' : './install.sh --clang-completer --system-libclang --omnisharp-completer'
     \ },
 \ }
+NeoBundle 'tpope/vim-sensible'
+NeoBundle 'tpope/vim-sleuth'
+NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tomasr/molokai'
+NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bitc/lushtags'
@@ -24,17 +27,19 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'reedes/vim-textobj-quote'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'klen/python-mode'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'rizzatti/dash.vim'
@@ -42,6 +47,7 @@ NeoBundle 'robmiller/vim-movar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'sjl/clam.vim'
+NeoBundle 'spf13/PIV'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-abolish'
@@ -53,7 +59,15 @@ NeoBundle 'tpope/vim-tbone'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'walm/jshint.vim'
+NeoBundle 'tpope/vim-scriptease'
+
 NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'junegunn/limelight.vim'
+NeoBundle 'reedes/vim-pencil'
+NeoBundle 'reedes/vim-lexical'
+NeoBundle 'reedes/vim-wordy'
+
+NeoBundle 'itspriddle/vim-marked'
 
 NeoBundle 'maxbrunsfeld/vim-yankstack'
 
@@ -64,18 +78,22 @@ NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'editorconfig/editorconfig-vim'
 
+NeoBundle 'junegunn/vader.vim'
+
+NeoBundle 'tpope/vim-vinegar'
+
 call neobundle#end()
-
-syntax on
-filetype plugin indent on
-
-let feature_filetype='behat'
-au BufReadPost,BufNewFile *.phtml setlocal filetype=php.html
+" }}}
 
 set encoding=utf-8
 set termencoding=utf-8
 
+" Color Scheme - Solarized {{{
 set background=dark
+let g:solarized_visibility = "low"
+let g:solarized_contrast = "high"
+
+colorscheme solarized
 
 if $COLORTERM == "gnome-terminal"
     set t_Co=16
@@ -83,12 +101,9 @@ elseif $TERM == "xterm-256color" || $TERM == "screen-256color"
     set t_Co=256
     let g:solarized_termcolors = 256
 endif
+" }}}
 
-" solarized options
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-colorscheme solarized
-
+" tmux integration {{{
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
     execute "set <xUp>=\e[1;*A"
@@ -97,15 +112,13 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
 endif
 
-"let g:molokai_original = 1
-"colorscheme molokai
-let g:airline_powerline_fonts = 1
-let g:airline_theme='simple'
-let g:airline_enable_fugitive=1
+let mapleader=','
+" }}}
 
+" Defaults {{{
 set hid
 
-" turn backup off, since most stuff is in SVN, git anyway...
+" turn backup off, since most stuff is in git anyway...
 set nobackup
 set noswapfile
 
@@ -117,7 +130,6 @@ set novisualbell
 set modeline " last lines in document sets vim mode
 set modelines=3 " number lines checked for modelines
 
-set history=500 "lines of history VIM has to remember
 set undolevels=1000
 
 if exists('+colorcolumn')
@@ -125,8 +137,6 @@ if exists('+colorcolumn')
 endif
 
 set cursorline " hightlight the current line
-set number " show line numbers
-set ruler " show the current position
 set title " show title in console title bar
 set ttyfast " smoother changes
 
@@ -136,39 +146,16 @@ au VimEnter * silent! set winheight=5 " hack against error setting winminheight
 au VimEnter * silent! set winminheight=5
 au VimEnter * silent! set winheight=999
 
-set laststatus=2 " always show the status line
-
 set linespace=0 " no extra spaces between rows
-
-set showcmd
-
-set shell=bash
-"set shell=zsh\ -i
-"set shellcmdflag=-ic
 
 set lazyredraw
 
-set wildmenu
 set wildmode=longest,list
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor
-
-set autoread
-
-set scrolloff=3
-
-set backspace=indent,eol,start
-
-" TODO define for specific files
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smarttab
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,dist
 
 set nowrap
 
 set smartindent
-set autoindent
 
 set magic
 set ignorecase
@@ -180,10 +167,7 @@ set tildeop " allow 3~
 
 set cryptmethod=blowfish
 
-nnoremap / /\v
-vnoremap / /\v
-
-nmap <silent> <C-N> :silent noh<CR>
+set shortmess+=I
 
 set list
 set listchars=tab:▸\ ,trail:.,extends:❯,precedes:❮,nbsp:.,eol:¬
@@ -193,69 +177,67 @@ set sm " show matching braces
 
 set ww=b,s,<,>,[,]
 
-autocmd FileType php,phtml,css,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call CleanTrailingSpacesAndMChars()
-fun! CleanTrailingSpacesAndMChars()
-    call setline(1, map(getline(1, "$"), 'substitute(v:val,"\\s\\+$","","")'))
-endfun
-
-let mapleader=','
-
 set completeopt=menu,menuone,longest
-
-no <leader>w :w<CR>
-no <leader>q :q<CR>
-no <leader>s :sus<CR>
-" force saving with permissions
-cmap w!! w !sudo tee % > /dev/null
-map <leader>e :execute '!chmod +x %'<cr> :e!<cr>
-
-" change working directory to the current file directory
-no <leader>cd :cd %:p:h<CR>:pwd<CR>
-no <leader>a :Ack
-no <leader>u :GundoToggle<CR>
-no <leader>ta :TagbarToggle<cr>
-map <leader>n :NERDTreeToggle<CR>
-
-" moving around windows
-" map <C-W>h <C-W>h:call ResizeWindow()<CR>ze
-" map <C-W>j <C-W>j<C-W>_
-" map <C-W>k <C-W>k<C-W>_
-" map <C-W>l <C-W>l:call ResizeWindow()<CR>ze
-
-fun! ResizeWindow()
-    if empty(&bt)
-        :vertical res
-    elseif &bt == "nofile" && winwidth(0) < 31
-        " NERDTree & co. splits
-        :vertical res 31
-    endif
-endfunction
 
 set splitbelow
 set splitright
+" }}}
 
 " wrapped lines goes down/up to next row, rather than next line in file
 nnoremap j gj
 nnoremap k gk
 
 " reselect after shifting
-vno < <gv
-vno > >gv
+vnoremap < <gv
+vnoremap > >gv
 
-au filetype help nno <buffer><cr> <c-]>
-au filetype help nno <buffer><bs> <c-T>
-"
-" resize windows
-map - <C-W>-
-map + <C-W>+
-map <M-,> <C-W>>
-map <M-.> <C-W><
-nmap <C-i> :vertical res 121<CR>
+nnoremap / /\v
+vnoremap / /\v
 
-nmap <leader><leader>o :vs ~/Dropbox/Workspace/scratch.markdown<cr>
-nmap <leader><leader>p :vs ~/Dropbox/Workspace/pomodoro.markdown<cr>
-nmap <leader><leader>l :vs ~/Dropbox/Workspace/log.markdown<cr>
+inoremap jj <ESC>
+cnoremap jj <C-c>
 
+" force saving with permissions
+cnoremap w!! w !sudo tee % > /dev/null
+
+noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+noremap <leader>a  :Ack
+noremap <leader>ta :TagbarToggle<cr>
+noremap <leader>n  :NERDTreeToggle<CR>
+noremap <leader>e  :execute '!chmod +x %'<cr> :e!<cr>
+noremap <leader>N  :set number!<cr>
+
+" Editing text files (text, markdown, textile) {{{
+augroup textobj_quote
+    autocmd!
+    autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType textile call textobj#quote#init()
+    autocmd FileType text call textobj#quote#init({'educate': 0})
+augroup END
+
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+    autocmd FileType text         call pencil#init()
+augroup END
+
+augroup lexical
+    autocmd!
+    autocmd FileType markdown,mkd call lexical#init()
+    autocmd FileType textile call lexical#init()
+    autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+" }}}
+
+" Better Vim help navigation {{{
+augroup help
+   autocmd!
+   autocmd filetype help nnoremap <buffer><cr> <c-]>
+   autocmd filetype help nnoremap <buffer><bs> <c-T>
+augroup END
+" }}}
+
+" Bash style navigation in command mode {{{
 cnoremap <C-a>  <Home>
 cnoremap <C-b>  <Left>
 cnoremap <C-f>  <Right>
@@ -264,34 +246,20 @@ cnoremap <M-b>  <S-Left>
 cnoremap <M-f>  <S-Right>
 cnoremap <M-d>  <S-right><Delete>
 cnoremap <C-g>  <C-c>
-
-noremap <left> :bp<cr>
-noremap <right> :bn<cr>
-noremap <up> :tabr<cr>
-noremap <down> :tabl<cr>
-
-ino jj <ESC>
-cno jj <C-c>
-
-map SS :set sw=4 ts=4 sts=4<CR>
-
-" Search for <cword> and replace with input() in all open buffers {{{
-fun! Replace()
-    let s:word = input("Replace " . expand('<cword>') . " with:")
-    :exe 'bufdo! %s/' . expand('<cword>') . '/' . s:word . '/ge'
-    :unlet! s:word
-endfun
-map <leader>r :call Replace()<CR>
 " }}}
 
-nnoremap <Leader><Space> :Goyo<CR>
+" Abbreviations {{{
+iabbrev @@ lebrun.k@gmail.com
+iabbrev ccopy Copyright © 2015 Kevin Le Brun
+iabbrev ssign -- <cr>Kevin Le Brun<cr>leburn.k@gmail.com
+" }}}
 
 " YankStack configuration {{{
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
+nnoremap <leader>p <Plug>yankstack_substitute_older_paste
+nnoremap <leader>P <Plug>yankstack_substitute_newer_paste
 " }}}
 
-" ultisnips {{{
+" Ultisnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -307,18 +275,29 @@ let g:snips_email = "lebrun.k@gmail.com"
 let g:snips_github = "https://github.com/kevinlebrun"
 " }}}
 
+" Vim helpers {{{
 " reload vimrc file with notification
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-map <leader>vi :e ~/.vimrc<CR>
+noremap <silent> <leader>sv :source $MYVIMRC<CR>:filetype detect<CR>:echo 'vimrc reloaded'<CR>
+noremap <leader>ev :vsplit $MYVIMRC<CR>
 
+nnoremap <leader><leader>s :source %<cr>
+vnoremap <leader>s y:execute @@<cr>
+
+augroup filetype_vim
+    autocmd!
+    autocmd filetype vim set foldmethod=marker
+augroup END
+" }}}
+
+" EasyAlign {{{
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-
+vnoremap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
+nnoremap <Leader>a <Plug>(EasyAlign)
+" }}}
 
 " DashSearch (<leader>d) {{{
-nmap <silent> <leader>d <Plug>DashSearch
+nnoremap <silent> <leader>d <Plug>DashSearch
 " }}}
 
 " Clean all end of line extra whitespace with ,S {{{
@@ -332,14 +311,7 @@ fun! CleanExtraSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_query)
 endfun
-map <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
-" }}}
-
-" Tabularize {{{
-nmap <leader>a: :Tabularize /:\zs<CR>
-vmap <leader>a: :Tabularize /:\zs<CR>
-nmap <leader>T :Tabularize /
-vmap <leader>T :Tabularize /
+noremap <silent> <leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
 " }}}
 
 " Tags {{{
@@ -366,25 +338,14 @@ let g:gist_private = 1
 " }}}
 
 " CtrP {{{
-map <leader>f :CtrlPMRU<CR>
-map <leader>b :CtrlPBuffer<CR>
+noremap <leader>f :CtrlPMRU<CR>
+noremap <leader>b :CtrlPBuffer<CR>
 
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 'ra'
 " }}}
 
-" Fugitive {{{
-map <leader>gs :Gstatus<CR>
-map <leader>gd :Gdiff<CR>
-map <leader>gc :Gcommit<CR>
-map <leader>gb :Gblame<CR>
-map <leader>gl :Glog<CR>
-" }}}
-
 " Zen Coding {{{
-let g:user_zen_settings = {
-\  'indentation' : "    "
-\}
 let g:user_zen_leader_key = '<c-e>'
 let g:user_zen_complete_tag = 1
 " }}}
@@ -396,33 +357,67 @@ vnoremap ! :ClamVisual<space>
 
 " Markdown {{{
 let g:markdown_fenced_languages = ['php', 'ruby', 'python', 'javascript', 'js=javascript', 'json=javascript', 'sh']
-au FileType markdown setlocal nofoldenable
-au FileType markdown noremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+augroup markdown
+   autocmd!
+   autocmd FileType markdown setlocal nofoldenable
+   autocmd FileType markdown noremap <leader>m :MarkedOpen!<cr>
+augroup END
+let g:marked_app = "Marked.app"
 " }}}
 
 " AutoComplete {{{
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+augroup complete
+   autocmd!
+   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+   autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+augroup END
 " }}}
 
-" undotree {{{
+" Undotree {{{
 if has("persistent_undo")
     set undodir=$HOME.'/.undotree',
     set undofile
 endif
 " }}}
 
-" Python Mode {{{
+" python mode {{{
 let g:pymode_folding = 0
 let g:pymode_lint = 0
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_on_fly = 0
 let g:pymode_rope = 0
 let g:pymode_syntax = 0
+" }}}
+
+" vim-go {{{
+augroup golang
+   autocmd!
+   autocmd FileType go nnoremap <Leader>go <Plug>(go-def-split)
+   autocmd FileType go nnoremap <Leader>re <Plug>(go-rename)
+augroup END
+
+let g:go_fmt_fail_silently = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+" }}}
+
+" Airline {{{
+let g:airline_powerline_fonts = 1
+let g:airline_theme='simple'
+let g:airline_enable_fugitive=1
+" }}}
+
+" Goyo.vim {{{
+augroup goyo
+    autocmd!
+    autocmd User GoyoEnter Limelight
+    autocmd User GoyoLeave Limelight!
+augroup END
 " }}}
 
 if filereadable(glob("~/.vimrc.local"))

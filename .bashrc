@@ -50,6 +50,7 @@ case "$TERM" in
     xterm*) export TERM=xterm-256color
 esac
 
+# XXX can take quite a long time to start due to completion scripts
 if ! shopt -oq posix; then
     if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
         . "$(brew --prefix)/etc/bash_completion";
@@ -105,5 +106,4 @@ fi
 if [ -e "$HOME/.bashrc_local" ]; then
     source "$HOME/.bashrc_local"
 fi
-
 #/* vim: set ft=sh: */
