@@ -66,10 +66,10 @@ get_bin   git-churn              https://raw.github.com/garybernhardt/dotfiles/m
 get_bin   git-divergence         https://raw.github.com/garybernhardt/dotfiles/master/bin/git-divergence
 get_bin   git-rank-contributors  http://git-wt-commit.rubyforge.org/git-rank-contributors
 get_bin   git-wtf                http://git-wt-commit.rubyforge.org/git-wtf
-get_bin   git-thanks             https://gist.github.com/rkh/74335/raw/47397a6c7fc7d6bc10eef8d619a5e752e829e5c9/git-thanks
 get_bin   fresh-chrome           https://gist.github.com/stuartsierra/6220797/raw/af23e82e79125c6993a836ae9604e8c69518d265/fresh-chrome.sh
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
+get_bin   run-command-on-git-revisions https://raw.githubusercontent.com/garybernhardt/dotfiles/master/bin/run-command-on-git-revisions
 
 if [ ! -f "$HOME/.tmux.local.conf" ]; then
     touch "$HOME/.tmux.local.conf"

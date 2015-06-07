@@ -1,13 +1,13 @@
 #!/bin/bash
 
 CURDIR=${1:-$(pwd)}
-SESSION=$(basename "$CURDIR")
+SESSION=$(basename "$CURDIR" | sed -E 's/[^[:alnum:]]+/-/g')
 
 tmux has-session -t $SESSION > /dev/null 2>&1
 
 if [ $? != 0 ]
 then
-    tmux new-session -s $SESSION -n "$SESSION" -d
+    tmux new-session -s $SESSION -n $SESSION -d
     tmux send-keys -t $SESSION "cd $CURDIR" C-m
     tmux select-window -t $SESSION:1
 
