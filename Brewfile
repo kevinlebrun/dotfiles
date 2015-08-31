@@ -47,6 +47,9 @@ install ruby-build
 install go
 install node
 
+install mit-scheme
+install racket
+
 install erlang
 
 tap homebrew/binary
@@ -62,12 +65,14 @@ install sloccount
 install ack
 install archey
 install boot2docker
+install cgrep
 install crunch
 install curl
 install docker
 install dos2unix
 install exiftool
 install exiv2
+install figlet
 install fontconfig
 install fontforge
 install foremost
@@ -80,13 +85,16 @@ install gnu-tar
 install gnuplot
 install graphviz
 install hashpump
+install hugo
 install iftop
 install imagemagick --with-webp
 install jq
+install lynx
 install mcrypt
 install md5sha1sum
 install mhash
 install mtr
+install mycli
 install netcat
 install ngrep
 install ngrok
@@ -95,21 +103,25 @@ install openldap
 install openssl
 install optipng
 install pcre
+install pidof
 install phantomjs
 install pstree
 install pv
 install q
+install rename
 install rsync
 install siege
 install sqlmap
 install ssh-copy-id
 install sshuttle
+install tcpflow
 install tig
 install tmux
 install tree
 install tsung
 install watch
 install wget --enable-iri
+install xmlstarlet
 install xz
 
 # Install SGDB
@@ -126,6 +138,9 @@ install ocrad
 install qrencode
 install tesseract
 install zbar
+
+brew tap homebrew/science
+brew install gcc r
 
 # Remove outdated versions from the cellar
 cleanup

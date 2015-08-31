@@ -61,6 +61,11 @@ lcoreutils() {
     | sort
 }
 
+# gocd .../lint
+function gocd() {
+    cd $(go list -f '{{.Dir}}' $1)
+}
+
 # https://github.com/paulirish/dotfiles/blob/e228bbe649c35b4ad21c8d9313e6e6ebe054d852/.functions
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
