@@ -123,6 +123,7 @@ install watch
 install wget --enable-iri
 install xmlstarlet
 install xz
+install youtube-dl
 
 # Install SGDB
 

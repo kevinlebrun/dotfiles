@@ -11,8 +11,8 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
 
 NeoBundle 'Valloric/YouCompleteMe' , {
     \ 'build' : {
-    \    'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-    \    'mac' : './install.sh --clang-completer --system-libclang --omnisharp-completer'
+    \    'unix' : './install.py --clang-completer --gocode-completer --system-libclang',
+    \    'mac' : './install.py --clang-completer --gocode-completer'
     \ },
 \ }
 NeoBundle 'tpope/vim-sensible'
@@ -23,7 +23,8 @@ NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bitc/lushtags'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'eagletmt/ghcmod-vim'
@@ -60,6 +61,8 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'walm/jshint.vim'
 NeoBundle 'tpope/vim-scriptease'
+
+NeoBundle 'ElmCast/elm-vim'
 
 NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'junegunn/limelight.vim'
@@ -153,7 +156,7 @@ set linespace=0 " no extra spaces between rows
 set lazyredraw
 
 set wildmode=longest,list
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,dist
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,dist,elm-stuff
 
 set nowrap
 
@@ -439,6 +442,15 @@ function! QuickfixToggle()
     endif
 endfunction
 " }}}
+
+let g:polyglot_disabled = ["elm"]
+
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
+
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
