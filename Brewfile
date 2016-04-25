@@ -45,7 +45,12 @@ install rbenv-gem-rehash
 install ruby-build
 
 install go
+install glide
+install godep
 install node
+
+install scala
+install sbt
 
 install mit-scheme
 install racket
@@ -106,6 +111,7 @@ install pcre
 install pidof
 install phantomjs
 install pstree
+install pup
 install pv
 install q
 install rename
@@ -117,6 +123,7 @@ install sshuttle
 install tcpflow
 install tig
 install tmux
+install trafshow
 install tree
 install tsung
 install watch
@@ -140,8 +147,8 @@ install qrencode
 install tesseract
 install zbar
 
-brew tap homebrew/science
-brew install gcc r
+tap homebrew/science
+install gcc r
 
 # Remove outdated versions from the cellar
 cleanup

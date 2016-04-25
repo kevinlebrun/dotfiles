@@ -17,3 +17,7 @@
 --ignore-dir=log
 --ignore-dir=cache
 --ignore-dir=node_modules
+--ignore-dir=.tmp
+--ignore-dir=dist
+--ignore-dir=reports
+--ignore-dir=bower_components

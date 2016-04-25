@@ -29,6 +29,7 @@ NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'junegunn/vim-easy-align'
@@ -61,6 +62,7 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'walm/jshint.vim'
 NeoBundle 'tpope/vim-scriptease'
+NeoBundle 'ElmCast/elm-vim'
 
 NeoBundle 'ElmCast/elm-vim'
 
@@ -156,7 +158,7 @@ set linespace=0 " no extra spaces between rows
 set lazyredraw
 
 set wildmode=longest,list
-set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,dist,elm-stuff
+set wildignore+=*.o,*.obj,.git,*.pyc,.hg,node_modules,.sass-cache,vendor,dist,reports,cache,elm-stuff
 
 set nowrap
 
@@ -451,6 +453,10 @@ let g:elm_format_autosave = 1
 let g:ycm_semantic_triggers = {
      \ 'elm' : ['.'],
      \}
+
+nnoremap <leader>el :ElmEvalLine<CR>
+vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
+nnoremap <leader>em :ElmMakeCurrentFile<CR>
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local

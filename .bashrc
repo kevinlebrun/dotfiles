@@ -12,7 +12,7 @@ else
     export CLICOLOR=1
     # http://geoff.greer.fm/lscolors/
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-    export LS_COLORS='di=36;40:ln=1;;40:so=37;40:pi=1;;40:ex=35;40:bd=37;40:cd=37;40:su=37;40:sg=37;40:tw=32;40:ow=32;40:'
+    # export LS_COLORS='di=36;40:ln=1;;40:so=37;40:pi=1;;40:ex=35;40:bd=37;40:cd=37;40:su=37;40:sg=37;40:tw=32;40:ow=32;40:'
 fi
 
 hash vim &>/dev/null && export EDITOR=vim
