@@ -69,11 +69,13 @@ install sloccount
 
 install ack
 install archey
-install boot2docker
 install cgrep
 install crunch
 install curl
 install docker
+install docker-machine
+install docker-compose
+install docker-swarm
 install dos2unix
 install exiftool
 install exiv2
@@ -94,6 +96,8 @@ install hugo
 install iftop
 install imagemagick --with-webp
 install jq
+install kafka
+install kafkacat --with-yajl
 install lynx
 install mcrypt
 install md5sha1sum
@@ -127,7 +131,7 @@ install trafshow
 install tree
 install tsung
 install watch
-install wget --enable-iri
+install wget --with-iri
 install xmlstarlet
 install xz
 install youtube-dl
