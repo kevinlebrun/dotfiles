@@ -69,6 +69,7 @@ install sloccount
 
 install ack
 install archey
+install binutils
 install cgrep
 install crunch
 install curl
@@ -95,6 +96,7 @@ install hashpump
 install hugo
 install iftop
 install imagemagick --with-webp
+install jo
 install jq
 install kafka
 install kafkacat --with-yajl
@@ -102,6 +104,7 @@ install lynx
 install mcrypt
 install md5sha1sum
 install mhash
+install miller
 install mtr
 install mycli
 install netcat

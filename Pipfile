@@ -15,6 +15,7 @@ argparse
 clint
 csvkit
 docopt
+data_hacks
 fabtools
 fig
 flask-restful
