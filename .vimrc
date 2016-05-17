@@ -1,95 +1,90 @@
 set nocompatible
 
-" NeoBundle plugins {{{
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+" Dein plugins {{{
+set runtimepath^=~/.vim/bundle/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('~/.vim/bundle'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#add(expand('~/.vim/bundle'))
 
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('Valloric/YouCompleteMe' , {'build' : './install.py --clang-completer --gocode-completer'})
 
-NeoBundle 'Valloric/YouCompleteMe' , {
-    \ 'build' : {
-    \    'unix' : './install.py --clang-completer --gocode-completer --system-libclang',
-    \    'mac' : './install.py --clang-completer --gocode-completer'
-    \ },
-\ }
-NeoBundle 'tpope/vim-sensible'
-NeoBundle 'tpope/vim-sleuth'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'StanAngeloff/php.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'bitc/lushtags'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 'dag/vim2hs'
-NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'goldfeld/vim-seek'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'reedes/vim-textobj-quote'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'klen/python-mode'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'rizzatti/dash.vim'
-NeoBundle 'robmiller/vim-movar'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'sjl/clam.vim'
-NeoBundle 'spf13/PIV'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-tbone'
-NeoBundle 'ujihisa/neco-ghc'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'walm/jshint.vim'
-NeoBundle 'tpope/vim-scriptease'
-NeoBundle 'ElmCast/elm-vim'
+call dein#add('tpope/vim-sensible')
+call dein#add('tpope/vim-sleuth')
+call dein#add('Raimondi/delimitMate')
+call dein#add('Shougo/vimshell.vim')
+call dein#add('StanAngeloff/php.vim')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('bitc/lushtags')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('chase/vim-ansible-yaml')
+call dein#add('dag/vim2hs')
+call dein#add('eagletmt/ghcmod-vim')
+call dein#add('fatih/vim-go')
+call dein#add('derekwyatt/vim-scala')
+call dein#add('godlygeek/tabular')
+call dein#add('goldfeld/vim-seek')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('kana/vim-textobj-indent')
+call dein#add('kana/vim-textobj-user')
+call dein#add('reedes/vim-textobj-quote')
+call dein#add('kien/ctrlp.vim')
+call dein#add('klen/python-mode')
+call dein#add('majutsushi/tagbar')
+call dein#add('mattn/emmet-vim')
+call dein#add('mattn/webapi-vim')
+call dein#add('mattn/gist-vim')
+call dein#add('mbbill/undotree')
+call dein#add('mileszs/ack.vim')
+call dein#add('rizzatti/dash.vim')
+call dein#add('robmiller/vim-movar')
+call dein#add('scrooloose/nerdtree')
+call dein#add('sheerun/vim-polyglot')
+call dein#add('sjl/clam.vim')
+call dein#add('spf13/PIV')
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('tpope/vim-abolish')
+call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-tbone')
+call dein#add('ujihisa/neco-ghc')
+call dein#add('vim-scripts/matchit.zip')
+call dein#add('walm/jshint.vim')
+call dein#add('tpope/vim-scriptease')
+call dein#add('ElmCast/elm-vim')
 
-NeoBundle 'ElmCast/elm-vim'
+call dein#add('ElmCast/elm-vim')
 
-NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'junegunn/limelight.vim'
-NeoBundle 'reedes/vim-pencil'
-NeoBundle 'reedes/vim-lexical'
-NeoBundle 'reedes/vim-wordy'
+call dein#add('junegunn/goyo.vim')
+call dein#add('junegunn/limelight.vim')
+call dein#add('reedes/vim-pencil')
+call dein#add('reedes/vim-lexical')
+call dein#add('reedes/vim-wordy')
 
-NeoBundle 'itspriddle/vim-marked'
+call dein#add('itspriddle/vim-marked')
 
-NeoBundle 'maxbrunsfeld/vim-yankstack'
+call dein#add('maxbrunsfeld/vim-yankstack')
 
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+call dein#add('MarcWeber/vim-addon-mw-utils')
+call dein#add('tomtom/tlib_vim')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
 
-NeoBundle 'editorconfig/editorconfig-vim'
+call dein#add('editorconfig/editorconfig-vim')
 
-NeoBundle 'junegunn/vader.vim'
+call dein#add('junegunn/vader.vim')
 
-NeoBundle 'tpope/vim-vinegar'
+call dein#add('tpope/vim-vinegar')
 
-NeoBundle 'gerw/vim-HiLinkTrace'
+call dein#add('gerw/vim-HiLinkTrace')
 
-call neobundle#end()
+call dein#end()
 " }}}
 
 set encoding=utf-8
@@ -461,5 +456,3 @@ nnoremap <leader>em :ElmMakeCurrentFile<CR>
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-
-NeoBundleCheck
