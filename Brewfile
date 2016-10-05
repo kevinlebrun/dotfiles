@@ -5,6 +5,9 @@ update
 
 upgrade
 
+install pandoc
+install epubcheck
+
 install apple-gcc42
 install autoconf
 install cmake
@@ -123,6 +126,7 @@ install pv
 install q
 install rename
 install rsync
+install selecta
 install siege
 install sqlmap
 install ssh-copy-id
@@ -133,6 +137,7 @@ install tmux
 install trafshow
 install tree
 install tsung
+install vmtouch
 install watch
 install wget --with-iri
 install xmlstarlet

@@ -25,6 +25,7 @@ gnureadline
 greenlet
 gunicorn
 httpie
+httpbin
 ipython
 jedi
 lxml

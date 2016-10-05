@@ -43,6 +43,7 @@ call dein#add('rizzatti/dash.vim')
 call dein#add('robmiller/vim-movar')
 call dein#add('scrooloose/nerdtree')
 call dein#add('sheerun/vim-polyglot')
+call dein#add('mxw/vim-jsx')
 call dein#add('sjl/clam.vim')
 call dein#add('spf13/PIV')
 call dein#add('terryma/vim-multiple-cursors')
@@ -58,8 +59,7 @@ call dein#add('vim-scripts/matchit.zip')
 call dein#add('walm/jshint.vim')
 call dein#add('tpope/vim-scriptease')
 call dein#add('ElmCast/elm-vim')
-
-call dein#add('ElmCast/elm-vim')
+call dein#add('OmniSharp/omnisharp-vim')
 
 call dein#add('junegunn/goyo.vim')
 call dein#add('junegunn/limelight.vim')
@@ -443,11 +443,13 @@ endfunction
 let g:polyglot_disabled = ["elm"]
 
 let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
+let g:elm_format_autosave = 0
 
 let g:ycm_semantic_triggers = {
      \ 'elm' : ['.'],
      \}
+
+let g:jsx_ext_required = 0
 
 nnoremap <leader>el :ElmEvalLine<CR>
 vnoremap <leader>es :<C-u>ElmEvalSelection<CR>

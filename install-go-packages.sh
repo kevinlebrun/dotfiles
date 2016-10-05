@@ -14,3 +14,7 @@ go get -v github.com/mattn/gom
 go get -v github.com/laher/goxc
 go get -v github.com/motemen/gore
 go get -v github.com/mattn/goreman
+go get -v github.com/mholt/caddy
+go get -v github.com/adjust/go-wrk
+go get -v github.com/mholt/caddy
+go get -v github.com/alecthomas/gometalinter
