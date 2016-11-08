@@ -61,13 +61,15 @@ call dein#add('tpope/vim-scriptease')
 call dein#add('ElmCast/elm-vim')
 call dein#add('OmniSharp/omnisharp-vim')
 
-call dein#add('junegunn/goyo.vim')
-call dein#add('junegunn/limelight.vim')
-call dein#add('reedes/vim-pencil')
-call dein#add('reedes/vim-lexical')
-call dein#add('reedes/vim-wordy')
+" call dein#add('junegunn/goyo.vim')
+" call dein#add('junegunn/limelight.vim')
+" call dein#add('reedes/vim-pencil')
+" call dein#add('reedes/vim-lexical')
+" call dein#add('reedes/vim-wordy')
 
 call dein#add('itspriddle/vim-marked')
+
+call dein#add('tclem/vim-arduino')
 
 call dein#add('maxbrunsfeld/vim-yankstack')
 
@@ -81,8 +83,6 @@ call dein#add('editorconfig/editorconfig-vim')
 call dein#add('junegunn/vader.vim')
 
 call dein#add('tpope/vim-vinegar')
-
-call dein#add('gerw/vim-HiLinkTrace')
 
 call dein#end()
 " }}}

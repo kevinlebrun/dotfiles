@@ -58,3 +58,5 @@ virtualenvwrapper
 watchdog
 xlrd
 xmpppy==0.5.0rc1
+data_hacks
+ino

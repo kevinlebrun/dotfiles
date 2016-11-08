@@ -18,3 +18,5 @@ go get -v github.com/mholt/caddy
 go get -v github.com/adjust/go-wrk
 go get -v github.com/mholt/caddy
 go get -v github.com/alecthomas/gometalinter
+go get -v github.com/kardianos/govendor
+go get -v github.com/campoy/embedmd

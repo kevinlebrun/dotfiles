@@ -72,6 +72,7 @@ install sloccount
 
 install ack
 install archey
+install avrdude
 install binutils
 install cgrep
 install crunch
@@ -106,6 +107,7 @@ install kafkacat --with-yajl
 install lynx
 install mcrypt
 install md5sha1sum
+install memcached
 install mhash
 install miller
 install mtr
