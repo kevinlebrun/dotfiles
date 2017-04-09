@@ -49,3 +49,4 @@ get_bin   fresh-chrome           https://gist.github.com/stuartsierra/6220797/ra
 get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
 get_bin   run-command-on-git-revisions https://raw.githubusercontent.com/garybernhardt/dotfiles/master/bin/run-command-on-git-revisions
+get_bin   imgcat                 https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat

@@ -60,6 +60,7 @@ call dein#add('walm/jshint.vim')
 call dein#add('tpope/vim-scriptease')
 call dein#add('ElmCast/elm-vim')
 call dein#add('OmniSharp/omnisharp-vim')
+call dein#add('kylef/apiblueprint.vim')
 
 " call dein#add('junegunn/goyo.vim')
 " call dein#add('junegunn/limelight.vim')
