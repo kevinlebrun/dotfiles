@@ -1,91 +1,87 @@
 set nocompatible
 
-" Dein plugins {{{
-set runtimepath^=~/.vim/bundle/dein.vim
+" Plugins {{{
+call plug#begin('~/.bim/plugged')
 
-call dein#begin(expand('~/.vim/bundle'))
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Valloric/YouCompleteMe' , {'do' : './install.py --clang-completer --gocode-completer'}
 
-call dein#add(expand('~/.vim/bundle'))
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/vimshell.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bitc/lushtags'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chase/vim-ansible-yaml'
+Plug 'dag/vim2hs'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'fatih/vim-go'
+Plug 'derekwyatt/vim-scala'
+Plug 'godlygeek/tabular'
+Plug 'goldfeld/vim-seek'
+Plug 'junegunn/vim-easy-align'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'kien/ctrlp.vim'
+Plug 'klen/python-mode'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'mbbill/undotree'
+Plug 'mileszs/ack.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'robmiller/vim-movar'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'mxw/vim-jsx'
+Plug 'sjl/clam.vim'
+Plug 'spf13/PIV'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-tbone'
+Plug 'ujihisa/neco-ghc'
+Plug 'vim-scripts/matchit.zip'
+Plug 'walm/jshint.vim'
+Plug 'tpope/vim-scriptease'
+Plug 'ElmCast/elm-vim'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'kylef/apiblueprint.vim'
 
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('Valloric/YouCompleteMe' , {'build' : './install.py --clang-completer --gocode-completer'})
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'reedes/vim-pencil'
+" Plug 'reedes/vim-lexical'
+" Plug 'reedes/vim-wordy'
 
-call dein#add('tpope/vim-sensible')
-call dein#add('tpope/vim-sleuth')
-call dein#add('Raimondi/delimitMate')
-call dein#add('Shougo/vimshell.vim')
-call dein#add('StanAngeloff/php.vim')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('bitc/lushtags')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('chase/vim-ansible-yaml')
-call dein#add('dag/vim2hs')
-call dein#add('eagletmt/ghcmod-vim')
-call dein#add('fatih/vim-go')
-call dein#add('derekwyatt/vim-scala')
-call dein#add('godlygeek/tabular')
-call dein#add('goldfeld/vim-seek')
-call dein#add('junegunn/vim-easy-align')
-call dein#add('kana/vim-textobj-indent')
-call dein#add('kana/vim-textobj-user')
-call dein#add('reedes/vim-textobj-quote')
-call dein#add('kien/ctrlp.vim')
-call dein#add('klen/python-mode')
-call dein#add('majutsushi/tagbar')
-call dein#add('mattn/emmet-vim')
-call dein#add('mattn/webapi-vim')
-call dein#add('mattn/gist-vim')
-call dein#add('mbbill/undotree')
-call dein#add('mileszs/ack.vim')
-call dein#add('rizzatti/dash.vim')
-call dein#add('robmiller/vim-movar')
-call dein#add('scrooloose/nerdtree')
-call dein#add('sheerun/vim-polyglot')
-call dein#add('mxw/vim-jsx')
-call dein#add('sjl/clam.vim')
-call dein#add('spf13/PIV')
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('tpope/vim-abolish')
-call dein#add('tpope/vim-dispatch')
-call dein#add('tpope/vim-fugitive')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-tbone')
-call dein#add('ujihisa/neco-ghc')
-call dein#add('vim-scripts/matchit.zip')
-call dein#add('walm/jshint.vim')
-call dein#add('tpope/vim-scriptease')
-call dein#add('ElmCast/elm-vim')
-call dein#add('OmniSharp/omnisharp-vim')
-call dein#add('kylef/apiblueprint.vim')
+Plug 'itspriddle/vim-marked'
 
-" call dein#add('junegunn/goyo.vim')
-" call dein#add('junegunn/limelight.vim')
-" call dein#add('reedes/vim-pencil')
-" call dein#add('reedes/vim-lexical')
-" call dein#add('reedes/vim-wordy')
+Plug 'tclem/vim-arduino'
 
-call dein#add('itspriddle/vim-marked')
+Plug 'maxbrunsfeld/vim-yankstack'
 
-call dein#add('tclem/vim-arduino')
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-call dein#add('maxbrunsfeld/vim-yankstack')
+Plug 'editorconfig/editorconfig-vim'
 
-call dein#add('MarcWeber/vim-addon-mw-utils')
-call dein#add('tomtom/tlib_vim')
-call dein#add('SirVer/ultisnips')
-call dein#add('honza/vim-snippets')
+Plug 'junegunn/vader.vim'
 
-call dein#add('editorconfig/editorconfig-vim')
+Plug 'tpope/vim-vinegar'
 
-call dein#add('junegunn/vader.vim')
-
-call dein#add('tpope/vim-vinegar')
-
-call dein#end()
+call plug#end()
 " }}}
 
 set encoding=utf-8
