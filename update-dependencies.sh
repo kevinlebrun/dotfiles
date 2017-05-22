@@ -20,7 +20,7 @@ get_hg() {
 download() {
     if which curl 1>/dev/null 2>&1; then
         echo "download: $1 ($2)"
-        curl "$1" -sLo "$2"
+        curl --max-time 15 "$1" -sLo "$2"
     elif which wget 1>/dev/null 2>&1; then
         wget -qO "$1" "$2"
     else
@@ -36,7 +36,7 @@ get_bin() {
 
 get_hg    .hg_prompt             https://bitbucket.org/sjl/hg-prompt/
 
-get_bin   hub                    http://defunkt.io/hub/standalone # http://defunkt.io/hub/
+get_bin   hub                    https://raw.githubusercontent.com/github/hub/master/script/build # http://defunkt.io/hub/
 get_bin   git-publish-branch     http://git-wt-commit.rubyforge.org/git-publish-branch
 get_bin   gbrt                   https://raw.github.com/benhoskings/dot-files/master/files/bin/gbrt
 get_bin   git-cwd-info           https://raw.github.com/topfunky/zsh-simple/master/bin/git-cwd-info
@@ -50,3 +50,4 @@ get_bin   git-trail              http://chneukirchen.org/dotfiles/bin/git-trail
 get_bin   now                    https://raw.github.com/apankrat/now.sh/master/now.sh
 get_bin   run-command-on-git-revisions https://raw.githubusercontent.com/garybernhardt/dotfiles/master/bin/run-command-on-git-revisions
 get_bin   imgcat                 https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat
+get_bin   xml2json               https://raw.githubusercontent.com/hay/xml2json/master/xml2json.py

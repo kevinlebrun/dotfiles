@@ -21,3 +21,5 @@ go get -v -u github.com/alecthomas/gometalinter
 go get -v -u github.com/kardianos/govendor
 go get -v -u github.com/campoy/embedmd
 go get -v -u github.com/y0ssar1an/q
+go get -v -u github.com/joewalnes/websocketd
+go get -v -u github.com/benas/gossed
