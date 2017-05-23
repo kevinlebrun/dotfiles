@@ -51,3 +51,5 @@ get_bin   now                    https://raw.github.com/apankrat/now.sh/master/n
 get_bin   run-command-on-git-revisions https://raw.githubusercontent.com/garybernhardt/dotfiles/master/bin/run-command-on-git-revisions
 get_bin   imgcat                 https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat
 get_bin   xml2json               https://raw.githubusercontent.com/hay/xml2json/master/xml2json.py
+
+get_bin   structurer             https://raw.githubusercontent.com/kevinlebrun/structurer/master/structurer

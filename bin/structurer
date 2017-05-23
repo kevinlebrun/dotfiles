@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+
+file=${1:--}
+dest=${2?"Missing destination directory"}
+
+configpath=${STRUCTURER_PATH:-~/.structurer}
+configfile=$(cat $configpath/structurer.json || echo '{ "aliases":[] }')
+
+function wrap() {
+    DIR=$(mktemp -d)
+    $1 $DIR
+    N=$(ls $DIR | wc -w | tr -d ' ')
+    if [[ $N = 1 ]]; then
+        mv $DIR/* "$2"
+    else
+        mv $DIR "$2"
+    fi
+    rm -rf $DIR
+}
+
+function unarchive() {
+    archive=$1
+    case "$archive" in
+        *.tar.gz)
+            function unarchive_tar() { tar -xzf "$archive" -C $1 ; }
+            wrap unarchive_tar $2
+            ;;
+        *.zip)
+            function unarchive_zip() { unzip "$archive" -d $1 > /dev/null ; }
+            wrap unarchive_zip $2
+            ;;
+        *)
+            (>&2 echo "Cannot link '$archive'; this is not a directory")
+            return -1
+            ;;
+    esac
+
+    return 0
+}
+
+mkdir -p $dest
+
+lastpath=
+
+while IFS=":" read line alias; do
+    path=
+    file=
+
+    atype=
+    avalue=
+    if [[ -n $alias ]]; then
+        atype="$(jq -r --arg alias "$alias" '.aliases[] | select(.name == $alias) | .type' <(echo "$configfile"))"
+        avalue="$(jq -r --arg alias "$alias" '.aliases[] | select(.name == $alias) | .value' <(echo "$configfile"))"
+    fi
+
+    if [[ ${line:0:1} != "/" ]]; then
+        lastpath=
+    fi
+
+    if [[ ${line:((${#line}-1))} = "/" ]]; then
+        path="$lastpath/$line"
+    else
+        path="$lastpath/$(dirname $line)"
+        file="$(basename $line)"
+    fi
+
+    if [[ ! -n $file ]] && [[ -n $alias ]]; then
+        case "$atype" in
+            file)
+                if [[ -d "$configpath/$avalue" ]]; then
+                    cp -r "$configpath/$avalue" "$dest/$path"
+                else
+                    unarchive "$configpath/$avalue" "$dest/$path"
+                fi
+                ;;
+            url)
+                tmp=$(mktemp -d)
+                (cd $tmp; curl -Ls -O -J "$avalue")
+                unarchive $tmp/* "$dest/$path"
+                rm -rf $tmp
+                ;;
+            *)
+                (>&2 echo "Invalid alias '${alias}' for file '${file}'")
+                ;;
+        esac
+    else
+        mkdir -p "$dest/$path"
+    fi
+
+    if [[ -n $file ]] && [[ -n $alias ]]; then
+        case "$atype" in
+            file)
+                if [[ -f "$configpath/$avalue" ]]; then
+                    cat "$configpath/$avalue" > "$dest/$path/$file"
+                else
+                    (>&2 echo "Cannot get the content of '$configpath/$avalue'; this is not a file")
+                fi
+                ;;
+            url)
+                curl -s "$avalue" -o "$dest/$path/$file"
+                ;;
+            *)
+                (>&2 echo "Invalid alias '${alias}' for file '${file}'")
+                ;;
+        esac
+    else
+        touch "$dest/$path/$file"
+    fi
+
+    lastpath="$path"
+done < <(cat -- "$file")
