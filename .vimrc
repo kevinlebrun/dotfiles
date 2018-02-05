@@ -1,11 +1,12 @@
 set nocompatible
 
 " Plugins {{{
-call plug#begin('~/.bim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Valloric/YouCompleteMe' , {'do' : './install.py --clang-completer --gocode-completer'}
 
+Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'Raimondi/delimitMate'
@@ -20,7 +21,6 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'dag/vim2hs'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'fatih/vim-go'
-Plug 'derekwyatt/vim-scala'
 Plug 'godlygeek/tabular'
 Plug 'goldfeld/vim-seek'
 Plug 'junegunn/vim-easy-align'
@@ -60,9 +60,9 @@ Plug 'kylef/apiblueprint.vim'
 
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
-" Plug 'reedes/vim-pencil'
-" Plug 'reedes/vim-lexical'
-" Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-wordy'
 
 Plug 'itspriddle/vim-marked'
 
@@ -249,7 +249,7 @@ cnoremap <C-g>  <C-c>
 
 " Abbreviations {{{
 iabbrev @@ lebrun.k@gmail.com
-iabbrev ccopy Copyright © 2015 Kevin Le Brun
+iabbrev ccopy Copyright © 2018 Kevin Le Brun
 iabbrev ssign -- <cr>Kevin Le Brun<cr>leburn.k@gmail.com
 " }}}
 

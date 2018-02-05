@@ -23,3 +23,10 @@ go get -v -u github.com/campoy/embedmd
 go get -v -u github.com/y0ssar1an/q
 go get -v -u github.com/joewalnes/websocketd
 go get -v -u github.com/benas/gossed
+go get -v -u github.com/davecheney/httpstat
+go get -v -u github.com/guillaumebreton/gone
+go get -v -u github.com/rakyll/hey
+go get -v -u github.com/derekparker/delve/cmd/dlv
+go get -v -u github.com/aarzilli/gdlv
+go get -v -u github.com/davecgh/go-spew/spew
+go get -v -u github.com/golang/dep/cmd/dep

@@ -35,6 +35,7 @@ install ctags
 install reattach-to-user-namespace
 
 # Install programming tools
+install insect
 
 install python
 install pyenv

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 CURDIR=${1:-$(pwd)}
 SESSION=$(basename "$CURDIR" | sed -E 's/[^[:alnum:]]+/-/g')
