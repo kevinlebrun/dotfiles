@@ -4,9 +4,21 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Valloric/YouCompleteMe' , {'do' : './install.py --clang-completer --gocode-completer'}
+"Plug 'Valloric/YouCompleteMe' , {'do' : './install.py --clang-completer --gocode-completer'}
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'beeender/Comrade'
 
 Plug 'plasticboy/vim-markdown'
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'Raimondi/delimitMate'
@@ -164,7 +176,7 @@ set incsearch
 
 set tildeop " allow 3~
 
-set cryptmethod=blowfish
+"set cryptmethod=blowfish
 
 set shortmess+=I
 
@@ -205,6 +217,8 @@ noremap <leader>ta :TagbarToggle<cr>
 noremap <leader>n  :NERDTreeToggle<CR>
 noremap <leader>e  :execute '!chmod +x %'<cr> :e!<cr>
 noremap <leader>N  :set number!<cr>
+
+autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 
 " Editing text files (text, markdown, textile) {{{
 augroup textobj_quote
@@ -378,7 +392,7 @@ augroup END
 
 " Undotree {{{
 if has("persistent_undo")
-    set undodir=$HOME.'/.undotree',
+    let &undodir=$HOME."/.undotree"
     set undofile
 endif
 " }}}

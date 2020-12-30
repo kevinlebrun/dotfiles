@@ -1,3 +1,5 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 [ -z "$PS1" ] && return
 
 source $HOME/.smile.conf
@@ -28,12 +30,12 @@ CDPATH=.:~
 
 GLOBIGNORE=.
 
-shopt -s autocd
+# shopt -s autocd
 # shopt -s cdable_vars # TEST with numergy / home / smile / etc.
 shopt -s cdspell
-shopt -s dotglob extglob globstar nocaseglob
+shopt -s dotglob extglob nocaseglob
 # shopt -s nullglob # don't work very well with bash_completion
-shopt -s checkjobs
+# shopt -s checkjobs
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -93,7 +95,9 @@ if [[ -n "$PS1" ]] ; then
     }
 
     function prompt_on {
-        export PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(prompt_git || prompt_hg)\\n\[\$(last_code_color)\]\$(last_code)\[$RESET_COLOR\]\$(prompt_char) "
+        source ~/.git-prompt.sh
+        # export PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(prompt_git || prompt_hg)\\n\[\$(last_code_color)\]\$(last_code)\[$RESET_COLOR\]\$(prompt_char) "
+        export PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(__git_ps1 \" (%s)\")\\n\[\$(last_code_color)\]\$(last_code)\[$RESET_COLOR\]\$(prompt_char) "
     }
 
     function prompt_off {
@@ -107,3 +111,11 @@ if [ -e "$HOME/.bashrc_local" ]; then
     source "$HOME/.bashrc_local"
 fi
 #/* vim: set ft=sh: */
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+source /Users/kevin.lebrun/Library/Preferences/org.dystroy.broot/launcher/bash/br

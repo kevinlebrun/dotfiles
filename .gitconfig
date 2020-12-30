@@ -2,7 +2,7 @@
     name = Kevin Le Brun
     email = lebrun.k@gmail.com
 [core]
-    editor = vim
+	editor = nvim
     excludesfile = ~/.gitignore
     pager = less -FXR
     whitespace = trailing-space,space-before-tab

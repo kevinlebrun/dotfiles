@@ -14,9 +14,9 @@ go get -v -u github.com/mattn/gom
 go get -v -u github.com/laher/goxc
 go get -v -u github.com/motemen/gore
 go get -v -u github.com/mattn/goreman
-go get -v -u github.com/mholt/caddy
 go get -v -u github.com/adjust/go-wrk
 go get -v -u github.com/mholt/caddy
+go get -v -u github.com/caddyserver/builds
 go get -v -u github.com/alecthomas/gometalinter
 go get -v -u github.com/kardianos/govendor
 go get -v -u github.com/campoy/embedmd
@@ -30,3 +30,5 @@ go get -v -u github.com/derekparker/delve/cmd/dlv
 go get -v -u github.com/aarzilli/gdlv
 go get -v -u github.com/davecgh/go-spew/spew
 go get -v -u github.com/golang/dep/cmd/dep
+go get -u -v github.com/iawia002/annie
+go get -u -v github.com/claudiodangelis/qr-filetransfer

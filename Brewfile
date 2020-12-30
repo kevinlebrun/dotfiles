@@ -8,7 +8,9 @@ upgrade
 install pandoc
 install epubcheck
 
-install apple-gcc42
+install bat
+
+#install apple-gcc42
 install autoconf
 install cmake
 
@@ -39,13 +41,13 @@ install insect
 
 install python
 install pyenv
-install pyenv-pip-rehash
-install pyenv-virtualenv
-install pyenv-virtualenvwrapper
+#install pyenv-pip-rehash
+#install pyenv-virtualenv
+#install pyenv-virtualenvwrapper
 
 install rbenv
 install rbenv-gemset
-install rbenv-gem-rehash
+#install rbenv-gem-rehash
 install ruby-build
 
 install go
@@ -114,8 +116,9 @@ install miller
 install mtr
 install mycli
 install netcat
+install nethogs
 install ngrep
-install ngrok
+#install ngrok
 install nmap
 install openldap
 install openssl
@@ -164,6 +167,12 @@ install zbar
 
 tap homebrew/science
 install gcc r
+
+tap wallix/awless
+install awless
+install awscli
+
+install romkatv/gitstatus/gitstatus
 
 # Remove outdated versions from the cellar
 cleanup
