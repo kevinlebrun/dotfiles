@@ -72,9 +72,9 @@ Plug 'kylef/apiblueprint.vim'
 
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-lexical'
-Plug 'reedes/vim-wordy'
+"Plug 'reedes/vim-pencil'
+"Plug 'reedes/vim-lexical'
+"Plug 'reedes/vim-wordy'
 
 Plug 'itspriddle/vim-marked'
 
@@ -84,7 +84,7 @@ Plug 'maxbrunsfeld/vim-yankstack'
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'editorconfig/editorconfig-vim'
@@ -451,7 +451,7 @@ function! QuickfixToggle()
 endfunction
 " }}}
 
-let g:polyglot_disabled = ["elm"]
+"let g:polyglot_disabled = ["elm"]
 
 let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 0
