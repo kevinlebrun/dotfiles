@@ -1,178 +1,86 @@
-# Install command-line tools using Homebrew
-# Usage: `brew bundle Brewfile`
-
-update
-
-upgrade
-
-install pandoc
-install epubcheck
-
-install bat
-
-#install apple-gcc42
-install autoconf
-install cmake
-
-# Install GNU core utilities (those that come with OS X are outdated)
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-install coreutils
-# Install some other useful utilities like `sponge`
-install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-install findutils
-# Install GNU `sed`, overwriting the built-in `sed`
-install gnu-sed --default-names
-# Install Bash 4
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
-install bash
-install bash-completion
-
-# Install VIM
-
-install lua
-install vim --override-system-vi --with-lua
-install cscope
-install ctags
-install reattach-to-user-namespace
-
-# Install programming tools
-install insect
-
-install python
-install pyenv
-#install pyenv-pip-rehash
-#install pyenv-virtualenv
-#install pyenv-virtualenvwrapper
-
-install rbenv
-install rbenv-gemset
-#install rbenv-gem-rehash
-install ruby-build
-
-install go
-install glide
-install godep
-install node
-
-install scala
-install sbt
-
-install mit-scheme
-install racket
-
-install erlang
-
-tap homebrew/binary
-install packer
-
-install cloc
-install git
-install mercurial
-install sloccount
-
-# Install other niceties
-
-install ack
-install archey
-install avrdude
-install binutils
-install cgrep
-install crunch
-install curl
-install docker
-install docker-machine
-install docker-compose
-install docker-swarm
-install dos2unix
-install exiftool
-install exiv2
-install figlet
-install fontconfig
-install fontforge
-install foremost
-install gawk
-install gd
-install gettext
-install gnu-getopt
-install gnu-sed
-install gnu-tar
-install gnuplot
-install graphviz
-install hashpump
-install hugo
-install iftop
-install imagemagick --with-webp
-install jo
-install jq
-install kafka
-install kafkacat --with-yajl
-install lynx
-install mcrypt
-install md5sha1sum
-install memcached
-install mhash
-install miller
-install mtr
-install mycli
-install netcat
-install nethogs
-install ngrep
-#install ngrok
-install nmap
-install openldap
-install openssl
-install optipng
-install pcre
-install pidof
-install phantomjs
-install pstree
-install pup
-install pv
-install q
-install rename
-install rsync
-install selecta
-install siege
-install sqlmap
-install ssh-copy-id
-install sshuttle
-install tcpflow
-install tig
-install tmux
-install trafshow
-install tree
-install tsung
-install vmtouch
-install watch
-install wget --with-iri
-install xmlstarlet
-install xz
-install youtube-dl
-
-# Install SGDB
-
-install mongodb
-install mysql
-install redis
-install sqlite
-
-# OCR and QRCode
-
-install gocr
-install ocrad
-install qrencode
-install tesseract
-install zbar
-
-tap homebrew/science
-install gcc r
-
-tap wallix/awless
-install awless
-install awscli
-
-install romkatv/gitstatus/gitstatus
-
-# Remove outdated versions from the cellar
-cleanup
+tap "datadog/tap", "git@github.com:DataDog/homebrew-tap.git"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "yt-dlp/taps"
+brew "ack"
+brew "webp"
+brew "python@3.10"
+brew "awscli@1"
+brew "bash"
+brew "bash-completion"
+brew "bat"
+brew "bazelisk"
+brew "glib"
+brew "python@3.9"
+brew "cairo"
+brew "cmake"
+brew "coreutils"
+brew "cython"
+brew "go"
+brew "dep"
+brew "elm"
+brew "guile"
+brew "unbound"
+brew "gnutls"
+brew "harfbuzz"
+brew "little-cms2"
+brew "lz4"
+brew "gobject-introspection"
+brew "libass"
+brew "tesseract"
+brew "ffmpeg"
+brew "gcc"
+brew "gdk-pixbuf"
+brew "gimme"
+brew "git"
+brew "gnupg"
+brew "google-java-format"
+brew "netpbm"
+brew "pango"
+brew "librsvg"
+brew "graphviz"
+brew "grep"
+brew "helm"
+brew "httrack"
+brew "hyperscan"
+brew "jq"
+brew "krb5"
+brew "kube-ps1"
+brew "kubectx"
+brew "librdkafka"
+brew "lux"
+brew "make"
+brew "maven"
+brew "neovim"
+brew "nghttp2"
+brew "node"
+brew "pdftk-java"
+brew "postgresql@14"
+brew "pre-commit"
+brew "pyenv"
+brew "qpdf"
+brew "rbenv"
+brew "reattach-to-user-namespace"
+brew "tctl"
+brew "tfenv"
+brew "tmux"
+brew "tree"
+brew "vault"
+brew "watch"
+brew "wget"
+brew "youtube-dl"
+brew "datadog/tap/python@2"
+brew "yt-dlp/taps/yt-dlp"
+cask "adoptopenjdk8"
+cask "another-redis-desktop-manager"
+cask "aws-vault"
+cask "bloomrpc"
+cask "ddtool"
+cask "google-cloud-sdk"
+cask "tctl-data-converter"
+cask "tctl-local-auth"
+cask "tctx"
+cask "vagrant"
+cask "virtualbox"
