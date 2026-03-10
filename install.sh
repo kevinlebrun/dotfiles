@@ -14,7 +14,7 @@ fi
 
 link() {
     src="$DOTFILES/$1"
-    dest="$HOME/${2:-.$1}"
+    dest="$HOME/${2:-$1}"
     if [ -e "$dest" ] && [ ! -L "$dest" ]; then
         echo "  backup $dest → ${dest}.bak"
         mv "$dest" "${dest}.bak"
@@ -48,9 +48,6 @@ link .hushlogin
 # Vim
 link .vimrc
 link vim .vim
-
-# Bin
-link bin bin
 
 # Machine-specific local config
 if [ ! -f "$HOME/.shellrc_local" ]; then
