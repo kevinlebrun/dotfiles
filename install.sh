@@ -30,7 +30,6 @@ link .bashrc
 link .bash_profile
 link .zshrc
 link .inputrc
-link shell .shell
 link .ripgreprc
 
 # Git

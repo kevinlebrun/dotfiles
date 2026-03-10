@@ -40,5 +40,4 @@ PROMPT='
 %F{magenta}%n%f at %F{yellow}$(box_name)%f in %F{green}%1~%f${vcs_info_msg_0_}
 %(?.%F{default}.%F{red}%?%f )%(!.#.○) '
 
-[ -f "$DOTFILES/shell/local" ] && source "$DOTFILES/shell/local"
 [ -f "$HOME/.shellrc_local" ] && source "$HOME/.shellrc_local"

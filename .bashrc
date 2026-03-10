@@ -52,7 +52,6 @@ MAGENTA=$(tput setaf 5)
 export PROMPT_COMMAND="export RETURN_STATUS=\$?; $PROMPT_COMMAND"
 
 source ~/.git-prompt.sh
-PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(__git_ps1 \" (%s)\")\\n\[\$([ \$RETURN_STATUS != 0 ] && echo \$RED)\]\$([ \$RETURN_STATUS != 0 ] && echo \"\$RETURN_STATUS \")\[$RESET_COLOR\]\$(prompt_char) "
+PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(__git_ps1 \" (%s)\")\\n\[\$([ \$RETURN_STATUS != 0 ] && echo \$RED)\]\$([ \$RETURN_STATUS != 0 ] && echo \"\$RETURN_STATUS \")\[$RESET_COLOR\]○ "
 
-[ -f "$DOTFILES/shell/local" ] && source "$DOTFILES/shell/local"
 [ -f "$HOME/.shellrc_local" ] && source "$HOME/.shellrc_local"
