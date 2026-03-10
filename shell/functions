@@ -1,0 +1,46 @@
+function psu {
+    ps -ef | awk '{print $1}' | sort | uniq -c | sort -rn
+}
+
+function box_name {
+    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+}
+
+function hstat {
+    history | awk '{a[$4]++} END {for(i in a){print a[i] " " i}}' | sort -rn | head
+}
+
+function tmw {
+    tmux split-window -dh "$*"
+}
+
+function fs {
+    du -s ./* | sort -n | cut -f 2- | xargs -Ix du -sh x
+}
+
+function take {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+function path {
+    echo $PATH | tr ":" "\n"
+}
+
+function gocd() {
+    cd $(go list -f '{{.Dir}}' $1)
+}
+
+function server() {
+    local port="${1:-8000}"
+    open "http://localhost:${port}/" 2>/dev/null || xdg-open "http://localhost:${port}/" 2>/dev/null
+    python3 -m http.server "$port"
+}
+
+function json() {
+    if [ -p /dev/stdin ]; then
+        python3 -mjson.tool | pygmentize -l javascript
+    else
+        python3 -mjson.tool <<< "$*" | pygmentize -l javascript
+    fi
+}

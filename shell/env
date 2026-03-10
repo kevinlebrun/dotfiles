@@ -1,0 +1,8 @@
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+hash vim &>/dev/null && export EDITOR=vim
+
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+stty -ixon

@@ -1,3 +1,0 @@
-alias pu='phpunit'
-alias be='behat'
-alias plint="find . -name \*.phtml -o -name \*.php -exec php -l {} \\;"

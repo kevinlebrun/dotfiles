@@ -1,0 +1,34 @@
+alias l='ls -lah'
+alias t='tree'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias p='pushd'
+alias o='popd'
+
+alias tm='tmux'
+
+alias f='find . -iname'
+alias mf='mdfind'
+
+alias ducks='du -hck -d 1 | sort -rn | head -n 11'
+alias systail='tail -f /var/log/system.log'
+
+alias count="sort | uniq -c | sort -n"
+
+alias myip="curl ifconfig.me"
+
+alias ltail="less -S -N +F --follow-name "
+
+alias sc="screencapture"
+
+alias g='git'
+alias gss='git status -s'
+alias gc='git commit -v'
+alias gm='git commit -m'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdw='git diff --color-words="."'
+alias gdcw='git diff --cached --color-words="."'
+alias gl='git log'

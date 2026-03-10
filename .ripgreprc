@@ -1,0 +1,10 @@
+--sort=path
+--glob=!build
+--glob=!vendor
+--glob=!log
+--glob=!cache
+--glob=!node_modules
+--glob=!.tmp
+--glob=!dist
+--glob=!reports
+--glob=!bower_components

@@ -1,27 +1,61 @@
 #!/usr/bin/env bash
+set -e
 
-# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
-SMILE_PATH="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_REPO="https://github.com/kevinlebrun/dotfiles.git"
+DOTFILES="$HOME/dotfiles"
 
-install_dotfiles() {
-    if [ ! -d "$HOME/.vim" ]; then
-        ln -s "${SMILE_PATH}/vim" "$HOME/.vim"
-    fi
-
-    for dotfile in "${SMILE_PATH}"/.*
-    do
-        if [ -f "$dotfile" ]
-        then
-            ln -sf "$dotfile" "$HOME/$(basename "$dotfile")"
-        fi
-    done
-}
-
-install_dotfiles
-
-if [ ! -f "$HOME/.tmux.local.conf" ]; then
-    touch "$HOME/.tmux.local.conf"
+if [ -d "$DOTFILES" ]; then
+    echo "Updating dotfiles..."
+    git -C "$DOTFILES" pull --rebase
+else
+    echo "Cloning dotfiles..."
+    git clone "$DOTFILES_REPO" "$DOTFILES"
 fi
 
-echo "export SMILE=$SMILE_PATH" > "$HOME/.smile.conf"
+link() {
+    src="$DOTFILES/$1"
+    dest="$HOME/${2:-.$1}"
+    if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+        echo "  backup $dest → ${dest}.bak"
+        mv "$dest" "${dest}.bak"
+    fi
+    ln -sfn "$src" "$dest"
+    echo "  $dest → $src"
+}
 
+echo "Linking dotfiles..."
+
+# Shell
+link .bashrc
+link .bash_profile
+link .zshrc
+link .inputrc
+link shell .shell
+link .ripgreprc
+
+# Git
+link .gitconfig
+link .gitattributes
+link .gitignore
+link .git-prompt.sh
+
+# Tools
+link .editorconfig
+link .curlrc
+link .wgetrc
+link .tmux.conf
+link .hushlogin
+
+# Vim
+link .vimrc
+link vim .vim
+
+# Bin
+link bin bin
+
+# Machine-specific local config
+if [ ! -f "$HOME/.shellrc_local" ]; then
+    echo "  note: create ~/.shellrc_local for machine-specific settings"
+fi
+
+echo "Done."
