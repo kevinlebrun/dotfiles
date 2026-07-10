@@ -1,9 +1,12 @@
 [user]
+    email = kevin.lebrun@datadoghq.com
     name = Kevin Le Brun
-    email = lebrun.k@gmail.com
+[url "git@github.com:"]
+    insteadOf = https://github.com/
 [core]
-	editor = nvim
-    excludesfile = ~/.gitignore
+    editor = nvim
+    hooksPath = /usr/local/dd/global_hooks
+	excludesfile = /Users/kevin.lebrun/.gitignore
     pager = less -FXR
     whitespace = trailing-space,space-before-tab
 [color]
@@ -28,8 +31,6 @@
     rm-unstaged-stash = "!git stash --keep-index & git stash drop"
     rm-unstaged = "checkout --"
     sweep = "!git clean -df & git checkout -- ."
-[github]
-    user = kevinlebrun
 [push]
     default = tracking
 [merge]
@@ -48,3 +49,15 @@
     autosetupmerge = true
 [rerere]
     enabled = true
+[include]
+	path = /Users/kevin.lebrun/.config/gitsign/gitconfig
+[commit]
+	gpgsign = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/kevin.lebrun/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[maintenance]
+	repo = /Users/kevin.lebrun/go/src/github.com/DataDog/dd-source

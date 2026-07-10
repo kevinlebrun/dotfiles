@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/kevin.lebrun/dotfiles/*local*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:iterm2.com)",
+      "Bash(git -C /Users/kevin.lebrun/dotfiles log --all --oneline -- install.sh deploy.sh Makefile)",
+      "Bash(git -C /Users/kevin.lebrun/dotfiles remote get-url origin)",
+      "Bash(chmod +x /Users/kevin.lebrun/dotfiles/install.sh)",
+      "Bash(bash /Users/kevin.lebrun/dotfiles/install.sh)"
+    ]
+  }
+}

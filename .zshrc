@@ -41,3 +41,17 @@ PROMPT='
 %(?.%F{default}.%F{red}%?%f )%(!.#.○) '
 
 [ -f "$HOME/.shellrc_local" ] && source "$HOME/.shellrc_local"
+
+eval "$(dd-gitsign load-key)"
+
+# BEGIN SCFW MANAGED BLOCK
+alias npm="scfw run npm"
+alias pip="scfw run pip"
+alias poetry="scfw run poetry"
+export SCFW_DD_AGENT_LOG_PORT="10365"
+export SCFW_DD_LOG_LEVEL="ALLOW"
+export SCFW_HOME="/Users/kevin.lebrun/.scfw"
+# END SCFW MANAGED BLOCK
+
+# Trajectory - AI coding agent observability
+export PATH="/Users/kevin.lebrun/.trajectory/bin:$PATH"

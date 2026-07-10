@@ -55,3 +55,15 @@ source ~/.git-prompt.sh
 PS1="\\n\[$MAGENTA\]\u\[$RESET_COLOR\] at \[$YELLOW\]\$(box_name)\[$RESET_COLOR\] in \[$GREEN\]\W\[$RESET_COLOR\]\$(__git_ps1 \" (%s)\")\\n\[\$([ \$RETURN_STATUS != 0 ] && echo \$RED)\]\$([ \$RETURN_STATUS != 0 ] && echo \"\$RETURN_STATUS \")\[$RESET_COLOR\]○ "
 
 [ -f "$HOME/.shellrc_local" ] && source "$HOME/.shellrc_local"
+
+# BEGIN SCFW MANAGED BLOCK
+alias npm="scfw run npm"
+alias pip="scfw run pip"
+alias poetry="scfw run poetry"
+export SCFW_DD_AGENT_LOG_PORT="10365"
+export SCFW_DD_LOG_LEVEL="ALLOW"
+export SCFW_HOME="/Users/kevin.lebrun/.scfw"
+# END SCFW MANAGED BLOCK
+
+# Trajectory - AI coding agent observability
+export PATH="/Users/kevin.lebrun/.trajectory/bin:$PATH"
