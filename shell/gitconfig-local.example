@@ -1,0 +1,5 @@
+# Optional ~/.gitconfig_local: override identity/signing on this machine.
+# [user]
+#     email = your-verified-email@example.com
+# Configure 1Password signing interactively after desktop installation.
+# Do not paste private keys or access tokens here or into the repository.

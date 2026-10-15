@@ -1,9 +1,7 @@
 DOTFILES="$HOME/dotfiles"
 
-export PATH=$DOTFILES/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 source "$DOTFILES/shell/env"
+source "$DOTFILES/shell/common"
 
 setopt AUTO_CD CORRECT
 setopt GLOB_DOTS EXTENDED_GLOB NO_CASE_GLOB
@@ -41,17 +39,3 @@ PROMPT='
 %(?.%F{default}.%F{red}%?%f )%(!.#.○) '
 
 [ -f "$HOME/.shellrc_local" ] && source "$HOME/.shellrc_local"
-
-eval "$(dd-gitsign load-key)"
-
-# BEGIN SCFW MANAGED BLOCK
-alias npm="scfw run npm"
-alias pip="scfw run pip"
-alias poetry="scfw run poetry"
-export SCFW_DD_AGENT_LOG_PORT="10365"
-export SCFW_DD_LOG_LEVEL="ALLOW"
-export SCFW_HOME="/Users/kevin.lebrun/.scfw"
-# END SCFW MANAGED BLOCK
-
-# Trajectory - AI coding agent observability
-export PATH="/Users/kevin.lebrun/.trajectory/bin:$PATH"

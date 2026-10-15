@@ -1,12 +1,9 @@
 [user]
-    email = kevin.lebrun@datadoghq.com
+    email = lebrun.k@gmail.com
     name = Kevin Le Brun
-[url "git@github.com:"]
-    insteadOf = https://github.com/
 [core]
     editor = nvim
-    hooksPath = /usr/local/dd/global_hooks
-	excludesfile = /Users/kevin.lebrun/.gitignore
+    excludesfile = ~/.gitignore
     pager = less -FXR
     whitespace = trailing-space,space-before-tab
 [color]
@@ -49,15 +46,6 @@
     autosetupmerge = true
 [rerere]
     enabled = true
+# Machine-specific identity, signing and merge tools belong in this local file.
 [include]
-	path = /Users/kevin.lebrun/.config/gitsign/gitconfig
-[commit]
-	gpgsign = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Users/kevin.lebrun/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[maintenance]
-	repo = /Users/kevin.lebrun/go/src/github.com/DataDog/dd-source
+    path = ~/.gitconfig_local

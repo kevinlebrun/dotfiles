@@ -5,3 +5,11 @@
 .idea
 *.pyc
 mux
+
+# Local machine overrides and credentials must never be versioned.
+.shellrc_local
+.gitconfig_local
+.env
+.env.*
+*.pem
+*.key

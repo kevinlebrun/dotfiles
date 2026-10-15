@@ -1,2 +1,1 @@
-[ -r $HOME/.bashrc ] && source $HOME/.bashrc
-source /Users/kevin.lebrun/.privilegesalias
+[ ! -r "$HOME/.bashrc" ] || source "$HOME/.bashrc"

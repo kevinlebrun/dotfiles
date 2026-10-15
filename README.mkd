@@ -1,32 +1,94 @@
-# SMILE
+# Personal dotfiles
 
-My personal dotfiles
+Shared Bash/Zsh, Git and command-line preferences. This is a base workstation
+setup, not a machine image or an unattended server bootstrap.
 
-## Install
+Forgejo is the authoritative remote. GitHub is an optional outgoing mirror,
+configured in Forgejo, not an independent source of changes.
 
-    cd ~
-    git clone https://github.com/kevinlebrun/dotfiles.git .smile
+## New Mac
 
-    cd ~/.smile/
-    ./install.sh
+Install Apple's command-line tools and, optionally, Homebrew from its official
+site. Clone this repository; then run:
 
-## OS X installation
+```sh
+git clone git@forgejo.lab.kevinlebrun.io:kevinlebrun/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+bash install.sh --dry-run
+bash install.sh --with-packages
+```
 
-Install [brew](http://brew.sh/) first.
+If Homebrew/tools are already handled separately, use `bash install.sh` alone.
+The optional Brewfile installs Git, Neovim, ripgrep, jq, tree, tmux and wget.
+`--no-upgrade` avoids upgrading existing packages; versions are not pinned.
+No service is started. The installer never pulls/rebases the checkout, uses sudo,
+changes macOS defaults, installs downloaded scripts or runs the legacy `.osx`.
+Existing files and symlinks are moved into a unique, private backup directory
+under `~/.local/state/dotfiles/backups/`. Repeating setup retains local overrides.
+An alternate clone location is supported through a stable `~/dotfiles` symlink;
+a different existing checkout is not overwritten.
 
-    $ brew bundle Brewfile
-    $ brew bundle Caskfile
-    $ pip install -r Pipfile
-    $ gem install
+## Configuration ownership
 
-You should then install [phpbrew](https://github.com/phpbrew/phpbrew).
+| Location | Purpose |
+| --- | --- |
+| `shell/env` | Portable PATH, editor and terminal environment |
+| `shell/common` | Optional existing nvm and pyenv, with shell-specific initialization |
+| `.zshrc`, `.bashrc` | Interactive preferences, aliases and prompt |
+| `~/.shellrc_local` | Private machine overrides, sourced last; never replaced by setup |
+| `~/.gitconfig_local` | Private machine identity, signing or merge tools; included last |
 
-Don't forget to update the timezone.
+Setup creates comment-only local files with mode0600 when absent. It does not
+copy the laptop's local files. No API token, vault access, SSH key, kubeconfig,
+Talos configuration or OpenTofu state is needed for this base setup. Do not copy
+secrets into versioned examples. Avoid automatically unlocking a vault or fetching
+secrets at every shell startup. Configure 1Password/SSH/signing separately after
+installation; the homelab repository has its own signing runbook.
 
-    $ curl -sS https://getcomposer.org/installer | php
-    $ sudo mv composer.phar /usr/local/bin/composer
+The laptop's nvm/pyenv boilerplate now has a common equivalent. Its homelab aliases
+and inference tokens remain machine/project-specific and are not auto-propagated.
+Existing `.shellrc_local` may still duplicate old initialization: review it locally
+without printing credentials. Do not delete that file wholesale.
 
-    $ cabal install pandoc
+## Deliberately separate
 
-    $ ./.osx
+- Tailscale, oMLX/models, inference-service secrets and launchd configuration.
+- macOS account/iCloud, Reminders permissions, SSH, FileVault, power/restart policy.
+- Corporate SCFW, gitsign, Privileges, Trajectory and employer identity.
+- Terminal-app settings, private SSH configuration and application preferences.
+- Language-runtime installation; existing nvm/pyenv are optional, not provisioned.
 
+The historic `.osx` script changes power, security and other system settings and
+is not part of setup. Do not run it on a new Mac as a generic migration step.
+The old Vim plugin configuration is opt-in with `--legacy-vim`; setup does not
+fetch its plugins. Neovim starts with its own defaults unless configured separately.
+`update-dependencies.sh` downloads unpinned helper scripts; it is not run by setup.
+
+## Validation
+
+```sh
+bash -n install.sh .bashrc .bash_profile shell/env shell/common
+zsh -n .zshrc .zprofile shell/env shell/common
+bash install.sh --dry-run
+```
+
+A setup completion only proves file installation. Verify a new terminal, the
+editor and Git identity on the target Mac. Base configuration does not prove
+server boot availability or application access.
+
+## Review notes — 2026-10-15
+
+Removed hard-coded old work-account paths, corporate Bash wrappers and duplicate
+LM Studio path blocks. Optional app directories now use the current home path.
+Preserved the laptop's existing personal Git identity; local overrides can
+replace it. Existing terminal and SSH app settings were inventoried only, not
+exported wholesale. No whole-system defaults or local shell secret file is copied.
+
+The old versioned shell/local.example contained literal credential-like values.
+The current template is comment-only; history has not been rewritten and old
+GitHub history remains. Their validity is unknown. Revoke/rotate any live keys
+at the issuers before treating a public mirror as safe. Do not publish private
+local overrides. No credential validity test, rotation or history rewrite was run.
+
+The clone command assumes your existing Forgejo SSH access is configured. An
+HTTPS clone through Forgejo is also possible with interactive authentication.
